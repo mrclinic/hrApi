@@ -1,0 +1,6 @@
+@HiastHRApi_HostAddress = http://localhost:5202
+
+GET {{HiastHRApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
