@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Languages>
         [HttpGet(nameof(GetLanguages))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName ="استعلام اللغات")]
         public IActionResult GetLanguages([FromQuery]SieveModel sieveModel) => Ok(_languageService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateLanguage))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "ةإنشاء لغة جديد")]
         public async Task<IActionResult> CreateLanguage(LanguageDto language)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateLanguage))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل اللغة")]
         public async Task<IActionResult> UpdateLanguage(LanguageDto language)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteLanguage))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف اللغة")]
         public async Task<IActionResult> DeleteLanguage(Guid id)
         {
             if (ModelState.IsValid)

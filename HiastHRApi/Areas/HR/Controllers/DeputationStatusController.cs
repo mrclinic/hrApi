@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<DeputationStatuss>
         [HttpGet(nameof(GetDeputationStatuss))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أوضاع الإيفاد وتغيرات")]
         public IActionResult GetDeputationStatuss([FromQuery]SieveModel sieveModel) => Ok(_deputationstatusService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateDeputationStatus))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء وضع إيفاد جديد")]
         public async Task<IActionResult> CreateDeputationStatus(DeputationStatusDto deputationstatus)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateDeputationStatus))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل وضع الإيفاد")]
         public async Task<IActionResult> UpdateDeputationStatus(DeputationStatusDto deputationstatus)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteDeputationStatus))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف وضع الإيفاد")]
         public async Task<IActionResult> DeleteDeputationStatus(Guid id)
         {
             if (ModelState.IsValid)

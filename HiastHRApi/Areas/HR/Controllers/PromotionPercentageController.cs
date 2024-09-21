@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<PromotionPercentages>
         [HttpGet(nameof(GetPromotionPercentages))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام نسب الترقية")]
         public IActionResult GetPromotionPercentages([FromQuery]SieveModel sieveModel) => Ok(_promotionpercentageService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreatePromotionPercentage))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نسبة ترقية جديدة")]
         public async Task<IActionResult> CreatePromotionPercentage(PromotionPercentageDto promotionpercentage)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdatePromotionPercentage))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نسبة الترقية")]
         public async Task<IActionResult> UpdatePromotionPercentage(PromotionPercentageDto promotionpercentage)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeletePromotionPercentage))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نسبة الترقية")]
         public async Task<IActionResult> DeletePromotionPercentage(Guid id)
         {
             if (ModelState.IsValid)

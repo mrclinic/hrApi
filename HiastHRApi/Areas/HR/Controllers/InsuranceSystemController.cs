@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<InsuranceSystems>
         [HttpGet(nameof(GetInsuranceSystems))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنظمة التأمين الصحي")]
         public IActionResult GetInsuranceSystems([FromQuery]SieveModel sieveModel) => Ok(_insurancesystemService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateInsuranceSystem))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نظام تأمين الصحي جديد")]
         public async Task<IActionResult> CreateInsuranceSystem(InsuranceSystemDto insurancesystem)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateInsuranceSystem))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نظام التأمين الصحي")]
         public async Task<IActionResult> UpdateInsuranceSystem(InsuranceSystemDto insurancesystem)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteInsuranceSystem))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نظام التأمين الصحي")]
         public async Task<IActionResult> DeleteInsuranceSystem(Guid id)
         {
             if (ModelState.IsValid)

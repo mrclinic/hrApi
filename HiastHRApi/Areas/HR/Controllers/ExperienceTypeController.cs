@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<ExperienceTypes>
         [HttpGet(nameof(GetExperienceTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع الخبرة")]
         public IActionResult GetExperienceTypes([FromQuery]SieveModel sieveModel) => Ok(_experiencetypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateExperienceType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع خبرة جديد")]
         public async Task<IActionResult> CreateExperienceType(ExperienceTypeDto experiencetype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateExperienceType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع الخبرة")]
         public async Task<IActionResult> UpdateExperienceType(ExperienceTypeDto experiencetype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteExperienceType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع الخبرة")]
         public async Task<IActionResult> DeleteExperienceType(Guid id)
         {
             if (ModelState.IsValid)

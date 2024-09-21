@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Departments>
         [HttpGet(nameof(GetDepartments))]
-        [DisplayActionName(DisplayName = "استعلام الأقسام")]
+        [DisplayActionName(DisplayName = "استعلام الجهات المصدرة")]
         public IActionResult GetDepartments([FromQuery] SieveModel sieveModel) => Ok(_departmentService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateDepartment))]
-        [DisplayActionName(DisplayName = "إضافة قسم")]
+        [DisplayActionName(DisplayName = "إضافة جهة مصدرة جديدة")]
         public async Task<IActionResult> CreateDepartment(DepartmentDto department)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateDepartment))]
-        [DisplayActionName(DisplayName = "تعديل قسم")]
+        [DisplayActionName(DisplayName = "تعديل الجهة المصدرة")]
         public async Task<IActionResult> UpdateDepartment(DepartmentDto department)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteDepartment))]
-        [DisplayActionName(DisplayName = "حذف قسم")]
+        [DisplayActionName(DisplayName = "حذف الجهة المصدرة")]
         public async Task<IActionResult> DeleteDepartment(Guid id)
         {
             if (ModelState.IsValid)

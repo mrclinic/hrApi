@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<PunishmentTypes>
         [HttpGet(nameof(GetPunishmentTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع العقوبات")]
         public IActionResult GetPunishmentTypes([FromQuery]SieveModel sieveModel) => Ok(_punishmenttypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreatePunishmentType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع عقوبة جديد")]
         public async Task<IActionResult> CreatePunishmentType(PunishmentTypeDto punishmenttype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdatePunishmentType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع العقوبة")]
         public async Task<IActionResult> UpdatePunishmentType(PunishmentTypeDto punishmenttype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeletePunishmentType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع العقوبة")]
         public async Task<IActionResult> DeletePunishmentType(Guid id)
         {
             if (ModelState.IsValid)

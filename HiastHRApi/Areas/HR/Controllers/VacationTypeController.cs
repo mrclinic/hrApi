@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<VacationTypes>
         [HttpGet(nameof(GetVacationTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع الإجازات")]
         public IActionResult GetVacationTypes([FromQuery]SieveModel sieveModel) => Ok(_vacationtypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateVacationType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع اجازة جديد")]
         public async Task<IActionResult> CreateVacationType(VacationTypeDto vacationtype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateVacationType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع الإجازة")]
         public async Task<IActionResult> UpdateVacationType(VacationTypeDto vacationtype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteVacationType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع الإجازة")]
         public async Task<IActionResult> DeleteVacationType(Guid id)
         {
             if (ModelState.IsValid)

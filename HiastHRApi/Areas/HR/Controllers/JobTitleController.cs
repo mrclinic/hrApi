@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<JobTitles>
         [HttpGet(nameof(GetJobTitles))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام المسميات الوظيفية")]
         public IActionResult GetJobTitles([FromQuery]SieveModel sieveModel) => Ok(_jobtitleService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateJobTitle))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء مسمى وظيفي جديد")]
         public async Task<IActionResult> CreateJobTitle(JobTitleDto jobtitle)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateJobTitle))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل المسمى الوظيفي")]
         public async Task<IActionResult> UpdateJobTitle(JobTitleDto jobtitle)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteJobTitle))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف المسمى الوظيفي")]
         public async Task<IActionResult> DeleteJobTitle(Guid id)
         {
             if (ModelState.IsValid)

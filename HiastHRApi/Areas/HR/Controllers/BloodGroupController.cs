@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<BloodGroups>
         [HttpGet(nameof(GetBloodGroups))]
-        [DisplayActionName(DisplayName = "استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الزمر الدموية")]
         public IActionResult GetBloodGroups([FromQuery] SieveModel sieveModel) => Ok(_bloodgroupService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateBloodGroup))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء زمرة جديدة")]
         public async Task<IActionResult> CreateBloodGroup(BloodGroupDto bloodgroup)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateBloodGroup))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل زمرة")]
         public async Task<IActionResult> UpdateBloodGroup(BloodGroupDto bloodgroup)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteBloodGroup))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف زمرة")]
         public async Task<IActionResult> DeleteBloodGroup(Guid id)
         {
             if (ModelState.IsValid)

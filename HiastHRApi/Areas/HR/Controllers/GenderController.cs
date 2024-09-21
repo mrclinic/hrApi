@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Genders>
         [HttpGet(nameof(GetGenders))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName ="استعلام ")]
         public IActionResult GetGenders([FromQuery]SieveModel sieveModel) => Ok(_genderService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateGender))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء جنس جديد")]
         public async Task<IActionResult> CreateGender(GenderDto gender)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateGender))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل الجنس")]
         public async Task<IActionResult> UpdateGender(GenderDto gender)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteGender))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف الجنس")]
         public async Task<IActionResult> DeleteGender(Guid id)
         {
             if (ModelState.IsValid)

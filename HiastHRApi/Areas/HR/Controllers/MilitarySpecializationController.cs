@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<MilitarySpecializations>
         [HttpGet(nameof(GetMilitarySpecializations))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام التخصصات العسكرية")]
         public IActionResult GetMilitarySpecializations([FromQuery]SieveModel sieveModel) => Ok(_militaryspecializationService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateMilitarySpecialization))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء تخصص عسكري جديد")]
         public async Task<IActionResult> CreateMilitarySpecialization(MilitarySpecializationDto militaryspecialization)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateMilitarySpecialization))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل التخصص العسكري")]
         public async Task<IActionResult> UpdateMilitarySpecialization(MilitarySpecializationDto militaryspecialization)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteMilitarySpecialization))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف التخصص العسكري")]
         public async Task<IActionResult> DeleteMilitarySpecialization(Guid id)
         {
             if (ModelState.IsValid)

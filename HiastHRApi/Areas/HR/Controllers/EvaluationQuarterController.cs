@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EvaluationQuarters>
         [HttpGet(nameof(GetEvaluationQuarters))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أرباع التقييمات")]
         public IActionResult GetEvaluationQuarters([FromQuery]SieveModel sieveModel) => Ok(_evaluationquarterService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateEvaluationQuarter))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء ربع تقييم جديد")]
         public async Task<IActionResult> CreateEvaluationQuarter(EvaluationQuarterDto evaluationquarter)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEvaluationQuarter))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل ربع التقييم")]
         public async Task<IActionResult> UpdateEvaluationQuarter(EvaluationQuarterDto evaluationquarter)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEvaluationQuarter))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف ربع التقييم")]
         public async Task<IActionResult> DeleteEvaluationQuarter(Guid id)
         {
             if (ModelState.IsValid)

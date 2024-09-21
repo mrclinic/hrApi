@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<FinancialImpacts>
         [HttpGet(nameof(GetFinancialImpacts))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الانعكاسات المالية")]
         public IActionResult GetFinancialImpacts([FromQuery]SieveModel sieveModel) => Ok(_financialimpactService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateFinancialImpact))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء انعكاس مالي جديد")]
         public async Task<IActionResult> CreateFinancialImpact(FinancialImpactDto financialimpact)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateFinancialImpact))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل الانعكاس المالي")]
         public async Task<IActionResult> UpdateFinancialImpact(FinancialImpactDto financialimpact)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteFinancialImpact))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف الانعكاس المالي")]
         public async Task<IActionResult> DeleteFinancialImpact(Guid id)
         {
             if (ModelState.IsValid)

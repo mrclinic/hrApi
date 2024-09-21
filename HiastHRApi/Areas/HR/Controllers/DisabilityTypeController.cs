@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<DisabilityTypes>
         [HttpGet(nameof(GetDisabilityTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع الإعاقات")]
         public IActionResult GetDisabilityTypes([FromQuery]SieveModel sieveModel) => Ok(_disabilitytypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateDisabilityType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع إعاقة جديد")]
         public async Task<IActionResult> CreateDisabilityType(DisabilityTypeDto disabilitytype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateDisabilityType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع الإعاقة")]
         public async Task<IActionResult> UpdateDisabilityType(DisabilityTypeDto disabilitytype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteDisabilityType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع الإعاقة")]
         public async Task<IActionResult> DeleteDisabilityType(Guid id)
         {
             if (ModelState.IsValid)

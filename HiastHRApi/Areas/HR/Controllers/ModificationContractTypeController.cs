@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<ModificationContractTypes>
         [HttpGet(nameof(GetModificationContractTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع صكوك التعيين المعدل")]
         public IActionResult GetModificationContractTypes([FromQuery]SieveModel sieveModel) => Ok(_modificationcontracttypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateModificationContractType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع صكوك تعيين معدل جديد")]
         public async Task<IActionResult> CreateModificationContractType(ModificationContractTypeDto modificationcontracttype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateModificationContractType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع صكوك التعيين المعدل")]
         public async Task<IActionResult> UpdateModificationContractType(ModificationContractTypeDto modificationcontracttype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteModificationContractType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع صكوك التعيين المعدل")]
         public async Task<IActionResult> DeleteModificationContractType(Guid id)
         {
             if (ModelState.IsValid)

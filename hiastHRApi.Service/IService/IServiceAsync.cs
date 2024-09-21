@@ -1,9 +1,6 @@
 ﻿using hiastHRApi.Services.Common.Result;
 using Sieve.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace hiastHRApi.Services.IService
 {

@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<DegreesAuthoritys>
         [HttpGet(nameof(GetDegreesAuthoritys))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام جهات المنح")]
         public IActionResult GetDegreesAuthoritys([FromQuery]SieveModel sieveModel) => Ok(_degreesauthorityService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateDegreesAuthority))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء جهة منح جديدة")]
         public async Task<IActionResult> CreateDegreesAuthority(DegreesAuthorityDto degreesauthority)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateDegreesAuthority))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل جهة المنح")]
         public async Task<IActionResult> UpdateDegreesAuthority(DegreesAuthorityDto degreesauthority)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteDegreesAuthority))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف جهة المنح")]
         public async Task<IActionResult> DeleteDegreesAuthority(Guid id)
         {
             if (ModelState.IsValid)

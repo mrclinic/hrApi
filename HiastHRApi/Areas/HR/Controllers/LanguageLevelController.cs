@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<LanguageLevels>
         [HttpGet(nameof(GetLanguageLevels))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام مستويات اللغة")]
         public IActionResult GetLanguageLevels([FromQuery]SieveModel sieveModel) => Ok(_languagelevelService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateLanguageLevel))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء مستوى لغة جديد")]
         public async Task<IActionResult> CreateLanguageLevel(LanguageLevelDto languagelevel)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateLanguageLevel))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل مستوى اللغة")]
         public async Task<IActionResult> UpdateLanguageLevel(LanguageLevelDto languagelevel)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteLanguageLevel))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف مستوى اللغة")]
         public async Task<IActionResult> DeleteLanguageLevel(Guid id)
         {
             if (ModelState.IsValid)

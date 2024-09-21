@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<DeputationTypes>
         [HttpGet(nameof(GetDeputationTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع الإيفاد")]
         public IActionResult GetDeputationTypes([FromQuery]SieveModel sieveModel) => Ok(_deputationtypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateDeputationType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع إيفاد جديد")]
         public async Task<IActionResult> CreateDeputationType(DeputationTypeDto deputationtype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateDeputationType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع الإيفاد")]
         public async Task<IActionResult> UpdateDeputationType(DeputationTypeDto deputationtype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteDeputationType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع الإيفاد")]
         public async Task<IActionResult> DeleteDeputationType(Guid id)
         {
             if (ModelState.IsValid)

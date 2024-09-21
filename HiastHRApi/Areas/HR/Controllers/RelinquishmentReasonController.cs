@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<RelinquishmentReasons>
         [HttpGet(nameof(GetRelinquishmentReasons))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أسباب الترك")]
         public IActionResult GetRelinquishmentReasons([FromQuery]SieveModel sieveModel) => Ok(_relinquishmentreasonService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateRelinquishmentReason))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء سبب ترك جديد")]
         public async Task<IActionResult> CreateRelinquishmentReason(RelinquishmentReasonDto relinquishmentreason)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateRelinquishmentReason))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل سبب الترك")]
         public async Task<IActionResult> UpdateRelinquishmentReason(RelinquishmentReasonDto relinquishmentreason)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteRelinquishmentReason))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف سبب الترك")]
         public async Task<IActionResult> DeleteRelinquishmentReason(Guid id)
         {
             if (ModelState.IsValid)

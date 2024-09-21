@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<RewardTypes>
         [HttpGet(nameof(GetRewardTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع المكافآت")]
         public IActionResult GetRewardTypes([FromQuery]SieveModel sieveModel) => Ok(_rewardtypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateRewardType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع مكافأة جديد")]
         public async Task<IActionResult> CreateRewardType(RewardTypeDto rewardtype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateRewardType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع المكافأة")]
         public async Task<IActionResult> UpdateRewardType(RewardTypeDto rewardtype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteRewardType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع المكافأة")]
         public async Task<IActionResult> DeleteRewardType(Guid id)
         {
             if (ModelState.IsValid)

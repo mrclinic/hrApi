@@ -1,8 +1,10 @@
 ﻿using hiastHRApi.Authorization;
+using hiastHRApi.Domain.Entities.Constants;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Service.IService.Constants;
 using hiastHRApi.Service.IService.Identity;
+using hiastHRApi.Service.Service.Constants;
 using hiastHRApi.Services.DTO.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,9 +28,89 @@ namespace HiastHRApi.Controllers
         private readonly IPermissionService _permissionService;
         private readonly IDepartmentService _departmentService;
         private readonly IRolePermissionsService _rolePermissionsService;
+        private readonly IBloodGroupService _bloodGroupService;
+        private readonly IChildStatusService _childStatusService;
+        private readonly ICityService _cityService;
+        private readonly IDegreesAuthorityService _degreesAuthorityService;
+        private readonly IDeputationObjectiveService _deputationObjectiveService;
+        private readonly IDeputationStatusService _deputationStatusService;
+        private readonly IDeputationTypeService _deputationTypeService;
+        private readonly IDisabilityTypeService _disabilityTypeService;
+        private readonly IEmploymentStatusTypeService _employmentStatusTypeService;
+        private readonly IEvaluationGradeService _evaluationGradeService;
+        private readonly IEvaluationQuarterService _evaluationQuarterService;
+        private readonly IExperienceTypeService _experienceTypeService;
+        private readonly IFinancialImpactService _financialImpactService;
+        private readonly IFinancialIndicatorTypeService _financialIndicatorTypeService;
+        private readonly IForcedVacationTypeService _forcedVacationTypeService;
+        private readonly IGenderService _genderService;
+        private readonly IHealthyStatusService _healthyStatusService;
+        private readonly IInsuranceSystemService _insuranceSystemService;
+        private readonly IJobCategoryService _jobCategoryService;
+        private readonly IJobChangeReasonService _jobChangeReasonService;
+        private readonly IJobTitleService _jobTitleService;
+        private readonly ILanguageService _languageService;
+        private readonly ILanguageLevelService _languageLevelService;
+        private readonly ILawService _lawService;
+        private readonly IMaritalStatusService _maritalStatusService;
+        private readonly IMilitaryRankService _militaryRankService;
+        private readonly IMilitarySpecializationService _militarySpecializationService;
+        private readonly IModificationContractTypeService _modificationContractTypeService;
+        private readonly INationalityService _nationalityService;
+        private readonly IOccurrencePartnerTypeService _occurrencePartnerTypeService;
+        private readonly IPromotionPercentageService _promotionPercentageService;
+        private readonly IPunishmentTypeService _punishmentTypeService;
+        private readonly IQualificationService _qualificationService;
+        private readonly IRelinquishmentReasonService _relinquishmentReasonService;
+        private readonly IRewardTypeService _rewardTypeService;
+        private readonly ISpecializationService _specializationService;
+        private readonly IStartingTypeService _startingTypeService;
+        private readonly ISubDepartmentService _subDepartmentService;
+        private readonly ITerminationReasonService _terminationReasonService;
+        private readonly IVacationTypeService _vacationTypeService;
         public PrepareController(IActionDescriptorCollectionProvider provider, IUnitOfWork unitOfWork, ILogger<PrepareController> logger, IUserService userService, IRoleService roleService,
             ICountryService countryService, IBranchService branchService, IUniversityService universityService, IPermissionService permissionService,
-            IDepartmentService departmentService, IRolePermissionsService rolePermissionsService)
+            IDepartmentService departmentService, IRolePermissionsService rolePermissionsService
+            , IBloodGroupService bloodGroupService,
+                IChildStatusService childStatusService,
+                ICityService cityService,
+                IDegreesAuthorityService degreesAuthorityService,
+                IDeputationObjectiveService deputationObjectiveService,
+                IDeputationStatusService deputationStatusService,
+                IDeputationTypeService deputationTypeService,
+                IDisabilityTypeService disabilityTypeService,
+                IEmploymentStatusTypeService employmentStatusTypeService,
+                IEvaluationGradeService evaluationGradeService,
+                IEvaluationQuarterService evaluationQuarterService,
+                IExperienceTypeService experienceTypeService,
+                IFinancialImpactService financialImpactService,
+                IFinancialIndicatorTypeService financialIndicatorTypeService,
+                IForcedVacationTypeService forcedVacationTypeService,
+                IGenderService genderService,
+                IHealthyStatusService healthyStatusService,
+                IInsuranceSystemService insuranceSystemService,
+                IJobCategoryService jobCategoryService,
+                IJobChangeReasonService jobChangeReasonService,
+                IJobTitleService jobTitleService,
+                ILanguageService languageService,
+                ILanguageLevelService languageLevelService,
+                ILawService lawService,
+                IMaritalStatusService maritalStatusService,
+                IMilitaryRankService militaryRankService,
+                IMilitarySpecializationService militarySpecializationService,
+                IModificationContractTypeService modificationContractTypeService,
+                INationalityService nationalityService,
+                IOccurrencePartnerTypeService occurrencePartnerTypeService,
+                IPromotionPercentageService promotionPercentageService,
+                IPunishmentTypeService punishmentTypeService,
+                IQualificationService qualificationService,
+                IRelinquishmentReasonService relinquishmentReasonService,
+                IRewardTypeService rewardTypeService,
+                ISpecializationService specializationService,
+                IStartingTypeService startingTypeService,
+                ISubDepartmentService subDepartmentService,
+                ITerminationReasonService terminationReasonService,
+                IVacationTypeService vacationTypeService)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
@@ -41,6 +123,46 @@ namespace HiastHRApi.Controllers
             _permissionService = permissionService;
             _departmentService = departmentService;
             _rolePermissionsService = rolePermissionsService;
+            _bloodGroupService = bloodGroupService;
+            _childStatusService = childStatusService;
+            _cityService = cityService;
+            _degreesAuthorityService = degreesAuthorityService;
+            _deputationObjectiveService = deputationObjectiveService;
+            _deputationStatusService = deputationStatusService;
+            _deputationTypeService = deputationTypeService;
+            _disabilityTypeService = disabilityTypeService;
+            _employmentStatusTypeService = employmentStatusTypeService;
+            _evaluationGradeService = evaluationGradeService;
+            _evaluationQuarterService = evaluationQuarterService;
+            _experienceTypeService = experienceTypeService;
+            _financialImpactService = financialImpactService;
+            _financialIndicatorTypeService = financialIndicatorTypeService;
+            _forcedVacationTypeService = forcedVacationTypeService;
+            _genderService = genderService;
+            _healthyStatusService = healthyStatusService;
+            _insuranceSystemService = insuranceSystemService;
+            _jobCategoryService = jobCategoryService;
+            _jobChangeReasonService = jobChangeReasonService;
+            _jobTitleService = jobTitleService;
+            _languageService = languageService;
+            _languageLevelService = languageLevelService;
+            _lawService = lawService;
+            _maritalStatusService = maritalStatusService;
+            _militaryRankService = militaryRankService;
+            _militarySpecializationService = militarySpecializationService;
+            _modificationContractTypeService = modificationContractTypeService;
+            _nationalityService = nationalityService;
+            _occurrencePartnerTypeService = occurrencePartnerTypeService;
+            _promotionPercentageService = promotionPercentageService;
+            _punishmentTypeService = punishmentTypeService;
+            _qualificationService = qualificationService;
+            _relinquishmentReasonService = relinquishmentReasonService;
+            _rewardTypeService = rewardTypeService;
+            _specializationService = specializationService;
+            _startingTypeService = startingTypeService;
+            _subDepartmentService = subDepartmentService;
+            _terminationReasonService = terminationReasonService;
+            _vacationTypeService = vacationTypeService;
 
         }
         [HttpGet(nameof(install))]
@@ -86,6 +208,295 @@ namespace HiastHRApi.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> prepareData()
         {
+
+            List<BloodGroupDto> bloodGroups = new List<BloodGroupDto>
+                                           {
+                                               new BloodGroupDto { Name = "A+", },
+                                               new BloodGroupDto { Name = "A-", },
+                                               new BloodGroupDto { Name = "B+", },
+                                               new BloodGroupDto { Name = "B-", },
+                                               new BloodGroupDto { Name = "O+", },
+                                               new BloodGroupDto { Name = "O-", },
+                                               new BloodGroupDto { Name = "AB+", },
+                                               new BloodGroupDto { Name = "AB-", },
+                                           };
+            await _bloodGroupService.AddRange(bloodGroups);
+
+            List<ChildStatusDto> childStatuses = new List<ChildStatusDto>
+                                              {
+                                                  new ChildStatusDto { Name = "رضيع", },
+                                                  new ChildStatusDto { Name = "طفل صغير", },
+                                                  new ChildStatusDto { Name = "'طالب مدرسة ابتدائية", },
+                                                  new ChildStatusDto { Name = "'طالب مدرسة إعدادية", },
+                                                  new ChildStatusDto { Name = "'طالب مدرسة ثانوية", },
+                                                  new ChildStatusDto { Name = "طالب جامعي", },
+                                                  new ChildStatusDto { Name = "متخرج من الجامعة", },
+                                                  new ChildStatusDto { Name = "معاق", },
+                                              };
+            await _childStatusService.AddRange(childStatuses);
+            List<CountryDto> countries = new List<CountryDto>
+                                              {
+                                                  new CountryDto { Name = "سوريا", },
+                                                  new CountryDto { Name = "لبنان", },
+                                                  new CountryDto { Name = "مصر", },
+                                                  new CountryDto { Name = "فلسطين", },
+                                                  new CountryDto { Name = "العراق", },
+                                                  new CountryDto { Name = "روسيا", },
+                                                  new CountryDto { Name = "إيران", },
+                                                  new CountryDto { Name = "كندا", },
+                                              };
+            await _countryService.AddRange(countries);
+
+            List<DegreesAuthorityDto> degreesAuthorities = new List<DegreesAuthorityDto>
+                                                        {
+                                                            new DegreesAuthorityDto { Name = "المعهد العالي للعلوم التطبيقية والتكنلوجيا", },
+                                                            new DegreesAuthorityDto { Name = "جامعة حلب", },
+                                                            new DegreesAuthorityDto { Name = "جامعة دمشق", },
+                                                            new DegreesAuthorityDto { Name = "الجامعة الافتراضية السورية", },
+                                                        };
+            await _degreesAuthorityService.AddRange(degreesAuthorities);
+
+            List<DeputationStatusDto> deputationStatuses = new List<DeputationStatusDto>
+                                                        {
+                                                            new DeputationStatusDto { Name = "تمديد", },
+                                                            new DeputationStatusDto { Name = "مجمد", },
+                                                            new DeputationStatusDto { Name = "مقبول", },
+                                                            new DeputationStatusDto { Name = "مرفوض", },
+                                                            new DeputationStatusDto { Name = "مؤجل", },
+                                                            new DeputationStatusDto { Name = "ملغي", },
+                                                            new DeputationStatusDto { Name = "منجز", },
+                                                        };
+            await _deputationStatusService.AddRange(deputationStatuses);
+            List<DeputationTypeDto> deputationTypes = new List<DeputationTypeDto>
+                                                   {
+                                                       new DeputationTypeDto { Name = "مهمة", },
+                                                       new DeputationTypeDto { Name = "بعثة", },
+                                                   };
+            await _deputationTypeService.AddRange(deputationTypes);
+            List<DisabilityTypeDto> disabilityTypes = new List<DisabilityTypeDto>
+                                                   {
+                                                       new DisabilityTypeDto { Name = "الشلل الدماغي", },
+                                                       new DisabilityTypeDto { Name = "ضعف السمع", },
+                                                       new DisabilityTypeDto { Name = "ضعف البصر", },
+                                                       new DisabilityTypeDto { Name = "ضعف الكلام", },
+                                                       new DisabilityTypeDto { Name = "صعوبات التعلم", },
+                                                       new DisabilityTypeDto { Name = "صعوبات في الحركة", },
+                                                   };
+            await _disabilityTypeService.AddRange(disabilityTypes);
+
+            List<EmploymentStatusTypeDto> employmentStatusTypes = new List<EmploymentStatusTypeDto>
+                                                               {
+                                                                   new EmploymentStatusTypeDto { Name = "مباشر", },
+                                                                   new EmploymentStatusTypeDto { Name = "تارك", },
+                                                                   new EmploymentStatusTypeDto { Name = "طالب", },
+                                                               };
+            await _employmentStatusTypeService.AddRange(employmentStatusTypes);
+            List<EvaluationGradeDto> evaluationGrades = new List<EvaluationGradeDto>
+                                                     {
+                                                         new EvaluationGradeDto { Name = "ممتاز", },
+                                                         new EvaluationGradeDto { Name = "جيد جداً", },
+                                                         new EvaluationGradeDto { Name = "جيد", },
+                                                         new EvaluationGradeDto { Name = "وسط", },
+                                                         new EvaluationGradeDto { Name = "ضعيف", },
+                                                     };
+            await _evaluationGradeService.AddRange(evaluationGrades);
+            List<EvaluationQuarterDto> evaluationQuarters = new List<EvaluationQuarterDto>
+                                                         {
+                                                             new EvaluationQuarterDto { Name = "أول", },
+                                                             new EvaluationQuarterDto { Name = "ثاني", },
+                                                             new EvaluationQuarterDto { Name = "ثالث", },
+                                                             new EvaluationQuarterDto { Name = "رابع", },
+                                                         };
+            await _evaluationQuarterService.AddRange(evaluationQuarters);
+            List<ExperienceTypeDto> experienceTypes = new List<ExperienceTypeDto>
+                                                   {
+                                                       new ExperienceTypeDto { Name = "تنضيد الكتروني", },
+                                                       new ExperienceTypeDto { Name = "خبرة عملية", },
+                                                       new ExperienceTypeDto { Name = "تدريب", },
+                                                       new ExperienceTypeDto { Name = "مشروع تخرج", },
+                                                       new ExperienceTypeDto { Name = "مشروع بحث", },
+                                                   };
+            await _experienceTypeService.AddRange(experienceTypes);
+            List<FinancialImpactDto> financialImpacts = new List<FinancialImpactDto>
+                                                     {
+                                                         new FinancialImpactDto { Name = "لا يوجد", },
+                                                         new FinancialImpactDto { Name = "بلا أجر", },
+                                                         new FinancialImpactDto { Name = "بأجر", },
+                                                     };
+            await _financialImpactService.AddRange(financialImpacts);
+            List<FinancialIndicatorTypeDto> financialIndicatorTypes = new List<FinancialIndicatorTypeDto>
+                                                                   {
+                                                                       new FinancialIndicatorTypeDto { Name = "نسبة", },
+                                                                       new FinancialIndicatorTypeDto { Name = "مبلغ", },
+                                                                   };
+            await _financialIndicatorTypeService.AddRange(financialIndicatorTypes);
+            List<ForcedVacationTypeDto> forcedVacationTypes = new List<ForcedVacationTypeDto>
+                                                           {
+                                                               new ForcedVacationTypeDto { Name = "وفاة", },
+                                                               new ForcedVacationTypeDto { Name = "زواج", },
+                                                               new ForcedVacationTypeDto { Name = "صحي", },
+                                                               new ForcedVacationTypeDto { Name = "ساعات رضاعة", },
+                                                           };
+            await _forcedVacationTypeService.AddRange(forcedVacationTypes);
+            List<GenderDto> genders = new List<GenderDto>
+                                   {
+                                       new GenderDto { Name = "ذكر", },
+                                       new GenderDto { Name = "أنثى", },
+                                   };
+            await _genderService.AddRange(genders);
+            List<HealthyStatusDto> healthyStatuses = new List<HealthyStatusDto>
+                                                  {
+                                                      new HealthyStatusDto { Name = "سليم", },
+                                                      new HealthyStatusDto { Name = "مريض", },
+                                                  };
+            await _healthyStatusService.AddRange(healthyStatuses);
+            List<InsuranceSystemDto> insuranceSystems = new List<InsuranceSystemDto>
+                                                     {
+                                                         new InsuranceSystemDto { Name = "التأمينات الاجتماعية", },
+                                                         new InsuranceSystemDto { Name = "التأمين الصحي", },
+                                                     };
+            await _insuranceSystemService.AddRange(insuranceSystems);
+            List<JobCategoryDto> jobCategories = new List<JobCategoryDto>
+                                              {
+                                                  new JobCategoryDto { Name = "أولى", },
+                                                  new JobCategoryDto { Name = "ثانية", },
+                                              };
+            await _jobCategoryService.AddRange(jobCategories);
+            List<ModificationContractTypeDto> contractTypesToAdd = new List<ModificationContractTypeDto>
+                                                            {
+                                                                new ModificationContractTypeDto { Name = "مرسوم", },
+                                                                new ModificationContractTypeDto { Name = "قرار", },
+                                                            };
+            await _modificationContractTypeService.AddRange(contractTypesToAdd);
+            List<JobTitleDto> jobTitles = new List<JobTitleDto>
+                                       {
+                                           new JobTitleDto { Name = "مدير عام", },
+                                           new JobTitleDto { Name = "مدير إدارة", },
+                                           new JobTitleDto { Name = "مدير قسم", },
+                                           new JobTitleDto { Name = "مدرس", },
+                                           new JobTitleDto { Name = "فني", },
+                                           new JobTitleDto { Name = "مهندس", },
+                                           new JobTitleDto { Name = "سائق", },
+                                       };
+            await _jobTitleService.AddRange(jobTitles);
+            List<LanguageDto> languages = new List<LanguageDto>
+                                       {
+                                           new LanguageDto { Name = "العربية", },
+                                           new LanguageDto { Name = "الإنجليزية", },
+                                           new LanguageDto { Name = "الفرنسية", },
+                                       };
+            await _languageService.AddRange(languages);
+            List<LanguageLevelDto> languageLevels = new List<LanguageLevelDto>
+                                                 {
+                                                     new LanguageLevelDto { Name = "جيد", },
+                                                     new LanguageLevelDto { Name = "ممتاز", },
+                                                 };
+            await _languageLevelService.AddRange(languageLevels);
+            List<LawDto> laws = new List<LawDto>
+                             {
+                                 new LawDto { Name = "العاملين", },
+                             };
+            await _lawService.AddRange(laws);
+            List<MaritalStatusDto> maritalStatuses = new List<MaritalStatusDto>
+                                                  {
+                                                      new MaritalStatusDto { Name = "أعزب", },
+                                                      new MaritalStatusDto { Name = "متزوج", },
+                                                      new MaritalStatusDto { Name = "مطلق", },
+                                                      new MaritalStatusDto { Name = "أرمل", },
+                                                  };
+            await _maritalStatusService.AddRange(maritalStatuses);
+            List<MilitaryRankDto> militaryRanks = new List<MilitaryRankDto>
+                                               {
+                                                   new MilitaryRankDto { Name = "ملازم", },
+                                                   new MilitaryRankDto { Name = "ملازم أول", },
+                                                   new MilitaryRankDto { Name = "نقيب", },
+                                                   new MilitaryRankDto { Name = "رائد", },
+                                                   new MilitaryRankDto { Name = "مقدم", },
+                                                   new MilitaryRankDto { Name = "عقيد", },
+                                                   new MilitaryRankDto { Name = "عميد", },
+                                                   new MilitaryRankDto { Name = "لواء", },
+                                                   new MilitaryRankDto { Name = "عماد", },
+                                                   new MilitaryRankDto { Name = "فريق", },
+                                               };
+            await _militaryRankService.AddRange(militaryRanks);
+            List<MilitarySpecializationDto> militarySpecializations = new List<MilitarySpecializationDto>
+                                                                   {
+                                                                       new MilitarySpecializationDto { Name = "استطلاع", },
+                                                                       new MilitarySpecializationDto { Name = "إاداري", },
+                                                                       new MilitarySpecializationDto { Name = "المدفعية", },
+                                                                       new MilitarySpecializationDto { Name = "الطيران", },
+                                                                       new MilitarySpecializationDto { Name = "الدفاع الجوي", },
+                                                                   };
+            await _militarySpecializationService.AddRange(militarySpecializations);
+            List<DeputationObjectiveDto> deputationObjectives = new List<DeputationObjectiveDto>
+                                                             {
+                                                                 new DeputationObjectiveDto { Name = "دكتواره", },
+                                                                 new DeputationObjectiveDto { Name = "ماجستير", },
+                                                                 new DeputationObjectiveDto { Name = "التدريب على الأعمال والمهارات المختلفة", },
+                                                                 new DeputationObjectiveDto { Name = "مسابقات دولية", },
+                                                             };
+            await _deputationObjectiveService.AddRange(deputationObjectives);
+            List<NationalityDto> nationalities = new List<NationalityDto>
+                                              {
+                                                  new NationalityDto { Name = "سوري", },
+                                                  new NationalityDto { Name = "مصري", },
+                                                  new NationalityDto { Name = "لبناني", },
+                                              };
+            await _nationalityService.AddRange(nationalities);
+            List<OccurrencePartnerTypeDto> occurrencePartnerTypes = new List<OccurrencePartnerTypeDto>
+                                                                 {
+                                                                     new OccurrencePartnerTypeDto { Name = "زواج", },
+                                                                     new OccurrencePartnerTypeDto { Name = "طلاق", },
+                                                                 };
+            await _occurrencePartnerTypeService.AddRange(occurrencePartnerTypes);
+            List<RelinquishmentReasonDto> relinquishmentReasons = new List<RelinquishmentReasonDto>
+                                                               {
+                                                                   new RelinquishmentReasonDto { Name = "استقالة", },
+                                                                   new RelinquishmentReasonDto { Name = "تقاعد", },
+                                                                   new RelinquishmentReasonDto { Name = "بحكم المستقيل", },
+                                                               };
+            await _relinquishmentReasonService.AddRange(relinquishmentReasons);
+            List<RewardTypeDto> rewardTypes = new List<RewardTypeDto>
+                                           {
+                                               new RewardTypeDto { Name = "تنبيه", },
+                                               new RewardTypeDto { Name = "شكر", },
+                                           };
+            await _rewardTypeService.AddRange(rewardTypes);
+            List<QualificationDto> qualificationsToAdd = new List<QualificationDto>
+                                                  {
+                                                      new QualificationDto { Name = "ثانوية", },
+                                                      new QualificationDto { Name = "بكالوريوس", },
+                                                      new QualificationDto { Name = "ماجستير", },
+                                                      new QualificationDto { Name = "دكتوراه", },
+                                                  };
+            await _qualificationService.AddRange(qualificationsToAdd);
+            List<StartingTypeDto> startingTypes = new List<StartingTypeDto>
+                                               {
+                                                   new StartingTypeDto { Name = "ملاك", },
+                                                   new StartingTypeDto { Name = "خارج", },
+                                               };
+            await _startingTypeService.AddRange(startingTypes);
+            List<TerminationReasonDto> terminationReasons = new List<TerminationReasonDto>
+                                                         {
+                                                             new TerminationReasonDto { Name = "استفالة", },
+                                                             new TerminationReasonDto { Name = "وفاة", },
+                                                             new TerminationReasonDto { Name = "كف يد", },
+                                                         };
+            await _terminationReasonService.AddRange(terminationReasons);
+            List<UniversityDto> universities = new List<UniversityDto>
+                                            {
+                                                new UniversityDto { Name = "المعهد العالي للعلوم التطبيقية والتكنلوجيا", },
+                                                new UniversityDto { Name = "جامعة حلب", },
+                                                new UniversityDto { Name = "جامعة دمشق", },
+                                                new UniversityDto { Name = "الجامعة الافتراضية السورية", },
+                                            };
+            await _universityService.AddRange(universities);
+            List<VacationTypeDto> vacationTypes = new List<VacationTypeDto>
+                                               {
+                                                   new VacationTypeDto { Name = "إدارية", },
+                                                   new VacationTypeDto { Name = "صحية", },
+                                               };
+            await _vacationTypeService.AddRange(vacationTypes);
             var roles = new List<RoleDto>();
             roles.Add(new RoleDto { Name = "Admin", DisplayName = "مدير", StatusCode = 0 });
             roles.Add(new RoleDto { Name = "User", DisplayName = "مستخدم", StatusCode = 0 });
@@ -94,15 +505,6 @@ namespace HiastHRApi.Controllers
             roles.Add(new RoleDto { Name = "HeadCommittee", DisplayName = "رئيس لجنة", StatusCode = 2 });
             await _roleService.AddRange(roles);
 
-            var countries = new List<CountryDto>();
-            countries.Add(new CountryDto { Name = "سوريا" });
-            countries.Add(new CountryDto { Name = "لبنان" });
-            countries.Add(new CountryDto { Name = "روسيا" });
-            countries.Add(new CountryDto { Name = "مصر" });
-            countries.Add(new CountryDto { Name = "فرنسا" });
-            countries.Add(new CountryDto { Name = "إيران" });
-            countries.Add(new CountryDto { Name = "بريطانيا" });
-            await _countryService.AddRange(countries);
             await _unitOfWork.CompleteAsync();
 
             var country = await _countryService.Find(p => p.Name.Equals("سوريا"));
@@ -149,7 +551,7 @@ namespace HiastHRApi.Controllers
             #endregion
 
             //create some accounts
-            var users = createUsers( immanenceRoleId, headBranchRoleId, headCommitteeRoleId, adminRoleId, userRoleId);
+            var users = createUsers(immanenceRoleId, headBranchRoleId, headCommitteeRoleId, adminRoleId, userRoleId);
             await _userService.AddRange(users);
 
             var depts = new List<DepartmentDto>();
@@ -179,7 +581,7 @@ namespace HiastHRApi.Controllers
             var roleHeadCommitteePerms = new List<RolePermissionsDto>();
             roleHeadCommitteePerms.Add(new RolePermissionsDto
             { RoleId = headCommitteeRoleId, PermissionId = perms.FirstOrDefault(p => p.Name.Equals("UserManagment_UserProfile_GetAllUserProfilesInfo")).Id });
-            
+
             return roleHeadCommitteePerms;
         }
 
@@ -188,7 +590,7 @@ namespace HiastHRApi.Controllers
             var roleHeadBranchPerms = new List<RolePermissionsDto>();
             roleHeadBranchPerms.Add(new RolePermissionsDto
             { RoleId = headBranchRoleId, PermissionId = perms.FirstOrDefault(p => p.Name.Equals("UserManagment_UserProfile_GetAllUserProfilesInfo")).Id });
-           
+
             return roleHeadBranchPerms;
         }
 
@@ -197,11 +599,11 @@ namespace HiastHRApi.Controllers
             var roleImmanencePerms = new List<RolePermissionsDto>();
             roleImmanencePerms.Add(new RolePermissionsDto
             { RoleId = immanenceRoleId, PermissionId = perms.FirstOrDefault(p => p.Name.Equals("UserManagment_UserProfile_GetAllUserProfilesInfo")).Id });
-            
+
             return roleImmanencePerms;
         }
 
-        private List<UserDto> createUsers( Guid immanenceRoleId, Guid headBranchRoleId, Guid headCommitteeRoleId, Guid adminRoleId, Guid userRoleId)
+        private List<UserDto> createUsers(Guid immanenceRoleId, Guid headBranchRoleId, Guid headCommitteeRoleId, Guid adminRoleId, Guid userRoleId)
         {
             var users = new List<UserDto>();
             users.Add(new UserDto
@@ -216,7 +618,7 @@ namespace HiastHRApi.Controllers
                 Phone = "0000006000",
                 UserName = "immanence",
                 RoleID = immanenceRoleId,
-                UserToken="tttt"
+                UserToken = "tttt"
             });
             users.Add(new UserDto
             {
@@ -280,7 +682,7 @@ namespace HiastHRApi.Controllers
         private List<RolePermissionsDto> assignUserPerms(IEnumerable<PermissionDto> perms, System.Guid userRoleId)
         {
             var roleUserPerms = new List<RolePermissionsDto>();
-            
+
             roleUserPerms.Add(new RolePermissionsDto
             {
                 RoleId = userRoleId,

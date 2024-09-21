@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<TerminationReasons>
         [HttpGet(nameof(GetTerminationReasons))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أسباب الطرد")]
         public IActionResult GetTerminationReasons([FromQuery]SieveModel sieveModel) => Ok(_terminationreasonService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateTerminationReason))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء سبب طرد جديد")]
         public async Task<IActionResult> CreateTerminationReason(TerminationReasonDto terminationreason)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateTerminationReason))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل سبب الطرد")]
         public async Task<IActionResult> UpdateTerminationReason(TerminationReasonDto terminationreason)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteTerminationReason))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف سبب الطرد")]
         public async Task<IActionResult> DeleteTerminationReason(Guid id)
         {
             if (ModelState.IsValid)

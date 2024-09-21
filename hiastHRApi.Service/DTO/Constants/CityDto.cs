@@ -8,7 +8,7 @@ namespace hiastHRApi.Service.DTO.Constants
     {
         public Guid CountryId { get; set; }
 
-        public CountryDto Country { get; set; }
+        public CountryDto? Country { get; set; }
 
         public void Mapping(Profile profile)
         {

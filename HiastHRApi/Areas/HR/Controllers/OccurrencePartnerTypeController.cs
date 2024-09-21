@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<OccurrencePartnerTypes>
         [HttpGet(nameof(GetOccurrencePartnerTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع الواقعات في الزواجات")]
         public IActionResult GetOccurrencePartnerTypes([FromQuery]SieveModel sieveModel) => Ok(_occurrencepartnertypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateOccurrencePartnerType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع الواقعات في الزواجات جديد")]
         public async Task<IActionResult> CreateOccurrencePartnerType(OccurrencePartnerTypeDto occurrencepartnertype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateOccurrencePartnerType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع الواقعات في الزواجات")]
         public async Task<IActionResult> UpdateOccurrencePartnerType(OccurrencePartnerTypeDto occurrencepartnertype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteOccurrencePartnerType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع الواقعات في الزواجات")]
         public async Task<IActionResult> DeleteOccurrencePartnerType(Guid id)
         {
             if (ModelState.IsValid)

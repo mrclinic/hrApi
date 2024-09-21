@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Qualifications>
         [HttpGet(nameof(GetQualifications))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام المؤهلات العلمية")]
         public IActionResult GetQualifications([FromQuery]SieveModel sieveModel) => Ok(_qualificationService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateQualification))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء مؤهل علمي جديد")]
         public async Task<IActionResult> CreateQualification(QualificationDto qualification)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateQualification))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل المؤهل العلمي")]
         public async Task<IActionResult> UpdateQualification(QualificationDto qualification)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteQualification))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف المؤهل العلمي")]
         public async Task<IActionResult> DeleteQualification(Guid id)
         {
             if (ModelState.IsValid)

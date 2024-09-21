@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Laws>
         [HttpGet(nameof(GetLaws))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName ="استعلام القوانين")]
         public IActionResult GetLaws([FromQuery]SieveModel sieveModel) => Ok(_lawService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateLaw))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء قانون جديد")]
         public async Task<IActionResult> CreateLaw(LawDto law)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateLaw))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل القانون")]
         public async Task<IActionResult> UpdateLaw(LawDto law)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteLaw))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف القانون")]
         public async Task<IActionResult> DeleteLaw(Guid id)
         {
             if (ModelState.IsValid)

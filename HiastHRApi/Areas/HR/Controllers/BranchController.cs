@@ -24,7 +24,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Branchs>
         [HttpGet(nameof(GetBranchs))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName ="استعلام الفروع")]
         public IActionResult GetBranchs([FromQuery]SieveModel sieveModel) => Ok(_branchService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateBranch))]

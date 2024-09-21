@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Nationalitys>
         [HttpGet(nameof(GetNationalitys))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الجنسيات")]
         public IActionResult GetNationalitys([FromQuery]SieveModel sieveModel) => Ok(_nationalityService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateNationality))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء جنسية جديدة")]
         public async Task<IActionResult> CreateNationality(NationalityDto nationality)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateNationality))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل الجنسية")]
         public async Task<IActionResult> UpdateNationality(NationalityDto nationality)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteNationality))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف الجنسية")]
         public async Task<IActionResult> DeleteNationality(Guid id)
         {
             if (ModelState.IsValid)

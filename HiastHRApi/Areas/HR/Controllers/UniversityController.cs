@@ -33,7 +33,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         public IActionResult GetUniversitysInfo([FromQuery] SieveModel sieveModel) => Ok(_UniversityService.Get(sieveModel, includeProperties: "Country"));
 
         [HttpPost(nameof(CreateUniversity))]
-        [DisplayActionName(DisplayName = "إنشاء جامعة جديد")]
+        [DisplayActionName(DisplayName = "ةإنشاء جامعة جديد")]
         public async Task<IActionResult> CreateUniversity(UniversityDto University)
         {
             if (ModelState.IsValid)
@@ -46,7 +46,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateUniversity))]
-        [DisplayActionName(DisplayName = "تعديل جامعة")]
+        [DisplayActionName(DisplayName = "تعديل الجامعة")]
         public async Task<IActionResult> UpdateUniversity(UniversityDto University)
         {
             if (ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteUniversity))]
-        [DisplayActionName(DisplayName = "حذف جامعة")]
+        [DisplayActionName(DisplayName = "حذف الجامعة")]
         public async Task<IActionResult> DeleteUniversity(Guid id)
         {
             if (ModelState.IsValid)

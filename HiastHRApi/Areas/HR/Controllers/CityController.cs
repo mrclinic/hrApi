@@ -24,11 +24,14 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Citys>
         [HttpGet(nameof(GetCitys))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName ="استعلام المدن")]
         public IActionResult GetCitys([FromQuery]SieveModel sieveModel) => Ok(_cityService.GetAll(sieveModel));
 
+        [HttpGet(nameof(GetCitysInfo))]
+        public IActionResult GetCitysInfo([FromQuery] SieveModel sieveModel) => Ok(_cityService.Get(sieveModel, includeProperties: "Country"));
+
         [HttpPost(nameof(CreateCity))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء مدينة جديدة")]
         public async Task<IActionResult> CreateCity(CityDto city)
         {
             if (ModelState.IsValid)
@@ -41,7 +44,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateCity))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل مدينة")]
         public async Task<IActionResult> UpdateCity(CityDto city)
         {
             if (ModelState.IsValid)
@@ -54,7 +57,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteCity))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف مدينة")]
         public async Task<IActionResult> DeleteCity(Guid id)
         {
             if (ModelState.IsValid)

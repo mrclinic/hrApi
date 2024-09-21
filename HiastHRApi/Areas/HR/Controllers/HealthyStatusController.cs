@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<HealthyStatuss>
         [HttpGet(nameof(GetHealthyStatuss))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الحالات الصحية")]
         public IActionResult GetHealthyStatuss([FromQuery]SieveModel sieveModel) => Ok(_healthystatusService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateHealthyStatus))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء حالة صحية جديدة")]
         public async Task<IActionResult> CreateHealthyStatus(HealthyStatusDto healthystatus)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateHealthyStatus))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل الحالة الصحية")]
         public async Task<IActionResult> UpdateHealthyStatus(HealthyStatusDto healthystatus)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteHealthyStatus))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف الحالة الصحية")]
         public async Task<IActionResult> DeleteHealthyStatus(Guid id)
         {
             if (ModelState.IsValid)

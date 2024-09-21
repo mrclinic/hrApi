@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<FinancialIndicatorTypes>
         [HttpGet(nameof(GetFinancialIndicatorTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع المؤشرات المالية")]
         public IActionResult GetFinancialIndicatorTypes([FromQuery]SieveModel sieveModel) => Ok(_financialindicatortypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateFinancialIndicatorType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع مؤشر مالي جديد")]
         public async Task<IActionResult> CreateFinancialIndicatorType(FinancialIndicatorTypeDto financialindicatortype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateFinancialIndicatorType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع المؤشر المالي")]
         public async Task<IActionResult> UpdateFinancialIndicatorType(FinancialIndicatorTypeDto financialindicatortype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteFinancialIndicatorType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع المؤشر المالي")]
         public async Task<IActionResult> DeleteFinancialIndicatorType(Guid id)
         {
             if (ModelState.IsValid)

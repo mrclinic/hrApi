@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<ChildStatuss>
         [HttpGet(nameof(GetChildStatuss))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName ="استعلام حالات الطفل")]
         public IActionResult GetChildStatuss([FromQuery]SieveModel sieveModel) => Ok(_childstatusService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateChildStatus))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء حالة الطفل جديدة")]
         public async Task<IActionResult> CreateChildStatus(ChildStatusDto childstatus)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateChildStatus))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل حالة الطفل")]
         public async Task<IActionResult> UpdateChildStatus(ChildStatusDto childstatus)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteChildStatus))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف حالة الطفل")]
         public async Task<IActionResult> DeleteChildStatus(Guid id)
         {
             if (ModelState.IsValid)

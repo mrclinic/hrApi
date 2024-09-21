@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<MaritalStatuss>
         [HttpGet(nameof(GetMaritalStatuss))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الأوضاع العائلية")]
         public IActionResult GetMaritalStatuss([FromQuery]SieveModel sieveModel) => Ok(_maritalstatusService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateMaritalStatus))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء وضع عائلي جديد")]
         public async Task<IActionResult> CreateMaritalStatus(MaritalStatusDto maritalstatus)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateMaritalStatus))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل الوضع العائلي")]
         public async Task<IActionResult> UpdateMaritalStatus(MaritalStatusDto maritalstatus)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteMaritalStatus))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف الوضع العائلي")]
         public async Task<IActionResult> DeleteMaritalStatus(Guid id)
         {
             if (ModelState.IsValid)

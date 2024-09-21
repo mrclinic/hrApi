@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Specializations>
         [HttpGet(nameof(GetSpecializations))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الاختصاصات العلمية")]
         public IActionResult GetSpecializations([FromQuery]SieveModel sieveModel) => Ok(_specializationService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateSpecialization))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء اختصاص علمي جديد")]
         public async Task<IActionResult> CreateSpecialization(SpecializationDto specialization)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateSpecialization))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل الاختصاص العلمي")]
         public async Task<IActionResult> UpdateSpecialization(SpecializationDto specialization)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteSpecialization))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف الاختصاص العلمي")]
         public async Task<IActionResult> DeleteSpecialization(Guid id)
         {
             if (ModelState.IsValid)

@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<StartingTypes>
         [HttpGet(nameof(GetStartingTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع البدء")]
         public IActionResult GetStartingTypes([FromQuery]SieveModel sieveModel) => Ok(_startingtypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateStartingType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع بدء جديد")]
         public async Task<IActionResult> CreateStartingType(StartingTypeDto startingtype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateStartingType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع البدء")]
         public async Task<IActionResult> UpdateStartingType(StartingTypeDto startingtype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteStartingType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع البدء")]
         public async Task<IActionResult> DeleteStartingType(Guid id)
         {
             if (ModelState.IsValid)

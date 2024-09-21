@@ -127,7 +127,7 @@ namespace hiastHRApi.Services
                 a.VersionNumber = activationSetting[nameof(ActivationSetting.VersionNumber)]; ;
             });
             #region auto generation code
-            autoGenerationCodeBlockes();
+            //autoGenerationCodeBlockes();
             #endregion
 
             return services;
@@ -144,11 +144,11 @@ namespace hiastHRApi.Services
                 var model = typelist[i];
 
                 #region ui model generation
-                generateUIModels(model);
+                //generateUIModels(model);
                 #endregion
 
                 #region generate ui actions
-                generateActions(model);
+                //generateActions(model);
                 #endregion
 
                 #region generate controllers
@@ -156,11 +156,11 @@ namespace hiastHRApi.Services
                 #endregion
 
                 #region generate Component
-                generateComponent(model);
+                //generateComponent(model);
                 #endregion
 
                 #region ui service generation
-                generateUIServices(model);
+                //generateUIServices(model);
                 #endregion
 
                 #region generate back-end services

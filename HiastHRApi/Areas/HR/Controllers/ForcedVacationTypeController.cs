@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<ForcedVacationTypes>
         [HttpGet(nameof(GetForcedVacationTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع الإجازات الإضطرارية")]
         public IActionResult GetForcedVacationTypes([FromQuery]SieveModel sieveModel) => Ok(_forcedvacationtypeService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateForcedVacationType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع إجازة إضطرارية جديد")]
         public async Task<IActionResult> CreateForcedVacationType(ForcedVacationTypeDto forcedvacationtype)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateForcedVacationType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع الإجازة الإضطرارية")]
         public async Task<IActionResult> UpdateForcedVacationType(ForcedVacationTypeDto forcedvacationtype)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteForcedVacationType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع الإجازة الإضطرارية")]
         public async Task<IActionResult> DeleteForcedVacationType(Guid id)
         {
             if (ModelState.IsValid)

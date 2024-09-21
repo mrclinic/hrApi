@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<MilitaryRanks>
         [HttpGet(nameof(GetMilitaryRanks))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الرتب العسكرية")]
         public IActionResult GetMilitaryRanks([FromQuery]SieveModel sieveModel) => Ok(_militaryrankService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateMilitaryRank))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء رتبة عسكرية جديدة")]
         public async Task<IActionResult> CreateMilitaryRank(MilitaryRankDto militaryrank)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateMilitaryRank))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل الرتبة العسكرية")]
         public async Task<IActionResult> UpdateMilitaryRank(MilitaryRankDto militaryrank)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteMilitaryRank))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف الرتبة العسكرية")]
         public async Task<IActionResult> DeleteMilitaryRank(Guid id)
         {
             if (ModelState.IsValid)

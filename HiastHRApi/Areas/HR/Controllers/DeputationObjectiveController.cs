@@ -24,11 +24,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<DeputationObjectives>
         [HttpGet(nameof(GetDeputationObjectives))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أهداف الايفاد")]
         public IActionResult GetDeputationObjectives([FromQuery]SieveModel sieveModel) => Ok(_deputationobjectiveService.GetAll(sieveModel));
 
         [HttpPost(nameof(CreateDeputationObjective))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء هدف إيفاد جديد")]
         public async Task<IActionResult> CreateDeputationObjective(DeputationObjectiveDto deputationobjective)
         {
             if (ModelState.IsValid)
@@ -41,7 +41,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateDeputationObjective))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل هدف الإيفاد")]
         public async Task<IActionResult> UpdateDeputationObjective(DeputationObjectiveDto deputationobjective)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteDeputationObjective))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف هدف الإيفاد")]
         public async Task<IActionResult> DeleteDeputationObjective(Guid id)
         {
             if (ModelState.IsValid)

@@ -8,11 +8,11 @@ namespace hiastHRApi.Service.DTO.Constants
     {
         public Guid DepartmentId { get; set; }
 
-        public DepartmentDto Department { get; set; }
+        public DepartmentDto? Department { get; set; }
 
         public Guid SubDepartmentId { get; set; }
 
-        public SubDepartmentDto SubDepartment { get; set; }
+        public SubDepartmentDto? SubDepartment { get; set; }
 
         public void Mapping(Profile profile)
         {
