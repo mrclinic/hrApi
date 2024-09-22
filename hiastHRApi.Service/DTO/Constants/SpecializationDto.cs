@@ -10,7 +10,7 @@ namespace hiastHRApi.Service.DTO.Constants
     {
         public Guid QualificationId { get; set; }
 
-        public QualificationDto Qualification { get; set; }
+        public QualificationDto? Qualification { get; set; }
 
         public void Mapping(Profile profile)
         {

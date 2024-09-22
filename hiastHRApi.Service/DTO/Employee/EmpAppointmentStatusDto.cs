@@ -30,7 +30,7 @@ namespace hiastHRApi.Service.DTO.Employee
 
         public Guid LawId { get; set; }
 
-        public LawDto Law { get; set; }
+        public LawDto? Law { get; set; }
 
         public Guid HealthyStatusId { get; set; }
 

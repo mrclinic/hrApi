@@ -16,10 +16,10 @@ namespace hiastHRApi.Service.DTO.Employee
         public Guid QualificationId { get; set; }
         public string SubSpecialization { get; set; }
         public string EquivalenceContractNumber { get; set; }
-        public DegreesAuthorityDto DegreesAuthority { get; set; }
-        public PersonDto Employee { get; set; }
-        public QualificationDto Qualification { get; set; }
-        public SpecializationDto Specialization { get; set; }
+        public DegreesAuthorityDto? DegreesAuthority { get; set; }
+        public PersonDto? Employee { get; set; }
+        public QualificationDto? Qualification { get; set; }
+        public SpecializationDto? Specialization { get; set; }
 
         public void Mapping(Profile profile)
         {

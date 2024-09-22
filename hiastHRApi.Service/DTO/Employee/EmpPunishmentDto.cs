@@ -18,7 +18,7 @@ namespace hiastHRApi.Service.DTO.Employee
         public DepartmentDto? OrderDepartment { get; set; }
         public bool IsAppearingInRecordCard { get; set; }
         public Guid ContractTypeId { get; set; }
-        public ModificationContractTypeDto ContractType { get; set; }
+        public ModificationContractTypeDto? ContractType { get; set; }
         public Guid PunishmentTypeId { get; set; }
         public PunishmentTypeDto PunishmentType { get; set; }
         public int PercentageOrAmount { get; set; }

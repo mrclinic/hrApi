@@ -17,7 +17,7 @@ namespace hiastHRApi.Service.DTO.Employee
         public string Note { get; set; }
         public Guid EmployeeId { get; set; }
         public ModificationContractTypeDto? ContractType { get; set; }
-        public RelinquishmentReasonDto RelinquishmentReason { get; set; }
+        public RelinquishmentReasonDto? RelinquishmentReason { get; set; }
 
         public void Mapping(Profile profile)
         {

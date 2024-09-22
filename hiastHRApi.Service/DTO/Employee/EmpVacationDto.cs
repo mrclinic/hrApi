@@ -30,10 +30,10 @@ namespace hiastHRApi.Service.DTO.Employee
         public string ModificationContractNumber { get; set; }
         public ModificationContractTypeDto? ContractType { get; set; }
         public PersonDto? Employee { get; set; }
-        public FinancialImpactDto FinancialImpact { get; set; }
+        public FinancialImpactDto? FinancialImpact { get; set; }
         public ForcedVacationTypeDto? ForcedVacationType { get; set; }
         public ModificationContractTypeDto? ModificationContractType { get; set; }
-        public VacationTypeDto VacationType { get; set; }
+        public VacationTypeDto? VacationType { get; set; }
 
         public void Mapping(Profile profile)
         {
