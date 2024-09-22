@@ -9,7 +9,7 @@ namespace hiastHRApi.Service.DTO.Constants
     {
         public Guid FinancialImpactId { get; set; }
 
-        public FinancialImpactDto FinancialImpact { get; set; }
+        public FinancialImpactDto? FinancialImpact { get; set; }
 
         public void Mapping(Profile profile)
         {

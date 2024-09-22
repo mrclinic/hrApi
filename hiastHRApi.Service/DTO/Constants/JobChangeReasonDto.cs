@@ -8,7 +8,7 @@ namespace hiastHRApi.Service.DTO.Constants
     {
         public Guid ModificationContractTypeId { get; set; }
 
-        public ModificationContractTypeDto ModificationContractType { get; set; }
+        public ModificationContractTypeDto? ModificationContractType { get; set; }
 
         public void Mapping(Profile profile)
         {
