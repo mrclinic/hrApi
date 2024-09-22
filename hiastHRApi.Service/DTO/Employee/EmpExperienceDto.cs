@@ -10,11 +10,8 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpExperienceDto : EntityDto, IMapFrom
     {
         public Guid ExperienceTypeId { get; set; }
-
-        public ExperienceTypeDto ExperienceType { get; set; }
-
+        public ExperienceTypeDto? ExperienceType { get; set; }
         public string Source { get; set; }
-
         public string Duration { get; set; }
 
         public void Mapping(Profile profile)

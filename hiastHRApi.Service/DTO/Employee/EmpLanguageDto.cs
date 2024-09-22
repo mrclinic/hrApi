@@ -10,10 +10,9 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpLanguageDto : EntityDto, IMapFrom
     {
         public Guid LanguageId { get; set; }
-        public LanguageDto Language { get; set; }
-
+        public LanguageDto? Language { get; set; }
         public Guid LanguageLevelId { get; set; }
-        public LanguageLevelDto LanguageLevel { get; set; }
+        public LanguageLevelDto? LanguageLevel { get; set; }
         public bool DisplayOnRecordCard { get; set; }
 
         public void Mapping(Profile profile)

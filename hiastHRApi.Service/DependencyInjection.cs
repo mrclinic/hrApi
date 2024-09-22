@@ -127,7 +127,7 @@ namespace hiastHRApi.Services
                 a.VersionNumber = activationSetting[nameof(ActivationSetting.VersionNumber)]; ;
             });
             #region auto generation code
-            //autoGenerationCodeBlockes();
+            autoGenerationCodeBlockes();
             #endregion
 
             return services;
@@ -136,7 +136,7 @@ namespace hiastHRApi.Services
         public static void autoGenerationCodeBlockes()
         {
             Type[] typelist = Assembly.GetExecutingAssembly().GetTypes()
-                          .Where(t => String.Equals(t.Namespace, "hiastHRApi.Service.DTO.Constants", StringComparison.Ordinal))
+                          .Where(t => String.Equals(t.Namespace, "hiastHRApi.Service.DTO.Employee", StringComparison.Ordinal))
                           .ToArray();
 
             for (int i = 0; i < typelist.Length; i++)

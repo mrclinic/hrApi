@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-
 using hiastHRApi.Domain.Entities.Employee;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Services.Common.Mapping;
@@ -21,13 +20,13 @@ namespace hiastHRApi.Service.DTO.Employee
 
         public Guid InsuranceSystemId { get; set; }
 
-        public InsuranceSystemDto InsuranceSystem { get; set; }
+        public InsuranceSystemDto? InsuranceSystem { get; set; }
 
         public int EngineersSyndicateNumber { get; set; }
 
         public Guid AppointmentContractTypeId { get; set; }
 
-        public ModificationContractTypeDto AppointmentContractType { get; set; }
+        public ModificationContractTypeDto? AppointmentContractType { get; set; }
 
         public Guid LawId { get; set; }
 
@@ -35,23 +34,23 @@ namespace hiastHRApi.Service.DTO.Employee
 
         public Guid HealthyStatusId { get; set; }
 
-        public HealthyStatusDto HealthyStatus { get; set; }
+        public HealthyStatusDto? HealthyStatus { get; set; }
 
         public Guid DisabilityTypeId { get; set; }
 
-        public DisabilityTypeDto DisabilityType { get; set; }
+        public DisabilityTypeDto? DisabilityType { get; set; }
 
         public Guid JobCategoryId { get; set; }
 
-        public JobCategoryDto JobCategory { get; set; }
+        public JobCategoryDto? JobCategory { get; set; }
 
         public Guid ModificationContractTypeId { get; set; }
 
-        public ModificationContractTypeDto ModificationContractType { get; set; }
+        public ModificationContractTypeDto? ModificationContractType { get; set; }
 
         public Guid StartingTypeId { get; set; }
 
-        public StartingTypeDto StartingType { get; set; }
+        public StartingTypeDto? StartingType { get; set; }
 
         public string InsuranceNumber { get; set; }
 

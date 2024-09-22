@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using hiastHRApi.Domain.Entities.Employee;
+using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Services.Common.Mapping;
 using hiastHRApi.Services.Common.Models;
 
@@ -7,24 +9,28 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpTrainingCourseDto : EntityDto, IMapFrom
     {
         public DateTime StartDate { get; set; }
-
         public DateTime EndDate { get; set; }
-
         public DateTime ContractDate { get; set; }
-
         public Guid ContractTypeId { get; set; }
-
         public bool DisplayOnRecordCard { get; set; }
-
         public string CourseName { get; set; }
-
         public string CourseSource { get; set; }
-
         public string ContractNumber { get; set; }
+        public ModificationContractTypeDto? ContractType { get; set; }
 
         public void Mapping(Profile profile)
         {
-            //profile.CreateMap<Role, RoleDto>().ForMember(dest => dest.Name, src => src.MapFrom(src => src.Name))
+            profile.CreateMap<EmpTrainingCourse, EmpTrainingCourseDto>()
+                .ForMember(dest => dest.StartDate, src => src.MapFrom(src => src.StartDate))
+                .ForMember(dest => dest.EndDate, src => src.MapFrom(src => src.EndDate))
+                .ForMember(dest => dest.ContractDate, src => src.MapFrom(src => src.ContractDate))
+                .ForMember(dest => dest.ContractTypeId, src => src.MapFrom(src => src.ContractTypeId))
+                .ForMember(dest => dest.DisplayOnRecordCard, src => src.MapFrom(src => src.DisplayOnRecordCard))
+                .ForMember(dest => dest.CourseName, src => src.MapFrom(src => src.CourseName))
+                .ForMember(dest => dest.CourseSource, src => src.MapFrom(src => src.CourseSource))
+                .ForMember(dest => dest.ContractNumber, src => src.MapFrom(src => src.ContractNumber))
+                .ForMember(dest => dest.ContractType, src => src.MapFrom(src => src.ContractType))
+                .ReverseMap();
         }
     }
 }

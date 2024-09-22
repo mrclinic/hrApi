@@ -9,15 +9,10 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpMilitaryServiceCohortDto : EntityDto, IMapFrom
     {
         public DateTime StartDate { get; set; }
-
         public DateTime StartContractDate { get; set; }
-
         public DateTime EndDate { get; set; }
-
         public DateTime EndContractDate { get; set; }
-
         public string StartContractNumber { get; set; }
-
         public string EndContractNumber { get; set; }
 
         public void Mapping(Profile profile)

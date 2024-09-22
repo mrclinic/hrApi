@@ -10,15 +10,11 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpPerformanceEvaluationDto : EntityDto, IMapFrom
     {
         public DateTime ReportDate { get; set; }
-
         public DateTime PromotionDate { get; set; }
-
         public Guid EvaluationGradeId { get; set; }
-        public EvaluationGradeDto EvaluationGrade { get; set; }
-
+        public EvaluationGradeDto? EvaluationGrade { get; set; }
         public Guid EvaluationQuarterId { get; set; }
-        public EvaluationQuarterDto EvaluationQuarter { get; set; }
-
+        public EvaluationQuarterDto? EvaluationQuarter { get; set; }
         public string ReportNumber { get; set; }
 
         public void Mapping(Profile profile)

@@ -1,6 +1,7 @@
 using hiastHRApi.Repository;
 using Microsoft.EntityFrameworkCore;
 using hiastHRApi.Services;
+using hiastHRApi.global;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,8 +27,10 @@ builder.Services.AddDbContext<HrmappContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddRepository(connectionString);
 builder.Services.AddService(builder.Configuration);
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
 var app = builder.Build();
-
+app.UseExceptionHandler();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -38,6 +41,7 @@ app.UseCors(MyAllowSpecificOrigins); // Enable CORS headers
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
 
 app.MapControllers();
 

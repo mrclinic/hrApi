@@ -12,9 +12,9 @@ namespace hiastHRApi.Service.DTO.Employee
         public DateTime StartDate { get; set; }
         public DateTime ContractDate { get; set; }
         public Guid StartingTypeId { get; set; }
-        public StartingTypeDto StartingType { get; set; }
+        public StartingTypeDto? StartingType { get; set; }
         public Guid ContractTypeId { get; set; }
-        public ModificationContractTypeDto ContractType { get; set; }
+        public ModificationContractTypeDto? ContractType { get; set; }
         public string ContractNumber { get; set; }
         public void Mapping(Profile profile)
         {

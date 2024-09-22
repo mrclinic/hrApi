@@ -10,47 +10,28 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpDeputationDto : EntityDto, IMapFrom
     {
         public DateTime StartDate { get; set; }
-
         public DateTime EndDate { get; set; }
-
         public DateTime ReturnDate { get; set; }
-
         public DateTime DeputationDecisionDate { get; set; }
-
         public DateTime ExecutiveContractDate { get; set; }
-
         public DateTime StartAfterReturnDate { get; set; }
-
         public Guid CountryId { get; set; }
-        public CountryDto Country { get; set; }
-
+        public CountryDto? Country { get; set; }
         public Guid CityId { get; set; }
-        public CityDto City { get; set; }
-
+        public CityDto? City { get; set; }
         public Guid UniversityId { get; set; }
-        public UniversityDto University { get; set; }
-
+        public UniversityDto? University { get; set; }
         public Guid DeputationObjectiveId { get; set; }
-        public DeputationObjectiveDto DeputationObjective { get; set; }
-
+        public DeputationObjectiveDto? DeputationObjective { get; set; }
         public Guid DeputationStatusId { get; set; }
-
-        public DeputationStatusDto DeputationStatus { get; set; }
-
+        public DeputationStatusDto? DeputationStatus { get; set; }
         public Guid DeputationTypeId { get; set; }
-
-        public DeputationTypeDto DeputationType { get; set; }
-
+        public DeputationTypeDto? DeputationType { get; set; }
         public string Duration { get; set; }
-
         public string DeputationDecisionNumber { get; set; }
-
         public string RequiredSpecialization { get; set; }
-
         public string ExecutiveContractNumber { get; set; }
-
         public string AssignedEntity { get; set; }
-
         public string DeputationReason { get; set; }
 
         public void Mapping(Profile profile)

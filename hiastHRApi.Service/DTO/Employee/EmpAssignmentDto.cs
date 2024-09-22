@@ -10,17 +10,11 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpAssignmentDto : EntityDto, IMapFrom
     {
         public DateTime ContractDate { get; set; }
-
         public DateTime StartDate { get; set; }
-
         public DateTime EndDate { get; set; }
-
         public Guid ContractTypeId { get; set; }
-
-        public ModificationContractTypeDto ContractType { get; set; }
-
+        public ModificationContractTypeDto? ContractType { get; set; }
         public string AssignedWork { get; set; }
-
         public string ContractNumber { get; set; }
 
         public void Mapping(Profile profile)

@@ -9,15 +9,10 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpMilitaryServiceSuspensionDto : EntityDto, IMapFrom
     {
         public DateTime SuspensionDate { get; set; }
-
         public DateTime SuspensionContractDate { get; set; }
-
         public DateTime ReturnToServiceDate { get; set; }
-
         public DateTime ReturnContractDate { get; set; }
-
         public string SuspensionContractNumber { get; set; }
-
         public string ReturnContractNumber { get; set; }
 
         public void Mapping(Profile profile)
