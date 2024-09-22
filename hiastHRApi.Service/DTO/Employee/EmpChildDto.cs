@@ -10,21 +10,14 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpChildDto : EntityDto, IMapFrom
     {
         public DateTime? BirthDate { get; set; }
-
         public DateTime? OccurrenceDate { get; set; }
-
         public int ChildOrder { get; set; }
-
         public Guid GenderId { get; set; }
-
-        public GenderDto Gender { get; set; }
+        public GenderDto? Gender { get; set; }
         public Guid StatusId { get; set; }
-        public ChildStatusDto ChildStatus { get; set; }
-
+        public ChildStatusDto? ChildStatus { get; set; }
         public string Name { get; set; }
-
         public string MotherName { get; set; }
-
         public string OccurrenceContractNumber { get; set; }
 
         public void Mapping(Profile profile)

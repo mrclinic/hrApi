@@ -10,35 +10,20 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpEmploymentChangeDto : EntityDto, IMapFrom
     {
         public DateTime DateOfAppointmentVisa { get; set; }
-
         public DateTime DateOfStart { get; set; }
-
         public DateTime DateOfChange { get; set; }
-
         public DateTime DateOfContract { get; set; }
-
         public int Salary { get; set; }
-
         public int InsuranceSalary { get; set; }
-
         public Guid JobChangeReasonId { get; set; }
-
-        public JobChangeReasonDto JobChangeReason { get; set; }
-
+        public JobChangeReasonDto? JobChangeReason { get; set; }
         public Guid ModificationContractTypeId { get; set; }
-
-        public ModificationContractTypeDto ModificationContractType { get; set; }
-
+        public ModificationContractTypeDto? ModificationContractType { get; set; }
         public Guid JobTitleId { get; set; }
-
-        public JobTitleDto JobTitle { get; set; }
-
+        public JobTitleDto? JobTitle { get; set; }
         public string Workplace { get; set; }
-
         public string VisaNumber { get; set; }
-
         public string ContractNumber { get; set; }
-
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpEmploymentChange, EmpEmploymentChangeDto>()

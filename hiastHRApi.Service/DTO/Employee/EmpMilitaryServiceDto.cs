@@ -10,23 +10,15 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpMilitaryServiceDto : EntityDto, IMapFrom
     {
         public DateTime StartDate { get; set; }
-
         public DateTime EndDate { get; set; }
-
         public Guid MilitaryRankId { get; set; }
-        public MilitaryRankDto MilitaryRank { get; set; }
-
+        public MilitaryRankDto? MilitaryRank { get; set; }
         public Guid MilitarySpecializationId { get; set; }
-        public MilitarySpecializationDto MilitarySpecialization { get; set; }
-
+        public MilitarySpecializationDto? MilitarySpecialization { get; set; }
         public string MilitaryNumber { get; set; }
-
         public string ReserveNumber { get; set; }
-
         public string CohortNumber { get; set; }
-
         public string RecruitmentBranch { get; set; }
-
         public string RecruitmentNumber { get; set; }
 
         public void Mapping(Profile profile)

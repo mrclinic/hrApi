@@ -10,18 +10,13 @@ namespace hiastHRApi.Service.DTO.Employee
     public class EmpPromotionDto : EntityDto, IMapFrom
     {
         public DateTime PromotionDate { get; set; }
-
         public int PromotionDuration { get; set; }
-
         public Guid EvaluationGradeId { get; set; }
-        public EvaluationGradeDto EvaluationGrade { get; set; }
-
+        public EvaluationGradeDto? EvaluationGrade { get; set; }
         public decimal NewSalary { get; set; }
-
         public decimal BonusAmount { get; set; }
-
         public Guid PromotionPercentageId { get; set; }
-        public PromotionPercentageDto PromotionPercentage { get; set; }
+        public PromotionPercentageDto? PromotionPercentage { get; set; }
 
         public void Mapping(Profile profile)
         {
