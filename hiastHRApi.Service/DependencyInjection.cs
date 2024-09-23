@@ -136,7 +136,7 @@ namespace hiastHRApi.Services
         public static void autoGenerationCodeBlockes()
         {
             Type[] typelist = Assembly.GetExecutingAssembly().GetTypes()
-                          .Where(t => String.Equals(t.Namespace, "hiastHRApi.Service.DTO.Employee", StringComparison.Ordinal))
+                          .Where(t => String.Equals(t.Namespace, "hiastHRApi.Service.DTO.Constants", StringComparison.Ordinal))
                           .ToArray();
 
             for (int i = 0; i < typelist.Length; i++)
@@ -156,7 +156,7 @@ namespace hiastHRApi.Services
                 #endregion
 
                 #region generate Component
-                //generateComponent(model);
+                generateComponentV2(model);
                 #endregion
 
                 #region ui service generation
@@ -169,8 +169,110 @@ namespace hiastHRApi.Services
             }
         }
 
-        
 
+        public static void generateComponentV2(Type? model)
+        {
+            string componentPAth = @"c:\temp\component\";
+            StringBuilder depen = new StringBuilder();
+            StringBuilder srtComponentTypeScript = new StringBuilder("import { Component, OnInit } from '@angular/core';\r\n" +
+                "import { MessageService } from 'primeng/api';\r\n" +
+                "import { APP_CONSTANTS } from 'src/app/app.contants';\r\n" +
+                "import { " + model.Name.Replace("Dto", "") + " } from 'src/app/demo/models/constants/" + model.Name.Replace("Dto", "").ToLower() + ".model';\r\n" +
+                "import { " + model.Name.Replace("Dto", "") + "Service } from 'src/app/demo/service/constants/" + model.Name.Replace("Dto", "").ToLower() + ".service';\r\n" +
+                "import { IFormStructure } from 'src/app/demo/shared/dynamic-form/from-structure-model';\r\n\r\n" +
+                "@Component({\r\n" +
+                "  selector: 'app-" + model.Name.Replace("Dto", "").ToLower() + "',\r\n" +
+                "  templateUrl: './" + model.Name.Replace("Dto", "").ToLower() + ".component.html',\r\n" +
+                "  styleUrls: ['./" + model.Name.Replace("Dto", "").ToLower() + ".component.css']\r\n" +
+                "})\r\n" +
+                "export class " + model.Name.Replace("Dto", "") + "Component implements OnInit {\r\n" +
+                "  cols: any[] = [];\r\n" +
+                "  " + model.Name.Replace("Dto", "").ToLower() + "s: " + model.Name.Replace("Dto", "") + "[] = [];\r\n" +
+                "  formStructure: IFormStructure[] = [];\r\n\r\n" +
+                "  constructor(private messageService: MessageService,\r\n" +
+                "    private readonly " + model.Name.Replace("Dto", "").ToLower() + "Service: " + model.Name.Replace("Dto", "") + "Service) { }\r\n\r\n" +
+                "  ngOnInit(): void {\r\n" +
+                "    this." + model.Name.Replace("Dto", "").ToLower() + "Service.GetAll" + model.Name.Replace("Dto", "") + "s('').subscribe(\r\n" +
+                "      (res) => {\r\n" +
+                "        this." + model.Name.Replace("Dto", "").ToLower() + "s = res;\r\n" +
+                "        this.initColumns();\r\n" +
+                "        this.initFormStructure();\r\n" +
+                "      }\r\n" +
+                "    );\r\n" +
+                "  }\r\n\r\n" +
+                "  initFormStructure() {\r\n" +
+                "    this.formStructure = [\r\n" +
+                "      {\r\n" +
+                "        type: 'text',\r\n" +
+                "        label: APP_CONSTANTS.NAME,\r\n" +
+                "        name: 'name',\r\n" +
+                "        value: '',\r\n" +
+                "        validations: [\r\n" +
+                "          {\r\n" +
+                "            name: 'required',\r\n" +
+                "            validator: 'required',\r\n" +
+                "            message: APP_CONSTANTS.FIELD_REQUIRED,\r\n" +
+                "          },\r\n" +
+                "        ],\r\n" +
+                "      }\r\n" +
+                "    ];\r\n" +
+                "  }\r\n\r\n" +
+                "  initColumns() {\r\n" +
+                "    this.cols = [\r\n" +
+                "      { dataKey: 'name', header: APP_CONSTANTS.NAME, type: 'string' }\r\n" +
+                "    ]\r\n" +
+                "  }\r\n\r\n" +
+                "  submitEventHandler(eventData) {\r\n" +
+                "    if (eventData.id) {\r\n" +
+                "      this." + model.Name.Replace("Dto", "").ToLower() + "Service.Update" + model.Name.Replace("Dto", "") + "(eventData).subscribe(\r\n" +
+                "        () => {\r\n" +
+                "          this.messageService.add({ severity: 'success', summary: APP_CONSTANTS.SUCCESS, detail: APP_CONSTANTS.EDIT_SUCCESS, life: 3000 });\r\n" +
+                "          this.reload();\r\n" +
+                "        }\r\n" +
+                "      )\r\n" +
+                "    }\r\n" +
+                "    else {\r\n" +
+                "      delete eventData.id;\r\n" +
+                "      this." + model.Name.Replace("Dto", "").ToLower() + "Service.Add" + model.Name.Replace("Dto", "") + "(eventData).subscribe(\r\n" +
+                "        () => {\r\n" +
+                "          this.messageService.add({ severity: 'success', summary: APP_CONSTANTS.SUCCESS, detail: APP_CONSTANTS.ADD_SUCCESS, life: 3000 });\r\n" +
+                "          this.reload();\r\n" +
+                "        }\r\n" +
+                "      )\r\n" +
+                "    }\r\n" +
+                "  }\r\n\r\n" +
+                "  deleteEventHandler(eventData) {\r\n" +
+                "    this." + model.Name.Replace("Dto", "").ToLower() + "Service.Delete" + model.Name.Replace("Dto", "") + "(eventData as string).subscribe(\r\n" +
+                "      (data) => {\r\n" +
+                "        this.messageService.add({ severity: 'success', summary: APP_CONSTANTS.SUCCESS, detail: APP_CONSTANTS.DELETE_SUCCESS, life: 3000 });\r\n" +
+                "        this.reload();\r\n" +
+                "      }\r\n" +
+                "    );\r\n" +
+                "  }\r\n\r\n" +
+                "  reload() {\r\n" +
+                "    this." + model.Name.Replace("Dto", "").ToLower() + "Service.GetAll" + model.Name.Replace("Dto", "") + "s('').subscribe(\r\n" +
+                "      (res) => {\r\n" +
+                "        this." + model.Name.Replace("Dto", "").ToLower() + "s = res;\r\n" +
+                "      }\r\n" +
+                "    )\r\n" +
+                "  }\r\n" +
+                "}\r\n");
+            //save to ts files
+            try
+            {
+                // Create the file, or overwrite if the file exists.
+                using (FileStream fs = File.Create(componentPAth + model.Name.Replace("Dto", "").ToLower() + ".component.ts"))
+                {
+                    byte[] info = new UTF8Encoding(true).GetBytes(srtComponentTypeScript.ToString());
+                    // Add some information to the file.
+                    fs.Write(info, 0, info.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
         public static void generateBackEndServices(Type? model)
         {
             string interfacesPath = @"c:\temp\IService\Constants\";
