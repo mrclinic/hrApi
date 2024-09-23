@@ -2,6 +2,7 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Service.IService.Constants;
+using hiastHRApi.Service.Service.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -26,6 +27,10 @@ namespace hiastHRApi.Areas.HR.Controllers
         [HttpGet(nameof(GetJobChangeReasons))]
         [DisplayActionName(DisplayName = "استعلام أسباب تبديل العمل")]
         public IActionResult GetJobChangeReasons([FromQuery]SieveModel sieveModel) => Ok(_jobchangereasonService.GetAll(sieveModel));
+
+        [HttpGet(nameof(GetJobChangeReasonsInfo))]
+        public IActionResult GetJobChangeReasonsInfo([FromQuery] SieveModel sieveModel) => Ok(_jobchangereasonService.Get(sieveModel, includeProperties: "ModificationContractType"));
+
 
         [HttpPost(nameof(CreateJobChangeReason))]
         [DisplayActionName(DisplayName = "إنشاء سبب تبديل العمل جديد")]
