@@ -2,11 +2,15 @@ using hiastHRApi.Repository;
 using Microsoft.EntityFrameworkCore;
 using hiastHRApi.Services;
 using hiastHRApi.global;
+using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(x => //add this to avoid circular json object
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins"; // Enable CORS headers
 
 builder.Services.AddCors(options =>
