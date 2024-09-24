@@ -2,6 +2,7 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Service.IService.Constants;
+using hiastHRApi.Service.Service.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -26,6 +27,9 @@ namespace hiastHRApi.Areas.HR.Controllers
         [HttpGet(nameof(GetPunishmentTypes))]
         [DisplayActionName(DisplayName = "استعلام أنواع العقوبات")]
         public IActionResult GetPunishmentTypes([FromQuery]SieveModel sieveModel) => Ok(_punishmenttypeService.GetAll(sieveModel));
+
+        [HttpGet(nameof(GetPunishmentTypesInfo))]
+        public IActionResult GetPunishmentTypesInfo([FromQuery] SieveModel sieveModel) => Ok(_punishmenttypeService.Get(sieveModel, includeProperties: "FinancialImpact"));
 
         [HttpPost(nameof(CreatePunishmentType))]
         [DisplayActionName(DisplayName = "إنشاء نوع عقوبة جديد")]

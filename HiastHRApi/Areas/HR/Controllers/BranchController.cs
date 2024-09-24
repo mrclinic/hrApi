@@ -2,6 +2,7 @@
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Service.IService.Constants;
+using hiastHRApi.Service.Service.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -26,6 +27,9 @@ namespace hiastHRApi.Areas.HR.Controllers
         [HttpGet(nameof(GetBranchs))]
         [DisplayActionName(DisplayName ="استعلام الفروع")]
         public IActionResult GetBranchs([FromQuery]SieveModel sieveModel) => Ok(_branchService.GetAll(sieveModel));
+
+        [HttpGet(nameof(GetBranchsInfo))]
+        public IActionResult GetBranchsInfo([FromQuery] SieveModel sieveModel) => Ok(_branchService.Get(sieveModel, includeProperties: "Department,SubDepartment"));
 
         [HttpPost(nameof(CreateBranch))]
         [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
