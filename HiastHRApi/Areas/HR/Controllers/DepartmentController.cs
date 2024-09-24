@@ -2,6 +2,7 @@
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Service.IService.Constants;
+using hiastHRApi.Service.Service.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -27,6 +28,10 @@ namespace hiastHRApi.Areas.HR.Controllers
         [DisplayActionName(DisplayName = "استعلام الجهات المصدرة")]
         public IActionResult GetDepartments([FromQuery] SieveModel sieveModel) => Ok(_departmentService.GetAll(sieveModel));
 
+        [HttpGet(nameof(GetDepartmentsInfo))]
+        [DisplayActionName(DisplayName = "استعلام معلومات الجهات المصدرة")]
+        public IActionResult GetDepartmentsInfo([FromQuery] SieveModel sieveModel) => Ok(_departmentService.Get(sieveModel, includeProperties: "SubDepartments"));
+
         [HttpPost(nameof(CreateDepartment))]
         [DisplayActionName(DisplayName = "إضافة جهة مصدرة جديدة")]
         public async Task<IActionResult> CreateDepartment(DepartmentDto department)
@@ -35,7 +40,7 @@ namespace hiastHRApi.Areas.HR.Controllers
             {
                 await _departmentService.Add(department);
                 await _unitOfWork.CompleteAsync();
-                return new JsonResult("Success") { StatusCode = 200 ,Value=department };
+                return new JsonResult("Success") { StatusCode = 200, Value = department };
             }
             return new JsonResult("Somethign Went wrong") { StatusCode = 500 };
         }
