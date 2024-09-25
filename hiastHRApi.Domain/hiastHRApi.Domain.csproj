@@ -21,4 +21,8 @@
     <PackageReference Include="Sieve" Version="2.5.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\hiastHRApi.Shared\hiastHRApi.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

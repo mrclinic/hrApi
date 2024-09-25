@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\hiastHRApi.Domain\hiastHRApi.Domain.csproj" />
+    <ProjectReference Include="..\hiastHRApi.Shared\hiastHRApi.Shared.csproj" />
   </ItemGroup>
 
 </Project>
