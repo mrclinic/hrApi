@@ -8,7 +8,7 @@ using hiastHRApi.Service.Service.Identity;
 using hiastHRApi.Services.IService;
 using hiastHRApi.Services.Service;
 using hiastHRApi.Shared.Common.Activation;
-using hiastHRApi.Shared.Common.Mapping;
+using hiastHRApi.Services.Common.Mapping;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -123,7 +123,7 @@ namespace hiastHRApi.Services
                 a.VersionNumber = activationSetting[nameof(ActivationSetting.VersionNumber)]; ;
             });
             #region auto generation code
-            autoGenerationCodeBlockes();
+            //autoGenerationCodeBlockes();
             #endregion
 
             return services;

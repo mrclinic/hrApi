@@ -1,7 +1,7 @@
 ﻿
 using hiastHRApi.Domain.Entities.Employee;
 
-using hiastHRApi.Shared.Base;
+using hiastHRApi.Domain.Entities.Base;
 namespace hiastHRApi.Domain.Entities.Constants
 {
     public partial class University : AuditEntity

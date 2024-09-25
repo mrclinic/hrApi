@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace hiastHRApi.Shared.Common.Mapping
+namespace hiastHRApi.Services.Common.Mapping
 {
     public interface IMapFrom
     {

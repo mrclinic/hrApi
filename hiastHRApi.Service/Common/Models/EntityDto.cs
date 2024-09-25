@@ -1,4 +1,4 @@
-﻿namespace hiastHRApi.Shared.Common.Models
+﻿namespace hiastHRApi.Services.Common.Models
 {
     public class EntityDto
     {

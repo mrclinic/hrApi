@@ -2,7 +2,7 @@
 using AutoMapper;
 
 using hiastHRApi.Domain.Entities.Constants;
-using hiastHRApi.Shared.Common.Mapping;
+using hiastHRApi.Services.Common.Mapping;
 
 namespace hiastHRApi.Service.DTO.Constants
 {

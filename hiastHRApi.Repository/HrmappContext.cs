@@ -227,19 +227,12 @@ public partial class HrmappContext : DbContext
             .HasIndex(p => new { p.Name }).IsUnique();
         modelBuilder.Entity<Branch>(entity =>
         {
-            entity.HasIndex(e => e.DepartmentId, "IX_Branches_DepartmentId");
-
-            entity.HasIndex(e => e.SubDepartmentId, "IX_Branches_SubDepartmentId");
-
+            entity.HasIndex(e => e.OrgDepartmentId, "IX_Branches_OrgDepartmentId");
 
             entity.Property(e => e.Name).HasMaxLength(1023);
 
-            entity.HasOne(d => d.Department).WithMany(p => p.Branches)
-                .HasForeignKey(d => d.DepartmentId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            entity.HasOne(d => d.SubDepartment).WithMany(p => p.Branches)
-                .HasForeignKey(d => d.SubDepartmentId)
+            entity.HasOne(d => d.OrgDepartment).WithMany(p => p.Branches)
+                .HasForeignKey(d => d.OrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
         modelBuilder.Entity<Branch>()

@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 using hiastHRApi.Helpers;
 using Microsoft.OpenApi.Models;
 using hiastHRApi.Shared.Common.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -72,7 +75,24 @@ builder.Services.AddService(builder.Configuration);
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-
+//builder.Services.AddAuthentication(a =>
+//{
+//    a.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    a.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//    a.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+//}).AddJwtBearer(o =>
+//{
+//    o.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidIssuer = builder.Configuration["JsonWebTokenKeys:ValidIssuer"],
+//        ValidAudience = builder.Configuration["JsonWebTokenKeys:ValidAudience"],
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JsonWebTokenKeys:IssuerSigningKey"]!)),
+//        ValidateIssuer = true,
+//        ValidateAudience = true,
+//        ValidateLifetime = true,
+//        ValidateIssuerSigningKey = true
+//    };
+//});
 var app = builder.Build();
 app.UseExceptionHandler();
 app.UseMiddleware<JwtMiddleware>();
@@ -84,9 +104,9 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCors(MyAllowSpecificOrigins); // Enable CORS headers
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 

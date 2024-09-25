@@ -1,6 +1,6 @@
 ﻿
 using hiastHRApi.Domain.Entities.Constants;
-using hiastHRApi.Shared.Base;
+using hiastHRApi.Domain.Entities.Base;
 
 
 namespace hiastHRApi.Domain.Entities.Employee
@@ -39,7 +39,7 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         public virtual ModificationContractType ContractType { get; set; } = null!;
 
-        public virtual Department Department { get; set; } = null!;
+        public virtual OrgDepartment Department { get; set; } = null!;
 
         public virtual EmpPersonalInfo Employee { get; set; } = null!;
 

@@ -1,5 +1,5 @@
 ﻿
-using hiastHRApi.Shared.Base;
+using hiastHRApi.Domain.Entities.Base;
 using Sieve.Attributes;
 using System.ComponentModel.DataAnnotations.Schema;
 

@@ -1,6 +1,6 @@
 ﻿using Sieve.Attributes;
 
-namespace hiastHRApi.Shared.Base
+namespace hiastHRApi.Domain.Entities.Base
 {
     public class Entity
     {

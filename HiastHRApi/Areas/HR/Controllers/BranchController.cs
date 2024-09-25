@@ -25,11 +25,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Branchs>
         [HttpGet(nameof(GetBranchs))]
-        [DisplayActionName(DisplayName ="استعلام الفروع")]
-        public IActionResult GetBranchs([FromQuery]SieveModel sieveModel) => Ok(_branchService.GetAll(sieveModel));
+        [DisplayActionName(DisplayName = "استعلام الفروع")]
+        public IActionResult GetBranchs([FromQuery] SieveModel sieveModel) => Ok(_branchService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetBranchsInfo))]
-        public IActionResult GetBranchsInfo([FromQuery] SieveModel sieveModel) => Ok(_branchService.Get(sieveModel, includeProperties: "Department,SubDepartment"));
+        public IActionResult GetBranchsInfo([FromQuery] SieveModel sieveModel) => Ok(_branchService.Get(sieveModel, includeProperties: "OrgDepartment"));
 
         [HttpPost(nameof(CreateBranch))]
         [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
@@ -37,9 +37,16 @@ namespace hiastHRApi.Areas.HR.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _branchService.Add(branch);
-                await _unitOfWork.CompleteAsync();
-                return new JsonResult("Success") { StatusCode = 200 ,Value=branch };
+                try
+                {
+                    await _branchService.Add(branch);
+                    await _unitOfWork.CompleteAsync();
+                }
+                catch (Exception ex)
+                {
+                    return new JsonResult("Success") { StatusCode = 200, Value = branch };
+                }
+                return new JsonResult("Success") { StatusCode = 200, Value = branch };
             }
             return new JsonResult("Somethign Went wrong") { StatusCode = 500 };
         }

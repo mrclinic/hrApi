@@ -2,8 +2,8 @@
 using hiastHRApi.Domain.Entities.Constants;
 using hiastHRApi.Domain.Entities.Employee;
 using hiastHRApi.Service.DTO.Constants;
-using hiastHRApi.Shared.Common.Mapping;
-using hiastHRApi.Shared.Common.Models;
+using hiastHRApi.Services.Common.Mapping;
+using hiastHRApi.Services.Common.Models;
 
 namespace hiastHRApi.Service.DTO.Employee
 {

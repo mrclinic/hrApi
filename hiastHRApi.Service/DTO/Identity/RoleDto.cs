@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using hiastHRApi.Domain.Entities.Identity;
-using hiastHRApi.Shared.Common.Mapping;
-using hiastHRApi.Shared.Common.Models;
+using hiastHRApi.Services.Common.Mapping;
+using hiastHRApi.Services.Common.Models;
 
 namespace hiastHRApi.Services.DTO.Identity
 {

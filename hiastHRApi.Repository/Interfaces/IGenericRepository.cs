@@ -1,6 +1,6 @@
 ﻿
-using hiastHRApi.Shared.Base;
-using hiastHRApi.Shared.Common.Result;
+using hiastHRApi.Domain.Entities.Base;
+using hiastHRApi.Repository.Common.Result;
 using Sieve.Models;
 using System.Linq.Expressions;
 

@@ -6,6 +6,7 @@ using hiastHRApi.Service.IService.Identity;
 using hiastHRApi.Services.DTO.Identity;
 using hiastHRApi.Shared.Common.Constants;
 using hiastHRApi.Shared.Common.Model;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -27,12 +28,12 @@ namespace hiastHRApi.Service.Service.Identity
             IGenericRepository<UserProfile> userProfileRepository,
             IGenericRepository<RolePermissions> rolePermissionsRepository,
             IMapper mapper
-            , AppSettings appSettings
+            , IOptions<AppSettings> appSettings
             ) : base(repository, mapper)
         {
             _userRepository = repository;
             _mapper = mapper;
-            _appSettings = appSettings;
+            _appSettings = appSettings.Value;
             _roleRepository = roleRepository;
             _branchRepository = branchRepository;
             _userProfileRepository = userProfileRepository;
@@ -70,14 +71,7 @@ namespace hiastHRApi.Service.Service.Identity
 
             Role role = await _roleRepository.FindSingle(x => x.Id == entity.RoleId);
             entity.Role = role;
-            bool userProfileComplete = false;
-            UserProfile userProfile = await _userProfileRepository.FindSingle(x => x.UserId == entity.Id);
-            if (!userProfile.Address.Equals("EMPTY") && !userProfile.BirthPlace.Equals("EMPTY") && !userProfile.PersonalCardNumber.Equals("EMPTY") && !userProfile.FatherName.Equals("EMPTY")
-                && !userProfile.MotherName.Equals("EMPTY") && !userProfile.Gender.Equals("EMPTY") && !userProfile.BirthDate.ToString().Equals("1900-01-01 00:00:00"))
-            {
-                userProfileComplete = true;
-            }
-
+           
             UserDto userDto = _mapper.Map<UserDto>(entity);
             userDto.IsComplete = false;
 
