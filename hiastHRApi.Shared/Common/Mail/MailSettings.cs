@@ -1,4 +1,4 @@
-﻿namespace hiastHRApi.Services.Common.Mail
+﻿namespace hiastHRApi.Shared.Common.Mail
 {
     public class MailSettings
     {

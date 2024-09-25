@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System.Reflection;
 
-namespace hiastHRApi.Services.Common.Mapping
+namespace hiastHRApi.Shared.Common.Mapping
 {
     public class MappingProfile : Profile
     {

@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
-
 using hiastHRApi.Domain.Entities.Constants;
 using hiastHRApi.Domain.Entities.Identity;
 using hiastHRApi.Repository.Interfaces;
 using hiastHRApi.Service.IService.Identity;
-using hiastHRApi.Services.Common.Constants;
-using hiastHRApi.Services.Common.Token;
 using hiastHRApi.Services.DTO.Identity;
+using hiastHRApi.Shared.Common.Constants;
+using hiastHRApi.Shared.Common.Model;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 
 namespace hiastHRApi.Service.Service.Identity
@@ -19,18 +22,17 @@ namespace hiastHRApi.Service.Service.Identity
         private readonly IGenericRepository<UserProfile> _userProfileRepository;
         private readonly IGenericRepository<RolePermissions> _rolePermissionsRepository;
         private readonly IMapper _mapper;
-        //private readonly JwtSettings _jwtSettings;
-
+        private readonly AppSettings _appSettings;
         public UserService(IGenericRepository<User> repository, IGenericRepository<Role> roleRepository, IGenericRepository<Branch> branchRepository,
             IGenericRepository<UserProfile> userProfileRepository,
             IGenericRepository<RolePermissions> rolePermissionsRepository,
             IMapper mapper
-            //, JwtSettings jwtSettings
+            , AppSettings appSettings
             ) : base(repository, mapper)
         {
             _userRepository = repository;
             _mapper = mapper;
-            //_jwtSettings = jwtSettings;
+            _appSettings = appSettings;
             _roleRepository = roleRepository;
             _branchRepository = branchRepository;
             _userProfileRepository = userProfileRepository;
@@ -42,7 +44,7 @@ namespace hiastHRApi.Service.Service.Identity
             var entity = await _userRepository.FindSingle(x => x.Username.Equals(userName) && !x.IsDeleted && !x.IsActive);
             if (entity == null)
                 return false;
-            
+
             return false;
         }
 
@@ -65,7 +67,7 @@ namespace hiastHRApi.Service.Service.Identity
             User entity = await _userRepository.FindSingle(x => x.Id.Equals(userID));
             if (entity == null)
                 return null;
-            
+
             Role role = await _roleRepository.FindSingle(x => x.Id == entity.RoleId);
             entity.Role = role;
             bool userProfileComplete = false;
@@ -97,11 +99,11 @@ namespace hiastHRApi.Service.Service.Identity
             User entity = await _userRepository.FindSingle(x => x.Username.Equals(userName));
             if (entity != null && BCrypt.Net.BCrypt.Verify(passWord, entity.Password))
             {
-                UserToken userToken = new UserToken();
-                //string _userToken = UserToken.GenTokenkey(_jwtSettings);
-                entity.Token = String.Empty;
+                // authentication successful so generate jwt token
+                var token = await generateJwtToken(entity);
+                entity.Token = token;
                 _userRepository.Update(entity);
-                
+
                 Role role = await _roleRepository.FindSingle(x => x.Id == entity.RoleId);
                 entity.Role = role;
                 UserDto userDto = _mapper.Map<UserDto>(entity);
@@ -153,6 +155,27 @@ namespace hiastHRApi.Service.Service.Identity
             profileEntity.UserId = userEntity.Id;
             await _userProfileRepository.Add(profileEntity);
             return _mapper.Map<UserDto>(userEntity);
+        }
+
+        // helper methods
+        private async Task<string> generateJwtToken(User user)
+        {
+            //Generate token that is valid for 7 days
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = await Task.Run(() =>
+            {
+
+                var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                    Expires = DateTime.UtcNow.AddDays(7),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+                return tokenHandler.CreateToken(tokenDescriptor);
+            });
+
+            return tokenHandler.WriteToken(token);
         }
     }
 }

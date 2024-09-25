@@ -1,4 +1,4 @@
-﻿namespace hiastHRApi.Domain.Entities.Base
+﻿namespace hiastHRApi.Shared.Base
 {
     public abstract class AuditEntity : Entity
     {

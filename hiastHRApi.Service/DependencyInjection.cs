@@ -5,10 +5,10 @@ using hiastHRApi.Service.IService.Identity;
 using hiastHRApi.Service.Service.Constants;
 using hiastHRApi.Service.Service.Employee;
 using hiastHRApi.Service.Service.Identity;
-using hiastHRApi.Services.Common.Activation;
-using hiastHRApi.Services.Common.Mapping;
 using hiastHRApi.Services.IService;
 using hiastHRApi.Services.Service;
+using hiastHRApi.Shared.Common.Activation;
+using hiastHRApi.Shared.Common.Mapping;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -34,6 +34,7 @@ namespace hiastHRApi.Services
             #endregion
 
             #region constans
+            services.AddTransient<IOrgDepartmentService, OrgDepartmentService>();
             services.AddTransient<IBloodGroupService, BloodGroupService>();
             services.AddTransient<IBranchService, BranchService>();
             services.AddTransient<IChildStatusService, ChildStatusService>();
@@ -113,11 +114,6 @@ namespace hiastHRApi.Services
             }
             , typeof(MappingProfile).Assembly);
 
-            //// Add Jwt Setings
-            //var bindJwtSettings = new JwtSettings();
-            //configuration.Bind("JsonWebTokenKeys", bindJwtSettings);
-            //services.AddSingleton(bindJwtSettings);
-
             //activation Configration
             var activationSetting = configuration.GetSection(nameof(ActivationSetting));
             services.Configure<ActivationSetting>(a =>
@@ -136,7 +132,7 @@ namespace hiastHRApi.Services
         public static void autoGenerationCodeBlockes()
         {
             Type[] typelist = Assembly.GetExecutingAssembly().GetTypes()
-                          .Where(t => String.Equals(t.Namespace, "hiastHRApi.Service.DTO.Constants", StringComparison.Ordinal))
+                          .Where(t => String.Equals(t.Namespace, "hiastHRApi.Service.DTO.Employee", StringComparison.Ordinal))
                           .ToArray();
 
             for (int i = 0; i < typelist.Length; i++)
@@ -172,13 +168,24 @@ namespace hiastHRApi.Services
 
         public static void generateComponentV2(Type? model)
         {
-            string componentPAth = @"c:\temp\component\";
-            StringBuilder depen = new StringBuilder();
+            string componentsPAth = @"c:\temp\component";
+            StringBuilder srtComponentCss = new StringBuilder(".th {\r\n  text-align: center !important;\r\n" +
+                "  position: sticky !important;\r\n  top: 0 !important;\r\n}\r\n\r\n.td {\r\n" +
+                "  text-align: center !important;\r\n}\r\n\r\n:host ::ng-deep .p-float-label>label {\r\n" +
+                "  right: 0.75rem !important;\r\n}\r\n\r\n:host ::ng-deep .p-divider.p-divider-horizontal:before {\r\n" +
+                "  border-top: 0px #dee2e6 !important;\r\n}\r\n\r\n:host ::ng-deep .p-toolbar {\r\n" +
+                "  background: unset !important;\r\n  border: 0px solid #dee2e6 !important;\r\n" +
+                "  padding: 1rem 1.25rem;\r\n  border-radius: 4px;\r\n}\r\n\r\n:host ::ng-deep .mb-4 {\r\n" +
+                "  margin-bottom: 0.5rem !important;\r\n}\r\n\r\n:host ::ng-deep .p-dialog .p-dialog-header {\r\n" +
+                "  border-bottom: 0px solid #e9ecef !important;\r\n}\r\n\r\n:host ::ng-deep .p-dialog .p-dialog-footer {\r\n" +
+                "  border-top: 0px solid #e9ecef !important;\r\n}\r\n\r\n:host ::ng-deep .p-dialog .p-dialog-content {\r\n" +
+                "  padding: 1.5rem !important;\r\n}\r\n");
+
             StringBuilder srtComponentTypeScript = new StringBuilder("import { Component, OnInit } from '@angular/core';\r\n" +
                 "import { MessageService } from 'primeng/api';\r\n" +
                 "import { APP_CONSTANTS } from 'src/app/app.contants';\r\n" +
-                "import { " + model.Name.Replace("Dto", "") + " } from 'src/app/demo/models/constants/" + model.Name.Replace("Dto", "").ToLower() + ".model';\r\n" +
-                "import { " + model.Name.Replace("Dto", "") + "Service } from 'src/app/demo/service/constants/" + model.Name.Replace("Dto", "").ToLower() + ".service';\r\n" +
+                "import { " + model.Name.Replace("Dto", "") + " } from 'src/app/demo/models/employee/" + model.Name.Replace("Dto", "").ToLower() + ".model';\r\n" +
+                "import { " + model.Name.Replace("Dto", "") + "Service } from 'src/app/demo/service/employee/" + model.Name.Replace("Dto", "").ToLower() + ".service';\r\n" +
                 "import { IFormStructure } from 'src/app/demo/shared/dynamic-form/from-structure-model';\r\n\r\n" +
                 "@Component({\r\n" +
                 "  selector: 'app-" + model.Name.Replace("Dto", "").ToLower() + "',\r\n" +
@@ -201,69 +208,87 @@ namespace hiastHRApi.Services
                 "    );\r\n" +
                 "  }\r\n\r\n" +
                 "  initFormStructure() {\r\n" +
-                "    this.formStructure = [\r\n" +
-                "      {\r\n" +
-                "        type: 'text',\r\n" +
-                "        label: APP_CONSTANTS.NAME,\r\n" +
-                "        name: 'name',\r\n" +
-                "        value: '',\r\n" +
-                "        validations: [\r\n" +
-                "          {\r\n" +
-                "            name: 'required',\r\n" +
-                "            validator: 'required',\r\n" +
-                "            message: APP_CONSTANTS.FIELD_REQUIRED,\r\n" +
-                "          },\r\n" +
-                "        ],\r\n" +
-                "      }\r\n" +
-                "    ];\r\n" +
-                "  }\r\n\r\n" +
-                "  initColumns() {\r\n" +
-                "    this.cols = [\r\n" +
-                "      { dataKey: 'name', header: APP_CONSTANTS.NAME, type: 'string' }\r\n" +
-                "    ]\r\n" +
-                "  }\r\n\r\n" +
-                "  submitEventHandler(eventData) {\r\n" +
-                "    if (eventData.id) {\r\n" +
-                "      this." + model.Name.Replace("Dto", "").ToLower() + "Service.Update" + model.Name.Replace("Dto", "") + "(eventData).subscribe(\r\n" +
-                "        () => {\r\n" +
-                "          this.messageService.add({ severity: 'success', summary: APP_CONSTANTS.SUCCESS, detail: APP_CONSTANTS.EDIT_SUCCESS, life: 3000 });\r\n" +
-                "          this.reload();\r\n" +
-                "        }\r\n" +
-                "      )\r\n" +
-                "    }\r\n" +
-                "    else {\r\n" +
-                "      delete eventData.id;\r\n" +
-                "      this." + model.Name.Replace("Dto", "").ToLower() + "Service.Add" + model.Name.Replace("Dto", "") + "(eventData).subscribe(\r\n" +
-                "        () => {\r\n" +
-                "          this.messageService.add({ severity: 'success', summary: APP_CONSTANTS.SUCCESS, detail: APP_CONSTANTS.ADD_SUCCESS, life: 3000 });\r\n" +
-                "          this.reload();\r\n" +
-                "        }\r\n" +
-                "      )\r\n" +
-                "    }\r\n" +
-                "  }\r\n\r\n" +
-                "  deleteEventHandler(eventData) {\r\n" +
-                "    this." + model.Name.Replace("Dto", "").ToLower() + "Service.Delete" + model.Name.Replace("Dto", "") + "(eventData as string).subscribe(\r\n" +
-                "      (data) => {\r\n" +
-                "        this.messageService.add({ severity: 'success', summary: APP_CONSTANTS.SUCCESS, detail: APP_CONSTANTS.DELETE_SUCCESS, life: 3000 });\r\n" +
-                "        this.reload();\r\n" +
-                "      }\r\n" +
-                "    );\r\n" +
-                "  }\r\n\r\n" +
-                "  reload() {\r\n" +
-                "    this." + model.Name.Replace("Dto", "").ToLower() + "Service.GetAll" + model.Name.Replace("Dto", "") + "s('').subscribe(\r\n" +
-                "      (res) => {\r\n" +
-                "        this." + model.Name.Replace("Dto", "").ToLower() + "s = res;\r\n" +
-                "      }\r\n" +
-                "    )\r\n" +
-                "  }\r\n" +
-                "}\r\n");
+                "    this.formStructure = [\r\n");
+            PropertyInfo[] propInfos = model.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (var prop in propInfos)
+            {
+                srtComponentTypeScript.Append(getFromStructureItemByType(prop.PropertyType.ToString(),
+                    System.Text.Json.JsonNamingPolicy.CamelCase.ConvertName(prop.Name)));
+            }
+
+            srtComponentTypeScript.Append("    ];\r\n" +
+            "  }\r\n\r\n" +
+            "  initColumns() {\r\n" +
+            "    this.cols = [\r\n");
+            foreach (var prop in propInfos)
+            {
+                srtComponentTypeScript.Append(getTableColumnByType(prop.PropertyType.ToString(),
+                    System.Text.Json.JsonNamingPolicy.CamelCase.ConvertName(prop.Name)));
+            }
+            srtComponentTypeScript.Append("    ]\r\n" +
+            "  }\r\n\r\n" +
+            "  submitEventHandler(eventData) {\r\n" +
+            "    if (eventData.id) {\r\n" +
+            "      this." + model.Name.Replace("Dto", "").ToLower() + "Service.Update" + model.Name.Replace("Dto", "") + "(eventData).subscribe(\r\n" +
+            "        () => {\r\n" +
+            "          this.messageService.add({ severity: 'success', summary: APP_CONSTANTS.SUCCESS, detail: APP_CONSTANTS.EDIT_SUCCESS, life: 3000 });\r\n" +
+            "          this.reload();\r\n" +
+            "        }\r\n" +
+            "      )\r\n" +
+            "    }\r\n" +
+            "    else {\r\n" +
+            "      delete eventData.id;\r\n" +
+            "      this." + model.Name.Replace("Dto", "").ToLower() + "Service.Add" + model.Name.Replace("Dto", "") + "(eventData).subscribe(\r\n" +
+            "        () => {\r\n" +
+            "          this.messageService.add({ severity: 'success', summary: APP_CONSTANTS.SUCCESS, detail: APP_CONSTANTS.ADD_SUCCESS, life: 3000 });\r\n" +
+            "          this.reload();\r\n" +
+            "        }\r\n" +
+            "      )\r\n" +
+            "    }\r\n" +
+            "  }\r\n\r\n" +
+            "  deleteEventHandler(eventData) {\r\n" +
+            "    this." + model.Name.Replace("Dto", "").ToLower() + "Service.Delete" + model.Name.Replace("Dto", "") + "(eventData as string).subscribe(\r\n" +
+            "      (data) => {\r\n" +
+            "        this.messageService.add({ severity: 'success', summary: APP_CONSTANTS.SUCCESS, detail: APP_CONSTANTS.DELETE_SUCCESS, life: 3000 });\r\n" +
+            "        this.reload();\r\n" +
+            "      }\r\n" +
+            "    );\r\n" +
+            "  }\r\n\r\n" +
+            "  reload() {\r\n" +
+            "    this." + model.Name.Replace("Dto", "").ToLower() + "Service.GetAll" + model.Name.Replace("Dto", "") + "s('').subscribe(\r\n" +
+            "      (res) => {\r\n" +
+            "        this." + model.Name.Replace("Dto", "").ToLower() + "s = res;\r\n" +
+            "      }\r\n" +
+            "    )\r\n" +
+            "  }\r\n" +
+            "}\r\n");
+            StringBuilder srtComponentHTML = new StringBuilder("<app-custom-table [cols]=\"cols\" [tableData]='" + model.Name.Replace("Dto", "").ToLower() + "s' [tableTitle]=\"'kkk'\"\r\n" +
+                "    (submitEventHandler)=\"submitEventHandler($event)\" (deleteEventHandler)=\"deleteEventHandler($event)\"\r\n" +
+                "    [formStructure]=\"formStructure\" [canAdd]=\"canAdd\" [canEdit]=\"canEdit\" [canSingleDelete]=\"canSingleDelete\">\r\n</app-custom-table>");
+
+            DirectoryInfo componentPath = Directory.CreateDirectory(componentsPAth + @"\" + model.Name.ToLower() + @"\");
+
             //save to ts files
             try
             {
                 // Create the file, or overwrite if the file exists.
-                using (FileStream fs = File.Create(componentPAth + model.Name.Replace("Dto", "").ToLower() + ".component.ts"))
+                using (FileStream fs = File.Create(componentPath.FullName + model.Name.Replace("Dto", "").ToLower() + ".component.ts"))
                 {
                     byte[] info = new UTF8Encoding(true).GetBytes(srtComponentTypeScript.ToString());
+                    // Add some information to the file.
+                    fs.Write(info, 0, info.Length);
+                }
+
+                using (FileStream fs = File.Create(componentPath.FullName + model.Name.Replace("Dto", "").ToLower() + ".component.html"))
+                {
+                    byte[] info = new UTF8Encoding(true).GetBytes(srtComponentHTML.ToString());
+                    // Add some information to the file.
+                    fs.Write(info, 0, info.Length);
+                }
+
+                using (FileStream fs = File.Create(componentPath.FullName + model.Name.Replace("Dto", "").ToLower() + ".component.css"))
+                {
+                    byte[] info = new UTF8Encoding(true).GetBytes(srtComponentCss.ToString());
                     // Add some information to the file.
                     fs.Write(info, 0, info.Length);
                 }
@@ -831,6 +856,98 @@ namespace hiastHRApi.Services
                 case "System.Boolean": return "boolean";
                 default: return srcType;
             }
+        }
+
+        public static string getFromStructureItemByType(string srcType, string propName)
+        {
+            if (srcType.EndsWith("[System.DateTime]"))
+                srcType = "System.DateTime";
+            if (srcType.Contains("Dto") || propName.Equals("ID", StringComparison.OrdinalIgnoreCase)) return "";
+            switch (srcType)
+            {
+                case "System.DateTime":
+                    return "{\r\n        " +
+                        "type: 'Date',\r\n" +
+                        "        label: APP_CONSTANTS." + propName.ToUpper() + ",\r\n" +
+                        "        name: '" + propName + "',\r\n" +
+                        "        value: '',\r\n" +
+                        "        validations: [\r\n" +
+                        "          {\r\n" +
+                        "            name: 'required',\r\n" +
+                        "            validator: 'required',\r\n" +
+                        "            message: APP_CONSTANTS.FIELD_REQUIRED,\r\n" +
+                        "          },\r\n" +
+                        "        ],\r\n" +
+                        "      },\r\n";
+                case "System.Int32":
+                case "System.Decimal":
+                case "number":
+                    return "{\r\n        " +
+                        "type: 'number',\r\n" +
+                        "        label: APP_CONSTANTS." + propName.ToUpper() + ",\r\n" +
+                        "        name: '" + propName + "',\r\n" +
+                        "        value: '',\r\n" +
+                        "        validations: [\r\n" +
+                        "          {\r\n" +
+                        "            name: 'required',\r\n" +
+                        "            validator: 'required',\r\n" +
+                        "            message: APP_CONSTANTS.FIELD_REQUIRED,\r\n" +
+                        "          },\r\n" +
+                        "        ],\r\n" +
+                        "      },\r\n";
+                case "System.Guid":
+                    return "{\r\n" +
+                        "        type: 'select',\r\n" +
+                        "        label: APP_CONSTANTS." + propName.Replace("Id", "").ToUpper() + "_NAME,\r\n" +
+                        "        name: '" + propName + "',\r\n" +
+                        "        value: '',\r\n" +
+                        "        options: [...this." + propName.Replace("Id", "") + "s],\r\n" +
+                        "        placeHolder: APP_CONSTANTS." + propName.Replace("Id", "").ToUpper() + "_PLACE_HOLDER,\r\n" +
+                        "        validations: [\r\n" +
+                        "          {\r\n" +
+                        "            name: 'required',\r\n" +
+                        "            validator: 'required',\r\n" +
+                        "            message: APP_CONSTANTS.FIELD_REQUIRED,\r\n" +
+                        "          },\r\n" +
+                        "        ],\r\n" +
+                        "      },\r\n";
+                case "System.String":
+                    return "{\r\n        " +
+                        "type: 'text',\r\n" +
+                        "        label: APP_CONSTANTS." + propName.ToUpper() + ",\r\n" +
+                        "        name: '" + propName + "',\r\n" +
+                        "        value: '',\r\n" +
+                        "        validations: [\r\n" +
+                        "          {\r\n" +
+                        "            name: 'required',\r\n" +
+                        "            validator: 'required',\r\n" +
+                        "            message: APP_CONSTANTS.FIELD_REQUIRED,\r\n" +
+                        "          },\r\n" +
+                        "        ],\r\n" +
+                        "      },\r\n";
+                case "System.Boolean":
+                    return "{\r\n        " +
+                        "type: 'radio',\r\n" +
+                        "        label: APP_CONSTANTS." + propName.ToUpper() + ",\r\n" +
+                        "        name: '" + propName + "',\r\n" +
+                        "        value: '',\r\n" +
+                        "        validations: [\r\n" +
+                        "          {\r\n" +
+                        "            name: 'required',\r\n" +
+                        "            validator: 'required',\r\n" +
+                        "            message: APP_CONSTANTS.FIELD_REQUIRED,\r\n" +
+                        "          },\r\n" +
+                        "        ],\r\n" +
+                        "      },\r\n";
+                default: return srcType;
+            }
+        }
+
+        public static string getTableColumnByType(string srcType, string propName)
+        {
+            if (propName.Equals("ID", StringComparison.OrdinalIgnoreCase)) return "";
+            if (srcType.Contains("Dto")) return "{ dataKey: '" + propName + "Name', header: APP_CONSTANTS." + propName.ToUpper() + "NAME},\r\n";
+            return "{ dataKey: '" + propName + "', header: APP_CONSTANTS." + propName.ToUpper() + "},\r\n";
         }
     }
 }

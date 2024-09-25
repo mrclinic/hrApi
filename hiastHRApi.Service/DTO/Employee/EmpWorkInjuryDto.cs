@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using hiastHRApi.Domain.Entities.Employee;
-using hiastHRApi.Services.Common.Mapping;
-using hiastHRApi.Services.Common.Models;
+using hiastHRApi.Shared.Common.Mapping;
+using hiastHRApi.Shared.Common.Models;
 
 namespace hiastHRApi.Service.DTO.Employee
 {

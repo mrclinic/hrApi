@@ -1,4 +1,4 @@
-﻿namespace hiastHRApi.Services.Common.Constants
+﻿namespace hiastHRApi.Shared.Common.Constants
 {
     public static class Constant
     {

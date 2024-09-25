@@ -1,4 +1,4 @@
-﻿namespace hiastHRApi.Services.Common.status
+﻿namespace hiastHRApi.Shared.Common.status
 {
     public class RequestStatus
     {

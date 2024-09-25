@@ -1,5 +1,6 @@
 ﻿using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
+using hiastHRApi.Helpers;
 using hiastHRApi.Service.IService.Identity;
 using hiastHRApi.Services.DTO.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
     [Area("UserManagment")]
     [Route("[area]/[controller]")]
     [ApiController]
+    [Authorize]
     public class RoleController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

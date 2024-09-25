@@ -1,10 +1,11 @@
-﻿using hiastHRApi.Domain.Entities.Base;
-using hiastHRApi.Repository.Common.Result;
+﻿
+using hiastHRApi.Shared.Base;
 using hiastHRApi.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Sieve.Models;
 using Sieve.Services;
 using System.Linq.Expressions;
+using hiastHRApi.Shared.Common.Result;
 
 namespace hiastHRApi.Repository.Repository
 {

@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-
-namespace hiastHRApi.Services.Common.Result
+﻿
+namespace hiastHRApi.Shared.Common.Result
 {
     public class GeneralResultDto<TDto>
     {

@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
-using hiastHRApi.Domain.Entities.Base;
+
 using hiastHRApi.Repository.Interfaces;
-using hiastHRApi.Services.Common.Models;
-using hiastHRApi.Services.Common.Result;
+using hiastHRApi.Shared.Common.Models;
+using hiastHRApi.Shared.Common.Result;
 using hiastHRApi.Services.IService;
 using Sieve.Models;
 using System.Linq.Expressions;
+using hiastHRApi.Shared.Base;
 
 namespace hiastHRApi.Service.Service
 {

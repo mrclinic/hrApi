@@ -1,4 +1,4 @@
-﻿using hiastHRApi.Services.Common.Result;
+﻿using hiastHRApi.Shared.Common.Result;
 using Sieve.Models;
 using System.Linq.Expressions;
 

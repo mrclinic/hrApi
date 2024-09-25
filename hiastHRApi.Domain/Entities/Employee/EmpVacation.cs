@@ -1,5 +1,6 @@
-﻿using hiastHRApi.Domain.Entities.Base;
+﻿
 using hiastHRApi.Domain.Entities.Constants;
+using hiastHRApi.Shared.Base;
 
 
 namespace hiastHRApi.Domain.Entities.Employee

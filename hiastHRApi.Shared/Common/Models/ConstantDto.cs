@@ -1,5 +1,5 @@
-﻿using hiastHRApi.Services.Common.Models;
-using System;
+﻿using hiastHRApi.Shared.Common.Models;
+
 public class ConstantDto : EntityDto
 {
     public string? Name { get; set; }

@@ -112,6 +112,7 @@ public partial class HrmappContext : DbContext
     public DbSet<University> Universities { get; set; }
 
     public DbSet<VacationType> VacationTypes { get; set; }
+    public DbSet<OrgDepartment> OrgDepartments { get; set; }
 
     #endregion
 
@@ -206,7 +207,17 @@ public partial class HrmappContext : DbContext
         #endregion
         #endregion
 
-
+        modelBuilder.Entity<OrgDepartment>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+            entity.Property(x => x.Name).HasMaxLength(1023);
+            entity.HasIndex(e => e.ParentId, "IX_OrgDepartments_ParentId");
+            entity.HasOne(x => x.Parent)
+                .WithMany(x => x.SubOrgDepartments)
+                .HasForeignKey(x => x.ParentId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
         modelBuilder.Entity<BloodGroup>(entity =>
         {
 

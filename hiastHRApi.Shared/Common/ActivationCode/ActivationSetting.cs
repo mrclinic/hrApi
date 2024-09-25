@@ -1,4 +1,4 @@
-﻿namespace hiastHRApi.Services.Common.Activation
+﻿namespace hiastHRApi.Shared.Common.Activation
 {
     public class ActivationSetting
     {

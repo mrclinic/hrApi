@@ -1,7 +1,7 @@
-﻿using hiastHRApi.Domain.Entities.Base;
-using System.Collections.Generic;
+﻿
+using hiastHRApi.Shared.Base;
 
-namespace hiastHRApi.Repository.Common.Result
+namespace hiastHRApi.Shared.Common.Result
 {
     public class GeneralResult<T> where T : Entity
     {

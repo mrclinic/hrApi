@@ -1,4 +1,6 @@
-﻿using hiastHRApi.Domain.Entities.Base;
+﻿
+
+using hiastHRApi.Shared.Base;
 
 namespace hiastHRApi.Domain.Entities.Constants
 {

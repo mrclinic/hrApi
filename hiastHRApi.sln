@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hiastHRApi.Repository", "hi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hiastHRApi.Service", "hiastHRApi.Service\hiastHRApi.Service.csproj", "{3E41B574-9203-4C8F-865B-170B75620CE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hiastHRApi.Shared", "hiastHRApi.Shared\hiastHRApi.Shared.csproj", "{F2AE1920-E280-48F4-BCE1-87D9EF5D4C6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3E41B574-9203-4C8F-865B-170B75620CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E41B574-9203-4C8F-865B-170B75620CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E41B574-9203-4C8F-865B-170B75620CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2AE1920-E280-48F4-BCE1-87D9EF5D4C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2AE1920-E280-48F4-BCE1-87D9EF5D4C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2AE1920-E280-48F4-BCE1-87D9EF5D4C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2AE1920-E280-48F4-BCE1-87D9EF5D4C6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
