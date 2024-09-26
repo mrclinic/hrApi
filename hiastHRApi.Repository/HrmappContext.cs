@@ -995,9 +995,9 @@ public partial class HrmappContext : DbContext
 
             entity.HasIndex(e => e.EmployeeId, "IX_EmpPunishments_EmployeeId");
 
-            entity.HasIndex(e => e.IssuingDepartmentId, "IX_EmpPunishments_IssuingDepartmentId");
+            entity.HasIndex(e => e.IssuingOrgDepartmentId, "IX_EmpPunishments_IssuingOrgDepartmentId");
 
-            entity.HasIndex(e => e.OrderDepartmentId, "IX_EmpPunishments_OrderDepartmentId");
+            entity.HasIndex(e => e.OrderOrgDepartmentId, "IX_EmpPunishments_OrderOrgDepartmentId");
 
             entity.HasIndex(e => e.PunishmentTypeId, "IX_EmpPunishments_PunishmentTypeId");
 
@@ -1016,11 +1016,11 @@ public partial class HrmappContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.IssuingDepartment).WithMany(p => p.EmpPunishmentIssuingDepartments)
-                .HasForeignKey(d => d.IssuingDepartmentId)
+                .HasForeignKey(d => d.IssuingOrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.OrderDepartment).WithMany(p => p.EmpPunishmentOrderDepartments)
-                .HasForeignKey(d => d.OrderDepartmentId)
+                .HasForeignKey(d => d.OrderOrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.PunishmentType).WithMany(p => p.EmpPunishments)
@@ -1095,7 +1095,7 @@ public partial class HrmappContext : DbContext
         {
             entity.HasIndex(e => e.ContractTypeId, "IX_EmpRewards_ContractTypeId");
 
-            entity.HasIndex(e => e.DepartmentId, "IX_EmpRewards_DepartmentId");
+            entity.HasIndex(e => e.OrgDepartmentId, "IX_EmpRewards_OrgDepartmentId");
 
             entity.HasIndex(e => e.EmployeeId, "IX_EmpRewards_EmployeeId");
 
@@ -1114,7 +1114,7 @@ public partial class HrmappContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.Department).WithMany(p => p.EmpRewards)
-                .HasForeignKey(d => d.DepartmentId)
+                .HasForeignKey(d => d.OrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.Employee).WithMany(p => p.EmpRewards)

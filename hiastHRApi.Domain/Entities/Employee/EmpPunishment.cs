@@ -15,11 +15,11 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         public DateOnly ContractDate { get; set; }
 
-        public Guid IssuingDepartmentId { get; set; }
+        public Guid IssuingOrgDepartmentId { get; set; }
 
         public int DurationInDays { get; set; }
 
-        public Guid OrderDepartmentId { get; set; }
+        public Guid OrderOrgDepartmentId { get; set; }
 
         public bool IsAppearingInRecordCard { get; set; }
 

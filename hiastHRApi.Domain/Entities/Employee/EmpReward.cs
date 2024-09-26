@@ -17,7 +17,7 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         public Guid RewardTypeId { get; set; }
 
-        public Guid DepartmentId { get; set; }
+        public Guid OrgDepartmentId { get; set; }
 
         public Guid ContractTypeId { get; set; }
 
