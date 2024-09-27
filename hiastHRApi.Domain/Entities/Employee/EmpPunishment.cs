@@ -1,5 +1,7 @@
-﻿using hiastHRApi.Domain.Entities.Base;
+﻿
 using hiastHRApi.Domain.Entities.Constants;
+using hiastHRApi.Domain.Entities.Base;
+using Sieve.Attributes;
 
 
 namespace hiastHRApi.Domain.Entities.Employee
@@ -14,11 +16,11 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         public DateOnly ContractDate { get; set; }
 
-        public Guid IssuingDepartmentId { get; set; }
+        public Guid IssuingOrgDepartmentId { get; set; }
 
         public int DurationInDays { get; set; }
 
-        public Guid OrderDepartmentId { get; set; }
+        public Guid OrderOrgDepartmentId { get; set; }
 
         public bool IsAppearingInRecordCard { get; set; }
 
@@ -37,16 +39,16 @@ namespace hiastHRApi.Domain.Entities.Employee
         public string ContractNumber { get; set; } = null!;
 
         public string Note { get; set; } = null!;
-
+        [Sieve(CanFilter = true, Name = "EmployeeId")]
         public Guid EmployeeId { get; set; }
 
         public virtual ModificationContractType ContractType { get; set; } = null!;
 
         public virtual EmpPersonalInfo Employee { get; set; } = null!;
 
-        public virtual Department IssuingDepartment { get; set; } = null!;
+        public virtual OrgDepartment IssuingDepartment { get; set; } = null!;
 
-        public virtual Department OrderDepartment { get; set; } = null!;
+        public virtual OrgDepartment OrderDepartment { get; set; } = null!;
 
         public virtual PunishmentType PunishmentType { get; set; } = null!;
     }

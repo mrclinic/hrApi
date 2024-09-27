@@ -112,6 +112,7 @@ public partial class HrmappContext : DbContext
     public DbSet<University> Universities { get; set; }
 
     public DbSet<VacationType> VacationTypes { get; set; }
+    public DbSet<OrgDepartment> OrgDepartments { get; set; }
 
     #endregion
 
@@ -206,7 +207,17 @@ public partial class HrmappContext : DbContext
         #endregion
         #endregion
 
-
+        modelBuilder.Entity<OrgDepartment>(entity =>
+        {
+            entity.HasKey(x => x.Id);
+            entity.Property(x => x.Name).HasMaxLength(1023);
+            entity.HasIndex(e => e.ParentId, "IX_OrgDepartments_ParentId");
+            entity.HasOne(x => x.Parent)
+                .WithMany(x => x.SubOrgDepartments)
+                .HasForeignKey(x => x.ParentId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
         modelBuilder.Entity<BloodGroup>(entity =>
         {
 
@@ -216,19 +227,12 @@ public partial class HrmappContext : DbContext
             .HasIndex(p => new { p.Name }).IsUnique();
         modelBuilder.Entity<Branch>(entity =>
         {
-            entity.HasIndex(e => e.DepartmentId, "IX_Branches_DepartmentId");
-
-            entity.HasIndex(e => e.SubDepartmentId, "IX_Branches_SubDepartmentId");
-
+            entity.HasIndex(e => e.OrgDepartmentId, "IX_Branches_OrgDepartmentId");
 
             entity.Property(e => e.Name).HasMaxLength(1023);
 
-            entity.HasOne(d => d.Department).WithMany(p => p.Branches)
-                .HasForeignKey(d => d.DepartmentId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            entity.HasOne(d => d.SubDepartment).WithMany(p => p.Branches)
-                .HasForeignKey(d => d.SubDepartmentId)
+            entity.HasOne(d => d.OrgDepartment).WithMany(p => p.Branches)
+                .HasForeignKey(d => d.OrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
         modelBuilder.Entity<Branch>()
@@ -909,8 +913,6 @@ public partial class HrmappContext : DbContext
 
             entity.HasIndex(e => e.GenderId, "IX_EmpPersonalInfos_GenderId");
 
-            entity.HasIndex(e => e.IdentityUserId, "IX_EmpPersonalInfos_IdentityUserId").IsUnique();
-
             entity.HasIndex(e => e.MaritalStatusId, "IX_EmpPersonalInfos_MaritalStatusId");
 
             entity.HasIndex(e => e.NationalityId, "IX_EmpPersonalInfos_NationalityId");
@@ -991,9 +993,9 @@ public partial class HrmappContext : DbContext
 
             entity.HasIndex(e => e.EmployeeId, "IX_EmpPunishments_EmployeeId");
 
-            entity.HasIndex(e => e.IssuingDepartmentId, "IX_EmpPunishments_IssuingDepartmentId");
+            entity.HasIndex(e => e.IssuingOrgDepartmentId, "IX_EmpPunishments_IssuingOrgDepartmentId");
 
-            entity.HasIndex(e => e.OrderDepartmentId, "IX_EmpPunishments_OrderDepartmentId");
+            entity.HasIndex(e => e.OrderOrgDepartmentId, "IX_EmpPunishments_OrderOrgDepartmentId");
 
             entity.HasIndex(e => e.PunishmentTypeId, "IX_EmpPunishments_PunishmentTypeId");
 
@@ -1012,11 +1014,11 @@ public partial class HrmappContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.IssuingDepartment).WithMany(p => p.EmpPunishmentIssuingDepartments)
-                .HasForeignKey(d => d.IssuingDepartmentId)
+                .HasForeignKey(d => d.IssuingOrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.OrderDepartment).WithMany(p => p.EmpPunishmentOrderDepartments)
-                .HasForeignKey(d => d.OrderDepartmentId)
+                .HasForeignKey(d => d.OrderOrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.PunishmentType).WithMany(p => p.EmpPunishments)
@@ -1091,7 +1093,7 @@ public partial class HrmappContext : DbContext
         {
             entity.HasIndex(e => e.ContractTypeId, "IX_EmpRewards_ContractTypeId");
 
-            entity.HasIndex(e => e.DepartmentId, "IX_EmpRewards_DepartmentId");
+            entity.HasIndex(e => e.OrgDepartmentId, "IX_EmpRewards_OrgDepartmentId");
 
             entity.HasIndex(e => e.EmployeeId, "IX_EmpRewards_EmployeeId");
 
@@ -1110,7 +1112,7 @@ public partial class HrmappContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.Department).WithMany(p => p.EmpRewards)
-                .HasForeignKey(d => d.DepartmentId)
+                .HasForeignKey(d => d.OrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.Employee).WithMany(p => p.EmpRewards)

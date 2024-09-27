@@ -1,10 +1,8 @@
-﻿using hiastHRApi.Domain.Entities.Base;
+﻿
+using hiastHRApi.Domain.Entities.Base;
 using hiastHRApi.Repository.Common.Result;
 using Sieve.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace hiastHRApi.Repository.Interfaces
 {

@@ -19,7 +19,7 @@ namespace hiastHRApi.Services.DTO.Identity
         public string Address { get; set; }
         public string CardNumber { get; set; }
         public Guid UserId { get; set; }
-        public UserDto User { get; set; }
+        public UserDto? User { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<UserProfile, UserProfileDto>()

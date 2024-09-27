@@ -59,7 +59,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public string AppointmentContractVisaNumber { get; set; }
 
         public string ModifiedAppointmentContractNumber { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpAppointmentStatus, EmpAppointmentStatusDto>()
@@ -88,7 +89,10 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.InsuranceNumber, src => src.MapFrom(src => src.InsuranceNumber))
                 .ForMember(dest => dest.AppointmenContractNumber, src => src.MapFrom(src => src.AppointmenContractNumber))
                 .ForMember(dest => dest.AppointmentContractVisaNumber, src => src.MapFrom(src => src.AppointmentContractVisaNumber))
-                .ForMember(dest => dest.ModifiedAppointmentContractNumber, src => src.MapFrom(src => src.ModifiedAppointmentContractNumber)).ReverseMap();
+                .ForMember(dest => dest.ModifiedAppointmentContractNumber, src => src.MapFrom(src => src.ModifiedAppointmentContractNumber))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
+                .ReverseMap();
         }
     }
 }

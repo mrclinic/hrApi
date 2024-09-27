@@ -26,6 +26,8 @@ namespace hiastHRApi.Areas.HR.Controllers
         [HttpGet(nameof(GetPersons))]
         [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
         public IActionResult GetPersons([FromQuery]SieveModel sieveModel) => Ok(_personService.GetAll(sieveModel));
+        [HttpGet(nameof(GetPersonsInfo))]
+        public IActionResult GetPersonsInfo([FromQuery] SieveModel sieveModel) => Ok(_personService.Get(sieveModel, includeProperties: "BloodGroup,City,EmploymentStatusType,Gender,MaritalStatus,Nationality"));
 
         [HttpPost(nameof(CreatePerson))]
         [DisplayActionName(DisplayName = "إنشاء فرع جديد")]

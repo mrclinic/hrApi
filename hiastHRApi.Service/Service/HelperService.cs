@@ -1,5 +1,5 @@
-﻿using hiastHRApi.Services.Common.Activation;
-using hiastHRApi.Services.IService;
+﻿using hiastHRApi.Services.IService;
+using hiastHRApi.Shared.Common.Activation;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography;
 using System.Text;

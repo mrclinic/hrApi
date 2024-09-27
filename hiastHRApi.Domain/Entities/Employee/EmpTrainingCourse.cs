@@ -1,5 +1,7 @@
-﻿using hiastHRApi.Domain.Entities.Base;
+﻿
 using hiastHRApi.Domain.Entities.Constants;
+using hiastHRApi.Domain.Entities.Base;
+using Sieve.Attributes;
 
 
 namespace hiastHRApi.Domain.Entities.Employee
@@ -23,7 +25,7 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         public string ContractNumber { get; set; } = null!;
         public string Note { get; set; } = null!;
-
+        [Sieve(CanFilter = true, Name = "EmployeeId")]
         public Guid EmployeeId { get; set; }
 
         public virtual ModificationContractType ContractType { get; set; } = null!;

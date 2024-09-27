@@ -1,5 +1,7 @@
-﻿using hiastHRApi.Domain.Entities.Base;
+﻿
 using hiastHRApi.Domain.Entities.Constants;
+using hiastHRApi.Domain.Entities.Base;
+using Sieve.Attributes;
 
 
 namespace hiastHRApi.Domain.Entities.Employee
@@ -8,17 +10,17 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpDeputation : AuditEntity
     {
 
-        public DateOnly StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public DateOnly EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
-        public DateOnly ReturnDate { get; set; }
+        public DateTime ReturnDate { get; set; }
 
-        public DateOnly DeputationDecisionDate { get; set; }
+        public DateTime DeputationDecisionDate { get; set; }
 
-        public DateOnly ExecutiveContractDate { get; set; }
+        public DateTime ExecutiveContractDate { get; set; }
 
-        public DateOnly StartAfterReturnDate { get; set; }
+        public DateTime StartAfterReturnDate { get; set; }
 
         public Guid CountryId { get; set; }
 
@@ -45,7 +47,7 @@ namespace hiastHRApi.Domain.Entities.Employee
         public string DeputationReason { get; set; } = null!;
 
         public string Note { get; set; } = null!;
-
+        [Sieve(CanFilter = true, Name = "EmployeeId")]
         public Guid EmployeeId { get; set; }
 
         public virtual City City { get; set; } = null!;

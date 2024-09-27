@@ -16,7 +16,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public ModificationContractTypeDto? ContractType { get; set; }
         public string AssignedWork { get; set; }
         public string ContractNumber { get; set; }
-
+        public string Note { get; set; } = null!;
+        public Guid EmployeeId { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpAssignment, EmpAssignmentDto>()
@@ -26,7 +27,10 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.ContractTypeId, src => src.MapFrom(src => src.ContractTypeId))
                 .ForMember(dest => dest.ContractType, src => src.MapFrom(src => src.ContractType))
                 .ForMember(dest => dest.AssignedWork, src => src.MapFrom(src => src.AssignedWork))
-                .ForMember(dest => dest.ContractNumber, src => src.MapFrom(src => src.ContractNumber)).ReverseMap();
+                .ForMember(dest => dest.ContractNumber, src => src.MapFrom(src => src.ContractNumber))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
+                .ReverseMap();
         }
     }
 }

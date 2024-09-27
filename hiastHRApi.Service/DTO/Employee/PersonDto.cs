@@ -9,7 +9,6 @@ namespace hiastHRApi.Service.DTO.Employee
 {
     public class PersonDto : EntityDto, IMapFrom
     {
-        public Guid IdentityUserId { get; set; }
         public DateTime? BirthDate { get; set; }
         public DateTime? FamilyBookDate { get; set; }
         public string? ImagePath { get; set; }
@@ -45,7 +44,6 @@ namespace hiastHRApi.Service.DTO.Employee
         {
 
             profile.CreateMap<EmpPersonalInfo, PersonDto>()
-                    .ForMember(dest => dest.IdentityUserId, src => src.MapFrom(src => src.IdentityUserId))
                     .ForMember(dest => dest.BirthDate, src => src.MapFrom(src => src.BirthDate))
                     .ForMember(dest => dest.FamilyBookDate, src => src.MapFrom(src => src.FamilyBookDate))
                     .ForMember(dest => dest.ImagePath, src => src.MapFrom(src => src.ImagePath))

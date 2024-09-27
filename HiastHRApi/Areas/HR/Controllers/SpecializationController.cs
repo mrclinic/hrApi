@@ -2,6 +2,7 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Service.IService.Constants;
+using hiastHRApi.Service.Service.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -26,6 +27,9 @@ namespace hiastHRApi.Areas.HR.Controllers
         [HttpGet(nameof(GetSpecializations))]
         [DisplayActionName(DisplayName = "استعلام الاختصاصات العلمية")]
         public IActionResult GetSpecializations([FromQuery]SieveModel sieveModel) => Ok(_specializationService.GetAll(sieveModel));
+
+        [HttpGet(nameof(GetSpecializationsInfo))]
+        public IActionResult GetSpecializationsInfo([FromQuery] SieveModel sieveModel) => Ok(_specializationService.Get(sieveModel, includeProperties: "Qualification"));
 
         [HttpPost(nameof(CreateSpecialization))]
         [DisplayActionName(DisplayName = "إنشاء اختصاص علمي جديد")]

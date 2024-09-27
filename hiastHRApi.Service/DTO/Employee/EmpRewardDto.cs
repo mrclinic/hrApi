@@ -33,7 +33,7 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.ExecutionDate, src => src.MapFrom(src => src.ExecutionDate))
                 .ForMember(dest => dest.ContractDate, src => src.MapFrom(src => src.ContractDate))
                 .ForMember(dest => dest.RewardTypeId, src => src.MapFrom(src => src.RewardTypeId))
-                .ForMember(dest => dest.DepartmentId, src => src.MapFrom(src => src.DepartmentId))
+                .ForMember(dest => dest.DepartmentId, src => src.MapFrom(src => src.OrgDepartmentId))
                 .ForMember(dest => dest.DurationInDays, src => src.MapFrom(src => src.DurationInDays))
                 .ForMember(dest => dest.PercentageOrAmount, src => src.MapFrom(src => src.PercentageOrAmount))
                 .ForMember(dest => dest.FinancialIndicatorTypeId, src => src.MapFrom(src => src.FinancialIndicatorTypeId))

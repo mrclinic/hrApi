@@ -2,6 +2,7 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Service.IService.Constants;
+using hiastHRApi.Service.Service.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -26,6 +27,9 @@ namespace hiastHRApi.Areas.HR.Controllers
         [HttpGet(nameof(GetSubDepartments))]
         [DisplayActionName(DisplayName = "استعلام أسماء الفعاليات الفرعية")]
         public IActionResult GetSubDepartments([FromQuery]SieveModel sieveModel) => Ok(_subdepartmentService.GetAll(sieveModel));
+
+        [HttpGet(nameof(GetSubDepartmentsInfo))]
+        public IActionResult GetSubDepartmentsInfo([FromQuery] SieveModel sieveModel) => Ok(_subdepartmentService.Get(sieveModel, includeProperties: "Department"));
 
         [HttpPost(nameof(CreateSubDepartment))]
         [DisplayActionName(DisplayName = "إنشاء فعالية فرعية جديدة")]

@@ -1,6 +1,7 @@
 ﻿
-using hiastHRApi.Domain.Entities.Base;
+
 using hiastHRApi.Domain.Entities.Employee;
+using hiastHRApi.Domain.Entities.Base;
 using Sieve.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

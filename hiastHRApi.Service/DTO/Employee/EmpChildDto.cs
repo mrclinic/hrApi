@@ -19,7 +19,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public string Name { get; set; }
         public string MotherName { get; set; }
         public string OccurrenceContractNumber { get; set; }
-
+        public string Note { get; set; } = null!;
+        public Guid EmployeeId { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpChild, EmpChildDto>()
@@ -32,7 +33,10 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.ChildStatus, src => src.MapFrom(src => src.Status))
                 .ForMember(dest => dest.Name, src => src.MapFrom(src => src.Name))
                 .ForMember(dest => dest.MotherName, src => src.MapFrom(src => src.MotherName))
-                .ForMember(dest => dest.OccurrenceContractNumber, src => src.MapFrom(src => src.OccurrenceContractNumber)).ReverseMap();
+                .ForMember(dest => dest.OccurrenceContractNumber, src => src.MapFrom(src => src.OccurrenceContractNumber))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
+                .ReverseMap();
         }
     }
 }

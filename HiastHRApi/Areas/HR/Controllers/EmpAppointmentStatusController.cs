@@ -27,6 +27,9 @@ namespace hiastHRApi.Areas.HR.Controllers
         [DisplayActionName(DisplayName = "استعلام أنواع الأوضاع الوظيفية")]
         public IActionResult GetEmpAppointmentStatuss([FromQuery] SieveModel sieveModel) => Ok(_empappointmentstatusService.GetAll(sieveModel));
 
+        [HttpGet(nameof(GetEmpAppointmentStatussInfo))]
+        public IActionResult GetEmpAppointmentStatussInfo([FromQuery] SieveModel sieveModel) => Ok(_empappointmentstatusService.Get(sieveModel, includeProperties: "InsuranceSystem,AppointmentContractType,HealthyStatus,DisabilityType,JobCategory,ModificationContractType,StartingType,Law"));
+
         [HttpPost(nameof(CreateEmpAppointmentStatus))]
         [DisplayActionName(DisplayName = "إنشاء نوع وضع وظيفي جديد")]
         public async Task<IActionResult> CreateEmpAppointmentStatus(EmpAppointmentStatusDto empappointmentstatus)

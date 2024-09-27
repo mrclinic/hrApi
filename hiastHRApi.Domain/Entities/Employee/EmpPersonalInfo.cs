@@ -1,5 +1,6 @@
-﻿using hiastHRApi.Domain.Entities.Base;
+﻿
 using hiastHRApi.Domain.Entities.Constants;
+using hiastHRApi.Domain.Entities.Base;
 
 
 namespace hiastHRApi.Domain.Entities.Employee
@@ -8,9 +9,9 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpPersonalInfo : AuditEntity
     {
 
-        public DateOnly? BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
-        public DateOnly? FamilyBookDate { get; set; }
+        public DateTime? FamilyBookDate { get; set; }
 
         public string? ImagePath { get; set; }
 
@@ -55,8 +56,6 @@ namespace hiastHRApi.Domain.Entities.Employee
         public string? Email { get; set; }
 
         public string Note { get; set; } = null!;
-
-        public Guid IdentityUserId { get; set; }
 
         public virtual ICollection<EmpAppointmentStatus> EmpAppointmentStatuses { get; set; } = new List<EmpAppointmentStatus>();
 
