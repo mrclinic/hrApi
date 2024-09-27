@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-
 using hiastHRApi.Domain.Entities.Employee;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Services.Common.Mapping;
@@ -16,6 +15,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public Guid ContractTypeId { get; set; }
         public ModificationContractTypeDto? ContractType { get; set; }
         public string ContractNumber { get; set; }
+        public string Note { get; set; } = null!;
+        public Guid EmployeeId { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpEmploymentStatus, EmpEmploymentStatusDto>()
@@ -26,6 +27,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.ContractTypeId, src => src.MapFrom(src => src.ContractTypeId))
                 .ForMember(dest => dest.ContractType, src => src.MapFrom(src => src.ContractType))
                 .ForMember(dest => dest.ContractNumber, src => src.MapFrom(src => src.ContractNumber))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

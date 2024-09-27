@@ -4,6 +4,7 @@ using hiastHRApi.Domain.Entities.Employee;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Services.Common.Mapping;
 using hiastHRApi.Services.Common.Models;
+using Sieve.Attributes;
 
 namespace hiastHRApi.Service.DTO.Employee
 {
@@ -33,7 +34,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public string ExecutiveContractNumber { get; set; }
         public string AssignedEntity { get; set; }
         public string DeputationReason { get; set; }
-
+        public string Note { get; set; } = null!;
+        public Guid EmployeeId { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpDeputation, EmpDeputationDto>()
@@ -60,7 +62,10 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.DeputationObjectiveId, src => src.MapFrom(src => src.DeputationObjectiveId))
                 .ForMember(dest => dest.DeputationObjective, src => src.MapFrom(src => src.DeputationObjective))
                 .ForMember(dest => dest.DeputationTypeId, src => src.MapFrom(src => src.DeputationTypeId))
-                .ForMember(dest => dest.DeputationType, src => src.MapFrom(src => src.DeputationType)).ReverseMap();
+                .ForMember(dest => dest.DeputationType, src => src.MapFrom(src => src.DeputationType))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
+                .ReverseMap();
 
         }
     }

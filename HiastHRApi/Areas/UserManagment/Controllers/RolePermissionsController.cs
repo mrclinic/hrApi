@@ -11,7 +11,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
     [Area("UserManagment")]
     [Route("[area]/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class RolePermissionsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -95,7 +95,7 @@ builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSet
 //});
 var app = builder.Build();
 app.UseExceptionHandler();
-app.UseMiddleware<JwtMiddleware>();
+//app.UseMiddleware<JwtMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -106,7 +106,7 @@ app.UseCors(MyAllowSpecificOrigins); // Enable CORS headers
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseMiddleware<JwtMiddleware>();
+//app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 

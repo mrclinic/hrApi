@@ -4,6 +4,7 @@ using hiastHRApi.Domain.Entities.Employee;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Services.Common.Mapping;
 using hiastHRApi.Services.Common.Models;
+using Sieve.Attributes;
 
 namespace hiastHRApi.Service.DTO.Employee
 {
@@ -24,6 +25,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public string Workplace { get; set; }
         public string VisaNumber { get; set; }
         public string ContractNumber { get; set; }
+        public string Note { get; set; } = null!;
+        public Guid EmployeeId { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpEmploymentChange, EmpEmploymentChangeDto>()
@@ -42,6 +45,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.Workplace, src => src.MapFrom(src => src.Workplace))
                 .ForMember(dest => dest.VisaNumber, src => src.MapFrom(src => src.VisaNumber))
                 .ForMember(dest => dest.ContractNumber, src => src.MapFrom(src => src.ContractNumber))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
                 .ReverseMap();
         }
     }

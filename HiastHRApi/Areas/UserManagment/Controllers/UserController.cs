@@ -32,12 +32,12 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
         // GET: api/<Users>
         [HttpGet(nameof(GetUsers))]
         [DisplayActionName(DisplayName = "استعلام جميع المستخدمين")]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetUsers([FromQuery] SieveModel sieveModel) => Ok(_userService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetUsersInfo))]
         [DisplayActionName(DisplayName = "استعلام جميع المستخدمين وتفاصيلهم")]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetUsersInfo([FromQuery] SieveModel sieveModel) => Ok(_userService.Get(sieveModel, includeProperties: "Role"));
 
         [AllowAnonymous]
@@ -46,7 +46,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
 
         [HttpPost(nameof(CreateUser))]
         [DisplayActionName(DisplayName = "إضافة مستخدم جديد")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> CreateUser(UserDto user)
         {
             if (ModelState.IsValid)
@@ -61,7 +61,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
 
         [HttpPut(nameof(UpdateUser))]
         [DisplayActionName(DisplayName = "تعديل مستخدم")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> UpdateUser(UserDto user)
         {
             if (ModelState.IsValid)
@@ -75,7 +75,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
 
         [HttpDelete(nameof(DeleteUser))]
         [DisplayActionName(DisplayName = "حذف مستخدم")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> DeleteUser(Guid id)
         {
             if (ModelState.IsValid)
@@ -129,7 +129,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
 
         [HttpGet(nameof(getUserInfo))]
         [DisplayActionName(DisplayName = "استعلام معلومات المستخدم")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> getUserInfo(Guid userID)
         {
             if (ModelState.IsValid)
@@ -143,7 +143,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
 
         [HttpPost(nameof(changePassword))]
         [DisplayActionName(DisplayName = "تغيير كلمة المرور")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> changePassword(ChangePasswordViewModel user)
         {
             if (ModelState.IsValid)

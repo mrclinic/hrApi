@@ -1,6 +1,7 @@
 ﻿
 using hiastHRApi.Domain.Entities.Constants;
 using hiastHRApi.Domain.Entities.Base;
+using Sieve.Attributes;
 
 
 namespace hiastHRApi.Domain.Entities.Employee
@@ -9,13 +10,13 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpEmploymentChange : AuditEntity
     {
 
-        public DateOnly DateOfAppointmentVisa { get; set; }
+        public DateTime DateOfAppointmentVisa { get; set; }
 
-        public DateOnly DateOfStart { get; set; }
+        public DateTime DateOfStart { get; set; }
 
-        public DateOnly DateOfChange { get; set; }
+        public DateTime DateOfChange { get; set; }
 
-        public DateOnly DateOfContract { get; set; }
+        public DateTime DateOfContract { get; set; }
 
         public int Salary { get; set; }
 
@@ -34,7 +35,7 @@ namespace hiastHRApi.Domain.Entities.Employee
         public string ContractNumber { get; set; } = null!;
 
         public string Note { get; set; } = null!;
-
+        [Sieve(CanFilter = true, Name = "EmployeeId")]
         public Guid EmployeeId { get; set; }
 
         public virtual EmpPersonalInfo Employee { get; set; } = null!;

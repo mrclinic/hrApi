@@ -913,8 +913,6 @@ public partial class HrmappContext : DbContext
 
             entity.HasIndex(e => e.GenderId, "IX_EmpPersonalInfos_GenderId");
 
-            entity.HasIndex(e => e.IdentityUserId, "IX_EmpPersonalInfos_IdentityUserId").IsUnique();
-
             entity.HasIndex(e => e.MaritalStatusId, "IX_EmpPersonalInfos_MaritalStatusId");
 
             entity.HasIndex(e => e.NationalityId, "IX_EmpPersonalInfos_NationalityId");
