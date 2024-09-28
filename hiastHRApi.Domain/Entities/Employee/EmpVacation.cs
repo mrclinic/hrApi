@@ -9,15 +9,15 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpVacation : AuditEntity
     {
 
-        public DateOnly StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public DateOnly ContractDate { get; set; }
+        public DateTime ContractDate { get; set; }
 
-        public DateOnly EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
-        public DateOnly ModificationContractDate { get; set; }
+        public DateTime ModificationContractDate { get; set; }
 
-        public DateOnly ActualReturnDate { get; set; }
+        public DateTime ActualReturnDate { get; set; }
 
         public int DurationInDays { get; set; }
 

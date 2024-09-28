@@ -14,7 +14,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public Guid LanguageLevelId { get; set; }
         public LanguageLevelDto? LanguageLevel { get; set; }
         public bool DisplayOnRecordCard { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpLanguage, EmpLanguageDto>()
@@ -23,6 +24,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.LanguageLevelId, src => src.MapFrom(src => src.LanguageLevelId))
                 .ForMember(dest => dest.LanguageLevel, src => src.MapFrom(src => src.LanguageLevel))
                 .ForMember(dest => dest.DisplayOnRecordCard, src => src.MapFrom(src => src.DisplayOnRecordCard))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

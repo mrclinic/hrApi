@@ -27,6 +27,9 @@ namespace hiastHRApi.Areas.HR.Controllers
         [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
         public IActionResult GetEmploymentStatusTypes([FromQuery]SieveModel sieveModel) => Ok(_employmentstatustypeService.GetAll(sieveModel));
 
+        [HttpGet(nameof(GetEmploymentStatusTypesInfo))]
+        public IActionResult GetEmploymentStatusTypesInfo([FromQuery] SieveModel sieveModel) => Ok(_employmentstatustypeService.Get(sieveModel));
+
         [HttpPost(nameof(CreateEmploymentStatusType))]
         [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
         public async Task<IActionResult> CreateEmploymentStatusType(EmploymentStatusTypeDto employmentstatustype)

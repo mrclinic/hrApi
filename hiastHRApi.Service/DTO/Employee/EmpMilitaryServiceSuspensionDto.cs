@@ -14,7 +14,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public DateTime ReturnContractDate { get; set; }
         public string SuspensionContractNumber { get; set; }
         public string ReturnContractNumber { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpMilitaryServiceSuspension, EmpMilitaryServiceSuspensionDto>()
@@ -24,6 +25,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.ReturnContractDate, src => src.MapFrom(src => src.ReturnContractDate))
                 .ForMember(dest => dest.SuspensionContractNumber, src => src.MapFrom(src => src.SuspensionContractNumber))
                 .ForMember(dest => dest.ReturnContractNumber, src => src.MapFrom(src => src.ReturnContractNumber))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

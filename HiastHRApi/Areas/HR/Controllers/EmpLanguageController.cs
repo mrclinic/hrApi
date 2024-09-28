@@ -27,6 +27,9 @@ namespace hiastHRApi.Areas.HR.Controllers
         [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
         public IActionResult GetEmpLanguages([FromQuery]SieveModel sieveModel) => Ok(_emplanguageService.GetAll(sieveModel));
 
+        [HttpGet(nameof(GetEmpLanguagesInfo))]
+        public IActionResult GetEmpLanguagesInfo([FromQuery] SieveModel sieveModel) => Ok(_emplanguageService.Get(sieveModel, includeProperties: "LanguageLevel,Language"));
+
         [HttpPost(nameof(CreateEmpLanguage))]
         [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
         public async Task<IActionResult> CreateEmpLanguage(EmpLanguageDto emplanguage)

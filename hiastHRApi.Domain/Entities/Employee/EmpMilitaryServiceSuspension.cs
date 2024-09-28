@@ -10,13 +10,13 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpMilitaryServiceSuspension : AuditEntity
     {
 
-        public DateOnly SuspensionDate { get; set; }
+        public DateTime SuspensionDate { get; set; }
 
-        public DateOnly SuspensionContractDate { get; set; }
+        public DateTime SuspensionContractDate { get; set; }
 
-        public DateOnly ReturnToServiceDate { get; set; }
+        public DateTime ReturnToServiceDate { get; set; }
 
-        public DateOnly ReturnContractDate { get; set; }
+        public DateTime ReturnContractDate { get; set; }
 
         public string SuspensionContractNumber { get; set; } = null!;
 

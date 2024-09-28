@@ -16,7 +16,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public Guid EvaluationQuarterId { get; set; }
         public EvaluationQuarterDto? EvaluationQuarter { get; set; }
         public string ReportNumber { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpPerformanceEvaluation, EmpPerformanceEvaluationDto>()
@@ -27,6 +28,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.EvaluationQuarterId, src => src.MapFrom(src => src.EvaluationQuarterId))
                 .ForMember(dest => dest.EvaluationQuarter, src => src.MapFrom(src => src.EvaluationQuarter))
                 .ForMember(dest => dest.ReportNumber, src => src.MapFrom(src => src.ReportNumber))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

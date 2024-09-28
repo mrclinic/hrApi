@@ -13,7 +13,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public ExperienceTypeDto? ExperienceType { get; set; }
         public string Source { get; set; }
         public string Duration { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpExperience, EmpExperienceDto>()
@@ -21,6 +22,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.ExperienceType, src => src.MapFrom(src => src.ExperienceType))
                 .ForMember(dest => dest.Source, src => src.MapFrom(src => src.Source))
                 .ForMember(dest => dest.Duration, src => src.MapFrom(src => src.Duration))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

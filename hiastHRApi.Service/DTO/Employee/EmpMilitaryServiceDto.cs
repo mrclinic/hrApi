@@ -20,7 +20,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public string CohortNumber { get; set; }
         public string RecruitmentBranch { get; set; }
         public string RecruitmentNumber { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpMilitaryService, EmpMilitaryServiceDto>()
@@ -35,6 +36,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.CohortNumber, src => src.MapFrom(src => src.CohortNumber))
                 .ForMember(dest => dest.RecruitmentBranch, src => src.MapFrom(src => src.RecruitmentBranch))
                 .ForMember(dest => dest.RecruitmentNumber, src => src.MapFrom(src => src.RecruitmentNumber))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

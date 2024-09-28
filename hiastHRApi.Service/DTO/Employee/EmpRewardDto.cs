@@ -22,10 +22,12 @@ namespace hiastHRApi.Service.DTO.Employee
         public string OrderNumber { get; set; }
         public string ContractNumber { get; set; }
         public ModificationContractTypeDto? ContractType { get; set; }
-        public DepartmentDto? Department { get; set; }
+        public OrgDepartmentDto? Department { get; set; }
         public PersonDto? Employee { get; set; }
         public FinancialIndicatorTypeDto? FinancialIndicatorType { get; set; }
         public RewardTypeDto? RewardType { get; set; }
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpReward, EmpRewardDto>()
@@ -46,6 +48,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.Employee, src => src.MapFrom(src => src.Employee))
                 .ForMember(dest => dest.FinancialIndicatorType, src => src.MapFrom(src => src.FinancialIndicatorType))
                 .ForMember(dest => dest.RewardType, src => src.MapFrom(src => src.RewardType))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

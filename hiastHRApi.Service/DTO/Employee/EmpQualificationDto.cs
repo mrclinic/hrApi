@@ -20,7 +20,9 @@ namespace hiastHRApi.Service.DTO.Employee
         public PersonDto? Employee { get; set; }
         public QualificationDto? Qualification { get; set; }
         public SpecializationDto? Specialization { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
+        public CountryDto? Country { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpQualification, EmpQualificationDto>()
@@ -29,6 +31,7 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.SpecializationId, src => src.MapFrom(src => src.SpecializationId))
                 .ForMember(dest => dest.DegreesAuthorityId, src => src.MapFrom(src => src.DegreesAuthorityId))
                 .ForMember(dest => dest.CountryId, src => src.MapFrom(src => src.CountryId))
+                .ForMember(dest => dest.Country, src => src.MapFrom(src => src.Country))
                 .ForMember(dest => dest.QualificationId, src => src.MapFrom(src => src.QualificationId))
                 .ForMember(dest => dest.SubSpecialization, src => src.MapFrom(src => src.SubSpecialization))
                 .ForMember(dest => dest.EquivalenceContractNumber, src => src.MapFrom(src => src.EquivalenceContractNumber))
@@ -36,6 +39,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.Employee, src => src.MapFrom(src => src.Employee))
                 .ForMember(dest => dest.Qualification, src => src.MapFrom(src => src.Qualification))
                 .ForMember(dest => dest.Specialization, src => src.MapFrom(src => src.Specialization))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

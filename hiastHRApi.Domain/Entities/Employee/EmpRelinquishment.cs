@@ -10,9 +10,9 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpRelinquishment : AuditEntity
     {
 
-        public DateOnly RelinquishmentDate { get; set; }
+        public DateTime RelinquishmentDate { get; set; }
 
-        public DateOnly ContractDate { get; set; }
+        public DateTime ContractDate { get; set; }
 
         public Guid RelinquishmentReasonId { get; set; }
 

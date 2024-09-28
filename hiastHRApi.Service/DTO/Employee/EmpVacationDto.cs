@@ -34,7 +34,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public ForcedVacationTypeDto? ForcedVacationType { get; set; }
         public ModificationContractTypeDto? ModificationContractType { get; set; }
         public VacationTypeDto? VacationType { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpVacation, EmpVacationDto>()
@@ -63,6 +64,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.ForcedVacationType, src => src.MapFrom(src => src.ForcedVacationType))
                 .ForMember(dest => dest.ModificationContractType, src => src.MapFrom(src => src.ModificationContractType))
                 .ForMember(dest => dest.VacationType, src => src.MapFrom(src => src.VacationType))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

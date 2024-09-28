@@ -9,11 +9,11 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpWorkPlace : AuditEntity
     {
 
-        public DateOnly DateOfStart { get; set; }
+        public DateTime DateOfStart { get; set; }
 
-        public DateOnly DateOfRelinquishment { get; set; }
+        public DateTime DateOfRelinquishment { get; set; }
 
-        public DateOnly DateOfContract { get; set; }
+        public DateTime DateOfContract { get; set; }
 
         public Guid ContractTypeId { get; set; }
 

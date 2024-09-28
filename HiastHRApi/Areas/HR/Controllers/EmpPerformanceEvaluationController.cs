@@ -2,6 +2,7 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Employee;
 using hiastHRApi.Service.IService.Employee;
+using hiastHRApi.Service.Service.Employee;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -26,6 +27,8 @@ namespace hiastHRApi.Areas.HR.Controllers
         [HttpGet(nameof(GetEmpPerformanceEvaluations))]
         [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
         public IActionResult GetEmpPerformanceEvaluations([FromQuery]SieveModel sieveModel) => Ok(_empperformanceevaluationService.GetAll(sieveModel));
+        [HttpGet(nameof(GetEmpPerformanceEvaluationsInfo))]
+        public IActionResult GetEmpPerformanceEvaluationsInfo([FromQuery] SieveModel sieveModel) => Ok(_empperformanceevaluationService.Get(sieveModel, includeProperties: "EvaluationGrade,EvaluationQuarter"));
 
         [HttpPost(nameof(CreateEmpPerformanceEvaluation))]
         [DisplayActionName(DisplayName = "إنشاء فرع جديد")]

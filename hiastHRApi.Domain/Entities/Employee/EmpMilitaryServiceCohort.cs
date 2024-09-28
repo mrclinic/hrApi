@@ -9,13 +9,13 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpMilitaryServiceCohort : AuditEntity
     {
 
-        public DateOnly StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public DateOnly StartContractDate { get; set; }
+        public DateTime StartContractDate { get; set; }
 
-        public DateOnly EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
-        public DateOnly EndContractDate { get; set; }
+        public DateTime EndContractDate { get; set; }
 
         public string StartContractNumber { get; set; } = null!;
 

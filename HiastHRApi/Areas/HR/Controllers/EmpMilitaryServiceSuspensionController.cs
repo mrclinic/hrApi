@@ -2,6 +2,7 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Employee;
 using hiastHRApi.Service.IService.Employee;
+using hiastHRApi.Service.Service.Employee;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -26,6 +27,10 @@ namespace hiastHRApi.Areas.HR.Controllers
         [HttpGet(nameof(GetEmpMilitaryServiceSuspensions))]
         [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
         public IActionResult GetEmpMilitaryServiceSuspensions([FromQuery]SieveModel sieveModel) => Ok(_empmilitaryservicesuspensionService.GetAll(sieveModel));
+
+        [HttpGet(nameof(GetEmpMilitaryServiceSuspensionsInfo))]
+        public IActionResult GetEmpMilitaryServiceSuspensionsInfo([FromQuery] SieveModel sieveModel) => Ok(_empmilitaryservicesuspensionService.Get(sieveModel));
+
 
         [HttpPost(nameof(CreateEmpMilitaryServiceSuspension))]
         [DisplayActionName(DisplayName = "إنشاء فرع جديد")]

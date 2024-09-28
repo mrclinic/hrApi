@@ -10,9 +10,9 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpQualification : AuditEntity
     {
 
-        public DateOnly? DegreeDate { get; set; }
+        public DateTime? DegreeDate { get; set; }
 
-        public DateOnly? EquivalenceDegreeContractDate { get; set; }
+        public DateTime? EquivalenceDegreeContractDate { get; set; }
 
         public Guid SpecializationId { get; set; }
 

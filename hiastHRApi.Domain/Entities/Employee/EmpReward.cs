@@ -10,11 +10,11 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpReward : AuditEntity
     {
 
-        public DateOnly OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
 
-        public DateOnly ExecutionDate { get; set; }
+        public DateTime ExecutionDate { get; set; }
 
-        public DateOnly ContractDate { get; set; }
+        public DateTime ContractDate { get; set; }
 
         public Guid RewardTypeId { get; set; }
 

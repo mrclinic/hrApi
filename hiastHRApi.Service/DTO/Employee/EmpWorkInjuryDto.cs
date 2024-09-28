@@ -13,7 +13,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public decimal MonthlyAmount { get; set; }
         public string InjuryType { get; set; }
         public string ContractNumber { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpWorkInjury, EmpWorkInjuryDto>()
@@ -23,6 +24,8 @@ namespace hiastHRApi.Service.DTO.Employee
                .ForMember(dest => dest.MonthlyAmount, src => src.MapFrom(src => src.MonthlyAmount))
                .ForMember(dest => dest.InjuryType, src => src.MapFrom(src => src.InjuryType))
                .ForMember(dest => dest.ContractNumber, src => src.MapFrom(src => src.ContractNumber))
+               .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                .ReverseMap();
         }
     }

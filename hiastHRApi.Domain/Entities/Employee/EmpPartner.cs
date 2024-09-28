@@ -10,9 +10,9 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpPartner : AuditEntity
     {
 
-        public DateOnly? BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
-        public DateOnly? OccurrenceDate { get; set; }
+        public DateTime? OccurrenceDate { get; set; }
 
         public int PartnerOrder { get; set; }
 

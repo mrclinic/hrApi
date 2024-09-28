@@ -10,7 +10,7 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpPromotion : AuditEntity
     {
 
-        public DateOnly PromotionDate { get; set; }
+        public DateTime PromotionDate { get; set; }
 
         public int PromotionDuration { get; set; }
 

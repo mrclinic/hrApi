@@ -10,7 +10,7 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpWorkInjury : AuditEntity
     {
 
-        public DateOnly ContractDate { get; set; }
+        public DateTime ContractDate { get; set; }
 
         public decimal DisabilityRatio { get; set; }
 

@@ -2,6 +2,7 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Employee;
 using hiastHRApi.Service.IService.Employee;
+using hiastHRApi.Service.Service.Employee;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -24,8 +25,11 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpVacations>
         [HttpGet(nameof(GetEmpVacations))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
-        public IActionResult GetEmpVacations([FromQuery]SieveModel sieveModel) => Ok(_empvacationService.GetAll(sieveModel));
+        [DisplayActionName(DisplayName = "استعلام فروع النقابة")]
+        public IActionResult GetEmpVacations([FromQuery] SieveModel sieveModel) => Ok(_empvacationService.GetAll(sieveModel));
+
+        [HttpGet(nameof(GetEmpVacationsInfo))]
+        public IActionResult GetEmpVacationsInfo([FromQuery] SieveModel sieveModel) => Ok(_empvacationService.Get(sieveModel, includeProperties: "ContractType,FinancialImpact,ForcedVacationType,ModificationContractType,VacationType"));
 
         [HttpPost(nameof(CreateEmpVacation))]
         [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
@@ -35,7 +39,7 @@ namespace hiastHRApi.Areas.HR.Controllers
             {
                 await _empvacationService.Add(empvacation);
                 await _unitOfWork.CompleteAsync();
-                return new JsonResult("Success") { StatusCode = 200 ,Value=empvacation };
+                return new JsonResult("Success") { StatusCode = 200, Value = empvacation };
             }
             return new JsonResult("Somethign Went wrong") { StatusCode = 500 };
         }

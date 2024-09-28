@@ -18,7 +18,6 @@ namespace hiastHRApi.Service.DTO.Employee
         public Guid EmployeeId { get; set; }
         public ModificationContractTypeDto? ContractType { get; set; }
         public RelinquishmentReasonDto? RelinquishmentReason { get; set; }
-
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpRelinquishment, EmpRelinquishmentDto>()

@@ -10,9 +10,9 @@ namespace hiastHRApi.Domain.Entities.Employee
     public partial class EmpPerformanceEvaluation : AuditEntity
     {
 
-        public DateOnly ReportDate { get; set; }
+        public DateTime ReportDate { get; set; }
 
-        public DateOnly PromotionDate { get; set; }
+        public DateTime PromotionDate { get; set; }
 
         public Guid EvaluationGradeId { get; set; }
 

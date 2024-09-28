@@ -17,7 +17,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public decimal BonusAmount { get; set; }
         public Guid PromotionPercentageId { get; set; }
         public PromotionPercentageDto? PromotionPercentage { get; set; }
-
+        public Guid EmployeeId { get; set; }
+        public string Note { get; set; } = null!;
         public void Mapping(Profile profile)
         {
             profile.CreateMap<EmpPromotion, EmpPromotionDto>()
@@ -29,6 +30,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.BonusAmount, src => src.MapFrom(src => src.BonusAmount))
                 .ForMember(dest => dest.PromotionPercentageId, src => src.MapFrom(src => src.PromotionPercentageId))
                 .ForMember(dest => dest.PromotionPercentage, src => src.MapFrom(src => src.PromotionPercentage))
+                .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                 .ReverseMap();
         }
     }

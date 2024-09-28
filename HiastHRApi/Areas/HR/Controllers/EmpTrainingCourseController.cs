@@ -2,6 +2,7 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Employee;
 using hiastHRApi.Service.IService.Employee;
+using hiastHRApi.Service.Service.Employee;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -26,6 +27,9 @@ namespace hiastHRApi.Areas.HR.Controllers
         [HttpGet(nameof(GetEmpTrainingCourses))]
         [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
         public IActionResult GetEmpTrainingCourses([FromQuery]SieveModel sieveModel) => Ok(_emptrainingcourseService.GetAll(sieveModel));
+
+        [HttpGet(nameof(GetEmpTrainingCoursesInfo))]
+        public IActionResult GetEmpTrainingCoursesInfo([FromQuery] SieveModel sieveModel) => Ok(_emptrainingcourseService.Get(sieveModel, includeProperties: "ContractType"));
 
         [HttpPost(nameof(CreateEmpTrainingCourse))]
         [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
