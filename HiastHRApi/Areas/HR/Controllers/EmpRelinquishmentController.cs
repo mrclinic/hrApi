@@ -25,14 +25,15 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpRelinquishments>
         [HttpGet(nameof(GetEmpRelinquishments))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الانفكاكات")]
         public IActionResult GetEmpRelinquishments([FromQuery]SieveModel sieveModel) => Ok(_emprelinquishmentService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmpRelinquishmentsInfo))]
+        [DisplayActionName(DisplayName = "استعلام الانفكاكات وتفاصيلها")]
         public IActionResult GetEmpRelinquishmentsInfo([FromQuery] SieveModel sieveModel) => Ok(_emprelinquishmentService.Get(sieveModel, includeProperties: "ContractType,RelinquishmentReason"));
 
         [HttpPost(nameof(CreateEmpRelinquishment))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء انفكاك جديد")]
         public async Task<IActionResult> CreateEmpRelinquishment(EmpRelinquishmentDto emprelinquishment)
         {
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpRelinquishment))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل انفكاك")]
         public async Task<IActionResult> UpdateEmpRelinquishment(EmpRelinquishmentDto emprelinquishment)
         {
             if (ModelState.IsValid)
@@ -58,7 +59,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpRelinquishment))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف انفكاك")]
         public async Task<IActionResult> DeleteEmpRelinquishment(Guid id)
         {
             if (ModelState.IsValid)

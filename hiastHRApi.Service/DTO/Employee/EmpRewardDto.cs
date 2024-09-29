@@ -22,7 +22,7 @@ namespace hiastHRApi.Service.DTO.Employee
         public string OrderNumber { get; set; }
         public string ContractNumber { get; set; }
         public ModificationContractTypeDto? ContractType { get; set; }
-        public OrgDepartmentDto? Department { get; set; }
+        public OrgDepartmentDto? OrgDepartment { get; set; }
         public PersonDto? Employee { get; set; }
         public FinancialIndicatorTypeDto? FinancialIndicatorType { get; set; }
         public RewardTypeDto? RewardType { get; set; }
@@ -44,7 +44,7 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.OrderNumber, src => src.MapFrom(src => src.OrderNumber))
                 .ForMember(dest => dest.ContractNumber, src => src.MapFrom(src => src.ContractNumber))
                 .ForMember(dest => dest.ContractType, src => src.MapFrom(src => src.ContractType))
-                .ForMember(dest => dest.Department, src => src.MapFrom(src => src.Department))
+                .ForMember(dest => dest.OrgDepartment, src => src.MapFrom(src => src.OrgDepartment))
                 .ForMember(dest => dest.Employee, src => src.MapFrom(src => src.Employee))
                 .ForMember(dest => dest.FinancialIndicatorType, src => src.MapFrom(src => src.FinancialIndicatorType))
                 .ForMember(dest => dest.RewardType, src => src.MapFrom(src => src.RewardType))

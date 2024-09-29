@@ -25,15 +25,16 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpMilitaryServiceSuspensions>
         [HttpGet(nameof(GetEmpMilitaryServiceSuspensions))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام ايقاف الخدمة الالزامية")]
         public IActionResult GetEmpMilitaryServiceSuspensions([FromQuery]SieveModel sieveModel) => Ok(_empmilitaryservicesuspensionService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmpMilitaryServiceSuspensionsInfo))]
+        [DisplayActionName(DisplayName = "استعلام ايقاف الخدمة الالزامية وتفاصيلها")]
         public IActionResult GetEmpMilitaryServiceSuspensionsInfo([FromQuery] SieveModel sieveModel) => Ok(_empmilitaryservicesuspensionService.Get(sieveModel));
 
 
         [HttpPost(nameof(CreateEmpMilitaryServiceSuspension))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "ةإنشاء إيقاف خدمة إلزامية جديد")]
         public async Task<IActionResult> CreateEmpMilitaryServiceSuspension(EmpMilitaryServiceSuspensionDto empmilitaryservicesuspension)
         {
             if (ModelState.IsValid)
@@ -46,7 +47,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpMilitaryServiceSuspension))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل إيقاف خدمة إلزامية")]
         public async Task<IActionResult> UpdateEmpMilitaryServiceSuspension(EmpMilitaryServiceSuspensionDto empmilitaryservicesuspension)
         {
             if (ModelState.IsValid)
@@ -59,7 +60,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpMilitaryServiceSuspension))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف إيقاف خدمة إلزامية")]
         public async Task<IActionResult> DeleteEmpMilitaryServiceSuspension(Guid id)
         {
             if (ModelState.IsValid)

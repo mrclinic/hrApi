@@ -24,14 +24,15 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpLanguages>
         [HttpGet(nameof(GetEmpLanguages))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName ="استعلام لغات الموظف")]
         public IActionResult GetEmpLanguages([FromQuery]SieveModel sieveModel) => Ok(_emplanguageService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmpLanguagesInfo))]
+        [DisplayActionName(DisplayName = "استعلام لغات الموظف وتفاصيلها")]
         public IActionResult GetEmpLanguagesInfo([FromQuery] SieveModel sieveModel) => Ok(_emplanguageService.Get(sieveModel, includeProperties: "LanguageLevel,Language"));
 
         [HttpPost(nameof(CreateEmpLanguage))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء لغة موظف جديد")]
         public async Task<IActionResult> CreateEmpLanguage(EmpLanguageDto emplanguage)
         {
             if (ModelState.IsValid)
@@ -44,7 +45,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpLanguage))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل لغة موظف")]
         public async Task<IActionResult> UpdateEmpLanguage(EmpLanguageDto emplanguage)
         {
             if (ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpLanguage))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف لغة موظف")]
         public async Task<IActionResult> DeleteEmpLanguage(Guid id)
         {
             if (ModelState.IsValid)

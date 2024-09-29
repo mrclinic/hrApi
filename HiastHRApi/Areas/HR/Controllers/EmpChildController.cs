@@ -25,13 +25,14 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpChilds>
         [HttpGet(nameof(GetEmpChilds))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الابناء")]
         public IActionResult GetEmpChilds([FromQuery]SieveModel sieveModel) => Ok(_empchildService.GetAll(sieveModel));
         [HttpGet(nameof(GetEmpChildsInfo))]
+        [DisplayActionName(DisplayName = "استعلام الابناء وتفاصيلها")]
         public IActionResult GetEmpChildsInfo([FromQuery] SieveModel sieveModel) => Ok(_empchildService.Get(sieveModel, includeProperties: "Gender,Status"));
 
         [HttpPost(nameof(CreateEmpChild))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء ابن جديد")]
         public async Task<IActionResult> CreateEmpChild(EmpChildDto empchild)
         {
             if (ModelState.IsValid)
@@ -44,7 +45,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpChild))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل ابن")]
         public async Task<IActionResult> UpdateEmpChild(EmpChildDto empchild)
         {
             if (ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpChild))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف ابن")]
         public async Task<IActionResult> DeleteEmpChild(Guid id)
         {
             if (ModelState.IsValid)

@@ -12,10 +12,10 @@ namespace hiastHRApi.Service.DTO.Employee
         public DateTime OrderDate { get; set; }
         public DateTime ContractDate { get; set; }
         public Guid IssuingDepartmentId { get; set; }
-        public OrgDepartmentDto? IssuingDepartment { get; set; }
+        public OrgDepartmentDto? IssuingOrgDepartment { get; set; }
         public int DurationInDays { get; set; }
         public Guid OrderDepartmentId { get; set; }
-        public OrgDepartmentDto? OrderDepartment { get; set; }
+        public OrgDepartmentDto? OrderOrgDepartment { get; set; }
         public bool IsAppearingInRecordCard { get; set; }
         public Guid ContractTypeId { get; set; }
         public ModificationContractTypeDto? ContractType { get; set; }
@@ -45,8 +45,8 @@ namespace hiastHRApi.Service.DTO.Employee
                 .ForMember(dest => dest.Reason, src => src.MapFrom(src => src.Reason))
                 .ForMember(dest => dest.OrderContractNumber, src => src.MapFrom(src => src.OrderContractNumber))
                 .ForMember(dest => dest.ContractNumber, src => src.MapFrom(src => src.ContractNumber))
-                .ForMember(dest => dest.IssuingDepartment, src => src.MapFrom(src => src.IssuingDepartment))
-                .ForMember(dest => dest.OrderDepartment, src => src.MapFrom(src => src.OrderDepartment))
+                .ForMember(dest => dest.IssuingOrgDepartment, src => src.MapFrom(src => src.IssuingOrgDepartment))
+                .ForMember(dest => dest.OrderOrgDepartment, src => src.MapFrom(src => src.OrderOrgDepartment))
                 .ForMember(dest => dest.ContractType, src => src.MapFrom(src => src.ContractType))
                 .ForMember(dest => dest.PunishmentType, src => src.MapFrom(src => src.PunishmentType))
                 .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))

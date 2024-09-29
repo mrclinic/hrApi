@@ -25,14 +25,15 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpWorkInjurys>
         [HttpGet(nameof(GetEmpWorkInjurys))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام إصابات العمل")]
         public IActionResult GetEmpWorkInjurys([FromQuery]SieveModel sieveModel) => Ok(_empworkinjuryService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmpWorkInjurysInfo))]
+        [DisplayActionName(DisplayName = "استعلام إصابات العمل وتفاصيلها")]
         public IActionResult GetEmpWorkInjurysInfo([FromQuery] SieveModel sieveModel) => Ok(_empworkinjuryService.Get(sieveModel));
 
         [HttpPost(nameof(CreateEmpWorkInjury))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء إصابة عمل جديدة")]
         public async Task<IActionResult> CreateEmpWorkInjury(EmpWorkInjuryDto empworkinjury)
         {
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpWorkInjury))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل إصابة عمل")]
         public async Task<IActionResult> UpdateEmpWorkInjury(EmpWorkInjuryDto empworkinjury)
         {
             if (ModelState.IsValid)
@@ -58,7 +59,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpWorkInjury))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف إصابة عمل")]
         public async Task<IActionResult> DeleteEmpWorkInjury(Guid id)
         {
             if (ModelState.IsValid)

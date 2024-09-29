@@ -24,13 +24,14 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<Persons>
         [HttpGet(nameof(GetPersons))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName ="استعلام الموظفين")]
         public IActionResult GetPersons([FromQuery]SieveModel sieveModel) => Ok(_personService.GetAll(sieveModel));
         [HttpGet(nameof(GetPersonsInfo))]
+        [DisplayActionName(DisplayName = "استعلام الموظفين وتفاصيلهم")]
         public IActionResult GetPersonsInfo([FromQuery] SieveModel sieveModel) => Ok(_personService.Get(sieveModel, includeProperties: "BloodGroup,City,EmploymentStatusType,Gender,MaritalStatus,Nationality"));
 
         [HttpPost(nameof(CreatePerson))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء موظف جديد")]
         public async Task<IActionResult> CreatePerson(PersonDto person)
         {
             if (ModelState.IsValid)
@@ -43,7 +44,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdatePerson))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل موظف")]
         public async Task<IActionResult> UpdatePerson(PersonDto person)
         {
             if (ModelState.IsValid)
@@ -56,7 +57,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeletePerson))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف موظف")]
         public async Task<IActionResult> DeletePerson(Guid id)
         {
             if (ModelState.IsValid)

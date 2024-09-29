@@ -12,7 +12,7 @@ namespace hiastHRApi.Domain.Entities.Constants
 
         public string Name { get; set; } = null!;
 
-        public virtual ICollection<Branch> Branches { get; set; } = new List<Branch>();
+        //public virtual ICollection<Branch> Branches { get; set; } = new List<Branch>();
 
         public virtual Department Department { get; set; } = null!;
     }

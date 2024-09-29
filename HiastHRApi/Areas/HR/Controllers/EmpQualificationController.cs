@@ -25,13 +25,14 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpQualifications>
         [HttpGet(nameof(GetEmpQualifications))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام المؤهلات العلمية للموظف")]
         public IActionResult GetEmpQualifications([FromQuery]SieveModel sieveModel) => Ok(_empqualificationService.GetAll(sieveModel));
         [HttpGet(nameof(GetEmpQualificationsInfo))]
+        [DisplayActionName(DisplayName = "استعلام المؤهلات العلمية للموظف وتفاصيلها")]
         public IActionResult GetEmpQualificationsInfo([FromQuery] SieveModel sieveModel) => Ok(_empqualificationService.Get(sieveModel, includeProperties: "DegreesAuthority,Qualification,Specialization,Country"));
 
         [HttpPost(nameof(CreateEmpQualification))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء مؤهل علمي للموظف جديد")]
         public async Task<IActionResult> CreateEmpQualification(EmpQualificationDto empqualification)
         {
             if (ModelState.IsValid)
@@ -44,7 +45,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpQualification))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل مؤهل علمي للموظف")]
         public async Task<IActionResult> UpdateEmpQualification(EmpQualificationDto empqualification)
         {
             if (ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpQualification))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف مؤهل علمي للموظف")]
         public async Task<IActionResult> DeleteEmpQualification(Guid id)
         {
             if (ModelState.IsValid)

@@ -25,13 +25,14 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpDeputations>
         [HttpGet(nameof(GetEmpDeputations))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الإيفادات")]
         public IActionResult GetEmpDeputations([FromQuery]SieveModel sieveModel) => Ok(_empdeputationService.GetAll(sieveModel));
         [HttpGet(nameof(GetEmpDeputationsInfo))]
+        [DisplayActionName(DisplayName = "استعلام الإيفادات وتفاصيلها")]
         public IActionResult GetEmpDeputationsInfo([FromQuery] SieveModel sieveModel) => Ok(_empdeputationService.Get(sieveModel, includeProperties: "City,Country,DeputationObjective,DeputationStatus,DeputationType,University"));
 
         [HttpPost(nameof(CreateEmpDeputation))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء إيفاد جديد")]
         public async Task<IActionResult> CreateEmpDeputation(EmpDeputationDto empdeputation)
         {
             if (ModelState.IsValid)
@@ -44,7 +45,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpDeputation))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل إيفاد")]
         public async Task<IActionResult> UpdateEmpDeputation(EmpDeputationDto empdeputation)
         {
             if (ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpDeputation))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف إيفاد")]
         public async Task<IActionResult> DeleteEmpDeputation(Guid id)
         {
             if (ModelState.IsValid)

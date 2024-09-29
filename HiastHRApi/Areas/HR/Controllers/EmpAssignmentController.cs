@@ -2,7 +2,6 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Employee;
 using hiastHRApi.Service.IService.Employee;
-using hiastHRApi.Service.Service.Employee;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -25,15 +24,16 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpAssignments>
         [HttpGet(nameof(GetEmpAssignments))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الأعمال والتكاليف")]
         public IActionResult GetEmpAssignments([FromQuery]SieveModel sieveModel) => Ok(_empassignmentService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmpAssignmentsInfo))]
+        [DisplayActionName(DisplayName = "استعلام الأعمال والتكاليف وتفاصيلها")]
         public IActionResult GetEmpAssignmentsInfo([FromQuery] SieveModel sieveModel) => Ok(_empassignmentService.Get(sieveModel, includeProperties: "ContractType"));
 
 
         [HttpPost(nameof(CreateEmpAssignment))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء عمل وتكليف جديد")]
         public async Task<IActionResult> CreateEmpAssignment(EmpAssignmentDto empassignment)
         {
             if (ModelState.IsValid)
@@ -46,7 +46,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpAssignment))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل عمل أو تكليف")]
         public async Task<IActionResult> UpdateEmpAssignment(EmpAssignmentDto empassignment)
         {
             if (ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpAssignment))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف عمل أو تكليف")]
         public async Task<IActionResult> DeleteEmpAssignment(Guid id)
         {
             if (ModelState.IsValid)

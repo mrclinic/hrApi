@@ -25,13 +25,14 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpPunishments>
         [HttpGet(nameof(GetEmpPunishments))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام العقوبات")]
         public IActionResult GetEmpPunishments([FromQuery]SieveModel sieveModel) => Ok(_emppunishmentService.GetAll(sieveModel));
         [HttpGet(nameof(GetEmpPunishmentsInfo))]
-        public IActionResult GetEmpPunishmentsInfo([FromQuery] SieveModel sieveModel) => Ok(_emppunishmentService.Get(sieveModel, includeProperties: "IssuingDepartment,OrderDepartment,ContractType,PunishmentType"));
+        [DisplayActionName(DisplayName = "استعلام العقوبات وتفاصيلها")]
+        public IActionResult GetEmpPunishmentsInfo([FromQuery] SieveModel sieveModel) => Ok(_emppunishmentService.Get(sieveModel, includeProperties: "IssuingOrgDepartment,OrderOrgDepartment,ContractType,PunishmentType"));
 
         [HttpPost(nameof(CreateEmpPunishment))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء عقوبة جديدة")]
         public async Task<IActionResult> CreateEmpPunishment(EmpPunishmentDto emppunishment)
         {
             if (ModelState.IsValid)
@@ -44,7 +45,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpPunishment))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل عقوبة")]
         public async Task<IActionResult> UpdateEmpPunishment(EmpPunishmentDto emppunishment)
         {
             if (ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpPunishment))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف عقوبة")]
         public async Task<IActionResult> DeleteEmpPunishment(Guid id)
         {
             if (ModelState.IsValid)

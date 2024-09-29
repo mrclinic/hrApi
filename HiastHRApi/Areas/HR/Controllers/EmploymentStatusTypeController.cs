@@ -24,14 +24,15 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmploymentStatusTypes>
         [HttpGet(nameof(GetEmploymentStatusTypes))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أنواع الأوضاع الوظيفية")]
         public IActionResult GetEmploymentStatusTypes([FromQuery]SieveModel sieveModel) => Ok(_employmentstatustypeService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmploymentStatusTypesInfo))]
+        [DisplayActionName(DisplayName = "استعلام أنواع الأوضاع الوظيفية وتفاصيلها")]
         public IActionResult GetEmploymentStatusTypesInfo([FromQuery] SieveModel sieveModel) => Ok(_employmentstatustypeService.Get(sieveModel));
 
         [HttpPost(nameof(CreateEmploymentStatusType))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء نوع وضع وظيفيي جديد")]
         public async Task<IActionResult> CreateEmploymentStatusType(EmploymentStatusTypeDto employmentstatustype)
         {
             if (ModelState.IsValid)
@@ -44,7 +45,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmploymentStatusType))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل نوع وضع وظيفيي")]
         public async Task<IActionResult> UpdateEmploymentStatusType(EmploymentStatusTypeDto employmentstatustype)
         {
             if (ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmploymentStatusType))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف نوع وضع وظيفيي")]
         public async Task<IActionResult> DeleteEmploymentStatusType(Guid id)
         {
             if (ModelState.IsValid)

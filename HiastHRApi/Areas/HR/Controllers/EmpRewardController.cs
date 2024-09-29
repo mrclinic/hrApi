@@ -25,13 +25,14 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpRewards>
         [HttpGet(nameof(GetEmpRewards))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName ="استعلام المكافآت")]
         public IActionResult GetEmpRewards([FromQuery]SieveModel sieveModel) => Ok(_emprewardService.GetAll(sieveModel));
         [HttpGet(nameof(GetEmpRewardsInfo))]
-        public IActionResult GetEmpRewardsInfo([FromQuery] SieveModel sieveModel) => Ok(_emprewardService.Get(sieveModel, includeProperties: "ContractType,Department,FinancialIndicatorType,RewardType"));
+        [DisplayActionName(DisplayName = "استعلام المكافآت وتفاصيلها")]
+        public IActionResult GetEmpRewardsInfo([FromQuery] SieveModel sieveModel) => Ok(_emprewardService.Get(sieveModel, includeProperties: "ContractType,OrgDepartment,FinancialIndicatorType,RewardType"));
 
         [HttpPost(nameof(CreateEmpReward))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء مكافآة جديدة")]
         public async Task<IActionResult> CreateEmpReward(EmpRewardDto empreward)
         {
             if (ModelState.IsValid)
@@ -44,7 +45,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpReward))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل مكافآة")]
         public async Task<IActionResult> UpdateEmpReward(EmpRewardDto empreward)
         {
             if (ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpReward))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف مكافآة")]
         public async Task<IActionResult> DeleteEmpReward(Guid id)
         {
             if (ModelState.IsValid)

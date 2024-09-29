@@ -3,12 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using hiastHRApi.Services;
 using hiastHRApi.global;
 using System.Text.Json.Serialization;
-using hiastHRApi.Helpers;
 using Microsoft.OpenApi.Models;
 using hiastHRApi.Shared.Common.Model;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

@@ -25,15 +25,16 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpEmploymentChanges>
         [HttpGet(nameof(GetEmpEmploymentChanges))]
-        [DisplayActionName(DisplayName = "استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام التبدلات الوظيفية")]
         public IActionResult GetEmpEmploymentChanges([FromQuery] SieveModel sieveModel) => Ok(_empemploymentchangeService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmpEmploymentChangesInfo))]
+        [DisplayActionName(DisplayName = "استعلام التبدلات الوظيفية وتفاصيلها")]
         public IActionResult GetEmpEmploymentChangesInfo([FromQuery] SieveModel sieveModel) => Ok(_empemploymentchangeService.Get(sieveModel, includeProperties: "JobChangeReason,JobTitle,ModificationContractType"));
 
 
         [HttpPost(nameof(CreateEmpEmploymentChange))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء تبدل وظيفي جديد")]
         public async Task<IActionResult> CreateEmpEmploymentChange(EmpEmploymentChangeDto empemploymentchange)
         {
             if (ModelState.IsValid)
@@ -46,7 +47,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpEmploymentChange))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل تبدل وظيفي")]
         public async Task<IActionResult> UpdateEmpEmploymentChange(EmpEmploymentChangeDto empemploymentchange)
         {
             if (ModelState.IsValid)
@@ -59,7 +60,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpEmploymentChange))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف تبدل وظيفي")]
         public async Task<IActionResult> DeleteEmpEmploymentChange(Guid id)
         {
             if (ModelState.IsValid)

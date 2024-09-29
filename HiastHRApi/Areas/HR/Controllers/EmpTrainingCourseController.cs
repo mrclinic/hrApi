@@ -25,14 +25,15 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpTrainingCourses>
         [HttpGet(nameof(GetEmpTrainingCourses))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الدورات التدريبية")]
         public IActionResult GetEmpTrainingCourses([FromQuery]SieveModel sieveModel) => Ok(_emptrainingcourseService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmpTrainingCoursesInfo))]
+        [DisplayActionName(DisplayName = "استعلام الدورات التدريبية وتفاصيلها")]
         public IActionResult GetEmpTrainingCoursesInfo([FromQuery] SieveModel sieveModel) => Ok(_emptrainingcourseService.Get(sieveModel, includeProperties: "ContractType"));
 
         [HttpPost(nameof(CreateEmpTrainingCourse))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "ةإنشاء دورة تدريبية جديد")]
         public async Task<IActionResult> CreateEmpTrainingCourse(EmpTrainingCourseDto emptrainingcourse)
         {
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpTrainingCourse))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل دورة تدريبية")]
         public async Task<IActionResult> UpdateEmpTrainingCourse(EmpTrainingCourseDto emptrainingcourse)
         {
             if (ModelState.IsValid)
@@ -58,7 +59,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpTrainingCourse))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف دورة تدريبية")]
         public async Task<IActionResult> DeleteEmpTrainingCourse(Guid id)
         {
             if (ModelState.IsValid)

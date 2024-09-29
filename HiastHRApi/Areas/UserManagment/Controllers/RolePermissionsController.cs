@@ -1,6 +1,5 @@
 ﻿using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
-using hiastHRApi.Helpers;
 using hiastHRApi.Service.IService.Identity;
 using hiastHRApi.Services.DTO.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -58,7 +57,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
 
 
         [HttpPut(nameof(UpdateRolePermission))]
-        [DisplayActionName(DisplayName = "تعديل صلاحية")]
+        //[DisplayActionName(DisplayName = "تعديل صلاحية")]
         public async Task<IActionResult> UpdateRolePermission(RolePermissionsDto rolePermissions)
         {
             if (ModelState.IsValid)
@@ -71,7 +70,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
         }
 
         [HttpDelete(nameof(DeleteRolePermission))]
-        [DisplayActionName(DisplayName = "حذف صلاحية")]
+        //[DisplayActionName(DisplayName = "حذف صلاحية")]
         public async Task<IActionResult> DeleteRolePermission(Guid id)
         {
             if (ModelState.IsValid)

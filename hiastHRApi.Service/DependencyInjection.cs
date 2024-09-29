@@ -79,7 +79,7 @@ namespace hiastHRApi.Services
             services.AddTransient<ITerminationReasonService, TerminationReasonService>();
             services.AddTransient<IUniversityService, UniversityService>();
             services.AddTransient<IVacationTypeService, VacationTypeService>();
-
+            services.AddTransient<IDocTypeService, DocTypeService>();
             #endregion
 
             #region employee
@@ -105,6 +105,7 @@ namespace hiastHRApi.Services
             services.AddTransient<IEmpVacationService, EmpVacationService>();
             services.AddTransient<IEmpWorkInjuryService, EmpWorkInjuryService>();
             services.AddTransient<IEmpWorkPlaceService, EmpWorkPlaceService>();
+            services.AddTransient<IEmpDocService, EmpDocService>();
             services.AddTransient<IPersonService, PersonService>();
             #endregion
 

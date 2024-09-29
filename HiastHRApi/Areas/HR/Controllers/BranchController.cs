@@ -29,6 +29,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         public IActionResult GetBranchs([FromQuery] SieveModel sieveModel) => Ok(_branchService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetBranchsInfo))]
+        [DisplayActionName(DisplayName = "استعلام الفروع وتفاصيلها")]
         public IActionResult GetBranchsInfo([FromQuery] SieveModel sieveModel) => Ok(_branchService.Get(sieveModel, includeProperties: "OrgDepartment"));
 
         [HttpPost(nameof(CreateBranch))]

@@ -113,6 +113,7 @@ public partial class HrmappContext : DbContext
 
     public DbSet<VacationType> VacationTypes { get; set; }
     public DbSet<OrgDepartment> OrgDepartments { get; set; }
+    public DbSet<DocType> DocTypes { get; set; }
 
     #endregion
 
@@ -167,7 +168,7 @@ public partial class HrmappContext : DbContext
 
     #endregion
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("server=DESKTOP-A9EBI4L;Database=HRMApp;user id=sa;Password=123;TrustServerCertificate=true;Connection Timeout=3600");
+        => optionsBuilder.UseSqlServer("server=PC;Database=HRMApp;user id=sa;Password=123;TrustServerCertificate=true;Connection Timeout=3600");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -517,6 +518,11 @@ public partial class HrmappContext : DbContext
             entity.Property(e => e.Name).HasMaxLength(1023);
         });
 
+        modelBuilder.Entity<DocType>(entity =>
+        {
+
+            entity.Property(e => e.Name).HasMaxLength(1023);
+        });
         modelBuilder.Entity<EmpAppointmentStatus>(entity =>
         {
             entity.HasIndex(e => e.AppointmentContractTypeId, "IX_EmpAppointmentStatuses_AppointmentContractTypeId");
@@ -598,6 +604,15 @@ public partial class HrmappContext : DbContext
 
             entity.HasOne(d => d.Employee).WithMany(p => p.EmpAssignments)
                 .HasForeignKey(d => d.EmployeeId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<EmpDoc>(entity =>
+        {
+            entity.HasIndex(e => e.DocTypeId, "IX_EmpDocs_DocTypeId");
+            entity.HasIndex(e => e.EmployeeId, "IX_EmpDocs_EmployeeId");
+            entity.HasOne(d => d.DocType).WithMany(p => p.EmpDocs)
+                .HasForeignKey(d => d.DocTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
@@ -1013,11 +1028,11 @@ public partial class HrmappContext : DbContext
                 .HasForeignKey(d => d.EmployeeId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            entity.HasOne(d => d.IssuingDepartment).WithMany(p => p.EmpPunishmentIssuingDepartments)
+            entity.HasOne(d => d.IssuingOrgDepartment).WithMany(p => p.EmpPunishmentIssuingDepartments)
                 .HasForeignKey(d => d.IssuingOrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            entity.HasOne(d => d.OrderDepartment).WithMany(p => p.EmpPunishmentOrderDepartments)
+            entity.HasOne(d => d.OrderOrgDepartment).WithMany(p => p.EmpPunishmentOrderDepartments)
                 .HasForeignKey(d => d.OrderOrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
@@ -1111,7 +1126,7 @@ public partial class HrmappContext : DbContext
                 .HasForeignKey(d => d.ContractTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
-            entity.HasOne(d => d.Department).WithMany(p => p.EmpRewards)
+            entity.HasOne(d => d.OrgDepartment).WithMany(p => p.EmpRewards)
                 .HasForeignKey(d => d.OrgDepartmentId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 

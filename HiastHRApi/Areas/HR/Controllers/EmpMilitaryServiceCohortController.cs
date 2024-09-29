@@ -25,14 +25,15 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpMilitaryServiceCohorts>
         [HttpGet(nameof(GetEmpMilitaryServiceCohorts))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام دورات خدمة العلم")]
         public IActionResult GetEmpMilitaryServiceCohorts([FromQuery]SieveModel sieveModel) => Ok(_empmilitaryservicecohortService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmpMilitaryServiceCohortsInfo))]
+        [DisplayActionName(DisplayName = "استعلام دورات خدمة العلم وتفاصيلها")]
         public IActionResult GetEmpMilitaryServiceCohortsInfo([FromQuery] SieveModel sieveModel) => Ok(_empmilitaryservicecohortService.Get(sieveModel));
 
         [HttpPost(nameof(CreateEmpMilitaryServiceCohort))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء دورة علم جديدة")]
         public async Task<IActionResult> CreateEmpMilitaryServiceCohort(EmpMilitaryServiceCohortDto empmilitaryservicecohort)
         {
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpMilitaryServiceCohort))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل دورة علم")]
         public async Task<IActionResult> UpdateEmpMilitaryServiceCohort(EmpMilitaryServiceCohortDto empmilitaryservicecohort)
         {
             if (ModelState.IsValid)
@@ -58,7 +59,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpMilitaryServiceCohort))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف دورة علم")]
         public async Task<IActionResult> DeleteEmpMilitaryServiceCohort(Guid id)
         {
             if (ModelState.IsValid)

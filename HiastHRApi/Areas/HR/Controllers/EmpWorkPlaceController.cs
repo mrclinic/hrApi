@@ -25,14 +25,15 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpWorkPlaces>
         [HttpGet(nameof(GetEmpWorkPlaces))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام أماكن العمل")]
         public IActionResult GetEmpWorkPlaces([FromQuery]SieveModel sieveModel) => Ok(_empworkplaceService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetEmpWorkPlacesInfo))]
+        [DisplayActionName(DisplayName = "استعلام أماكن العمل وتفاصيلها")]
         public IActionResult GetEmpWorkPlacesInfo([FromQuery] SieveModel sieveModel) => Ok(_empworkplaceService.Get(sieveModel, includeProperties: "ContractType"));
 
         [HttpPost(nameof(CreateEmpWorkPlace))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء مكان عمل جديد")]
         public async Task<IActionResult> CreateEmpWorkPlace(EmpWorkPlaceDto empworkplace)
         {
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpWorkPlace))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل مكان عمل")]
         public async Task<IActionResult> UpdateEmpWorkPlace(EmpWorkPlaceDto empworkplace)
         {
             if (ModelState.IsValid)
@@ -58,7 +59,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpWorkPlace))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف مكان عمل")]
         public async Task<IActionResult> DeleteEmpWorkPlace(Guid id)
         {
             if (ModelState.IsValid)

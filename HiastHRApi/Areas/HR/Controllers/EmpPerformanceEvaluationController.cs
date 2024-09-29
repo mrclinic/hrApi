@@ -25,13 +25,14 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpPerformanceEvaluations>
         [HttpGet(nameof(GetEmpPerformanceEvaluations))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام التقييمات")]
         public IActionResult GetEmpPerformanceEvaluations([FromQuery]SieveModel sieveModel) => Ok(_empperformanceevaluationService.GetAll(sieveModel));
         [HttpGet(nameof(GetEmpPerformanceEvaluationsInfo))]
+        [DisplayActionName(DisplayName = "استعلام التقييمات وتفاصليها")]
         public IActionResult GetEmpPerformanceEvaluationsInfo([FromQuery] SieveModel sieveModel) => Ok(_empperformanceevaluationService.Get(sieveModel, includeProperties: "EvaluationGrade,EvaluationQuarter"));
 
         [HttpPost(nameof(CreateEmpPerformanceEvaluation))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء تقييم جديد")]
         public async Task<IActionResult> CreateEmpPerformanceEvaluation(EmpPerformanceEvaluationDto empperformanceevaluation)
         {
             if (ModelState.IsValid)
@@ -44,7 +45,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpPerformanceEvaluation))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل تقييم")]
         public async Task<IActionResult> UpdateEmpPerformanceEvaluation(EmpPerformanceEvaluationDto empperformanceevaluation)
         {
             if (ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpPerformanceEvaluation))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف تقييم")]
         public async Task<IActionResult> DeleteEmpPerformanceEvaluation(Guid id)
         {
             if (ModelState.IsValid)

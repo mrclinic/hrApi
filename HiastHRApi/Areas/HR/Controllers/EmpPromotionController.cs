@@ -25,13 +25,14 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpPromotions>
         [HttpGet(nameof(GetEmpPromotions))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الترفيعات")]
         public IActionResult GetEmpPromotions([FromQuery]SieveModel sieveModel) => Ok(_emppromotionService.GetAll(sieveModel));
         [HttpGet(nameof(GetEmpPromotionsInfo))]
+        [DisplayActionName(DisplayName = "استعلام الترفيعات وتفاصيلها")]
         public IActionResult GetEmpPromotionsInfo([FromQuery] SieveModel sieveModel) => Ok(_emppromotionService.Get(sieveModel, includeProperties: "EvaluationGrade,PromotionPercentage"));
 
         [HttpPost(nameof(CreateEmpPromotion))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء ترفيع جديد")]
         public async Task<IActionResult> CreateEmpPromotion(EmpPromotionDto emppromotion)
         {
             if (ModelState.IsValid)
@@ -44,7 +45,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpPromotion))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل ترفيع")]
         public async Task<IActionResult> UpdateEmpPromotion(EmpPromotionDto emppromotion)
         {
             if (ModelState.IsValid)
@@ -57,7 +58,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpPromotion))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف ترفيع")]
         public async Task<IActionResult> DeleteEmpPromotion(Guid id)
         {
             if (ModelState.IsValid)

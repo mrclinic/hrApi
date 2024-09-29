@@ -40,7 +40,7 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         public virtual ModificationContractType ContractType { get; set; } = null!;
 
-        public virtual OrgDepartment Department { get; set; } = null!;
+        public virtual OrgDepartment OrgDepartment { get; set; } = null!;
 
         public virtual EmpPersonalInfo Employee { get; set; } = null!;
 

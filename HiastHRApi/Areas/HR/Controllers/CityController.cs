@@ -28,6 +28,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         public IActionResult GetCitys([FromQuery]SieveModel sieveModel) => Ok(_cityService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetCitysInfo))]
+        [DisplayActionName(DisplayName = "استعلام المدن وتفاصيلها")]
         public IActionResult GetCitysInfo([FromQuery] SieveModel sieveModel) => Ok(_cityService.Get(sieveModel, includeProperties: "Country"));
 
         [HttpPost(nameof(CreateCity))]

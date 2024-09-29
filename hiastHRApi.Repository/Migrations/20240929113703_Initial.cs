@@ -183,6 +183,25 @@ namespace hiastHRApi.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DocTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(1023)", maxLength: 1023, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EmploymentStatusTypes",
                 columns: table => new
                 {
@@ -852,6 +871,38 @@ namespace hiastHRApi.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EmpDoc",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DocDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DocNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DocSrc = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DocDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Content = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    DocTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmpDoc", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmpDoc_DocTypes_DocTypeId",
+                        column: x => x.DocTypeId,
+                        principalTable: "DocTypes",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PunishmentTypes",
                 columns: table => new
                 {
@@ -898,6 +949,31 @@ namespace hiastHRApi.Repository.Migrations
                         name: "FK_JobChangeReasons_ModificationContractTypes_ModificationContractTypeId",
                         column: x => x.ModificationContractTypeId,
                         principalTable: "ModificationContractTypes",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Branches",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrgDepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(1023)", maxLength: 1023, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Branches", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Branches_OrgDepartments_OrgDepartmentId",
+                        column: x => x.OrgDepartmentId,
+                        principalTable: "OrgDepartments",
                         principalColumn: "Id");
                 });
 
@@ -1061,43 +1137,6 @@ namespace hiastHRApi.Repository.Migrations
                         name: "FK_EmpPersonalInfos_Nationalities_NationalityId",
                         column: x => x.NationalityId,
                         principalTable: "Nationalities",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Branches",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    OrgDepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(1023)", maxLength: 1023, nullable: false),
-                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    SubDepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Branches", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Branches_Departments_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Departments",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Branches_OrgDepartments_OrgDepartmentId",
-                        column: x => x.OrgDepartmentId,
-                        principalTable: "OrgDepartments",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Branches_SubDepartments_SubDepartmentId",
-                        column: x => x.SubDepartmentId,
-                        principalTable: "SubDepartments",
                         principalColumn: "Id");
                 });
 
@@ -1795,8 +1834,6 @@ namespace hiastHRApi.Repository.Migrations
                     ContractNumber = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Note = table.Column<string>(type: "nvarchar(1023)", maxLength: 1023, nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    DepartmentId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -1808,16 +1845,6 @@ namespace hiastHRApi.Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EmpPunishments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EmpPunishments_Departments_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Departments",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_EmpPunishments_Departments_DepartmentId1",
-                        column: x => x.DepartmentId1,
-                        principalTable: "Departments",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_EmpPunishments_EmpPersonalInfos_EmployeeId",
                         column: x => x.EmployeeId,
@@ -1957,7 +1984,6 @@ namespace hiastHRApi.Repository.Migrations
                     ContractNumber = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Note = table.Column<string>(type: "nvarchar(1023)", maxLength: 1023, nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DepartmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -1969,11 +1995,6 @@ namespace hiastHRApi.Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EmpRewards", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EmpRewards_Departments_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Departments",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_EmpRewards_EmpPersonalInfos_EmployeeId",
                         column: x => x.EmployeeId,
@@ -2181,11 +2202,6 @@ namespace hiastHRApi.Repository.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Branches_DepartmentId",
-                table: "Branches",
-                column: "DepartmentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Branches_Name",
                 table: "Branches",
                 column: "Name",
@@ -2195,11 +2211,6 @@ namespace hiastHRApi.Repository.Migrations
                 name: "IX_Branches_OrgDepartmentId",
                 table: "Branches",
                 column: "OrgDepartmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Branches_SubDepartmentId",
-                table: "Branches",
-                column: "SubDepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_CountryId",
@@ -2316,6 +2327,16 @@ namespace hiastHRApi.Repository.Migrations
                 name: "IX_EmpDeputations_UniversityId",
                 table: "EmpDeputations",
                 column: "UniversityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmpDocs_DocTypeId",
+                table: "EmpDoc",
+                column: "DocTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmpDocs_EmployeeId",
+                table: "EmpDoc",
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmpEmploymentChanges_EmployeeId",
@@ -2493,16 +2514,6 @@ namespace hiastHRApi.Repository.Migrations
                 column: "ContractTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmpPunishments_DepartmentId",
-                table: "EmpPunishments",
-                column: "DepartmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpPunishments_DepartmentId1",
-                table: "EmpPunishments",
-                column: "DepartmentId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EmpPunishments_EmployeeId",
                 table: "EmpPunishments",
                 column: "EmployeeId");
@@ -2566,11 +2577,6 @@ namespace hiastHRApi.Repository.Migrations
                 name: "IX_EmpRewards_ContractTypeId",
                 table: "EmpRewards",
                 column: "ContractTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmpRewards_DepartmentId",
-                table: "EmpRewards",
-                column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmpRewards_EmployeeId",
@@ -2748,6 +2754,9 @@ namespace hiastHRApi.Repository.Migrations
                 name: "EmpDeputations");
 
             migrationBuilder.DropTable(
+                name: "EmpDoc");
+
+            migrationBuilder.DropTable(
                 name: "EmpEmploymentChanges");
 
             migrationBuilder.DropTable(
@@ -2805,13 +2814,13 @@ namespace hiastHRApi.Repository.Migrations
                 name: "RolePermissions");
 
             migrationBuilder.DropTable(
+                name: "SubDepartments");
+
+            migrationBuilder.DropTable(
                 name: "TerminationReasons");
 
             migrationBuilder.DropTable(
                 name: "UserProfiles");
-
-            migrationBuilder.DropTable(
-                name: "SubDepartments");
 
             migrationBuilder.DropTable(
                 name: "DisabilityTypes");
@@ -2842,6 +2851,9 @@ namespace hiastHRApi.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "Universities");
+
+            migrationBuilder.DropTable(
+                name: "DocTypes");
 
             migrationBuilder.DropTable(
                 name: "JobChangeReasons");
@@ -2913,10 +2925,10 @@ namespace hiastHRApi.Repository.Migrations
                 name: "Permissions");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "ModificationContractTypes");

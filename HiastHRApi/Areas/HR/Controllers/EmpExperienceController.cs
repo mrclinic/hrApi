@@ -25,14 +25,15 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
         // GET: api/<EmpExperiences>
         [HttpGet(nameof(GetEmpExperiences))]
-        [DisplayActionName(DisplayName ="استعلام فروع النقابة")]
+        [DisplayActionName(DisplayName = "استعلام الخبرات")]
         public IActionResult GetEmpExperiences([FromQuery]SieveModel sieveModel) => Ok(_empexperienceService.GetAll(sieveModel));
         [HttpGet(nameof(GetEmpExperiencesInfo))]
+        [DisplayActionName(DisplayName = "استعلام الخبرات وتفاصيلها")]
         public IActionResult GetEmpExperiencesInfo([FromQuery] SieveModel sieveModel) => Ok(_empexperienceService.Get(sieveModel, includeProperties: "ExperienceType"));
 
 
         [HttpPost(nameof(CreateEmpExperience))]
-        [DisplayActionName(DisplayName = "إنشاء فرع جديد")]
+        [DisplayActionName(DisplayName = "إنشاء خبرة جديدة")]
         public async Task<IActionResult> CreateEmpExperience(EmpExperienceDto empexperience)
         {
             if (ModelState.IsValid)
@@ -45,7 +46,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpPut(nameof(UpdateEmpExperience))]
-        [DisplayActionName(DisplayName = "تعديل فرع")]
+        [DisplayActionName(DisplayName = "تعديل خبرة")]
         public async Task<IActionResult> UpdateEmpExperience(EmpExperienceDto empexperience)
         {
             if (ModelState.IsValid)
@@ -58,7 +59,7 @@ namespace hiastHRApi.Areas.HR.Controllers
         }
 
         [HttpDelete(nameof(DeleteEmpExperience))]
-        [DisplayActionName(DisplayName = "حذف فرع")]
+        [DisplayActionName(DisplayName = "حذف خبرة")]
         public async Task<IActionResult> DeleteEmpExperience(Guid id)
         {
             if (ModelState.IsValid)

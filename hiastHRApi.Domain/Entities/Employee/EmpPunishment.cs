@@ -46,9 +46,9 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         public virtual EmpPersonalInfo Employee { get; set; } = null!;
 
-        public virtual OrgDepartment IssuingDepartment { get; set; } = null!;
+        public virtual OrgDepartment IssuingOrgDepartment { get; set; } = null!;
 
-        public virtual OrgDepartment OrderDepartment { get; set; } = null!;
+        public virtual OrgDepartment OrderOrgDepartment { get; set; } = null!;
 
         public virtual PunishmentType PunishmentType { get; set; } = null!;
     }

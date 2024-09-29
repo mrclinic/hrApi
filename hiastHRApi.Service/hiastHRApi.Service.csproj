@@ -22,9 +22,4 @@
     <ProjectReference Include="..\hiastHRApi.Shared\hiastHRApi.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="IService\Employee\" />
-    <Folder Include="Service\Employee\" />
-  </ItemGroup>
-
 </Project>

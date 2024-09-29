@@ -80,9 +80,6 @@ namespace hiastHRApi.Repository.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DepartmentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -100,17 +97,10 @@ namespace hiastHRApi.Repository.Migrations
                     b.Property<Guid>("OrgDepartmentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("SubDepartmentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
 
                     b.HasIndex("Name")
                         .IsUnique();
-
-                    b.HasIndex("SubDepartmentId");
 
                     b.HasIndex(new[] { "OrgDepartmentId" }, "IX_Branches_OrgDepartmentId");
 
@@ -458,6 +448,43 @@ namespace hiastHRApi.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DisabilityTypes");
+                });
+
+            modelBuilder.Entity("hiastHRApi.Domain.Entities.Constants.DocType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(1023)
+                        .HasColumnType("nvarchar(1023)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DocTypes");
                 });
 
             modelBuilder.Entity("hiastHRApi.Domain.Entities.Constants.EmploymentStatusType", b =>
@@ -2125,6 +2152,70 @@ namespace hiastHRApi.Repository.Migrations
                     b.ToTable("EmpDeputations");
                 });
 
+            modelBuilder.Entity("hiastHRApi.Domain.Entities.Employee.EmpDoc", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("DeleterId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DocDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocSrc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("DocTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("RefId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "DocTypeId" }, "IX_EmpDocs_DocTypeId");
+
+                    b.HasIndex(new[] { "EmployeeId" }, "IX_EmpDocs_EmployeeId");
+
+                    b.ToTable("EmpDoc");
+                });
+
             modelBuilder.Entity("hiastHRApi.Domain.Entities.Employee.EmpEmploymentChange", b =>
                 {
                     b.Property<Guid>("Id")
@@ -2979,12 +3070,6 @@ namespace hiastHRApi.Repository.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DepartmentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("DepartmentId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("DurationInDays")
                         .HasColumnType("int");
 
@@ -3040,10 +3125,6 @@ namespace hiastHRApi.Repository.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
-
-                    b.HasIndex("DepartmentId1");
 
                     b.HasIndex(new[] { "ContractTypeId" }, "IX_EmpPunishments_ContractTypeId");
 
@@ -3228,9 +3309,6 @@ namespace hiastHRApi.Repository.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DepartmentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("DurationInDays")
                         .HasColumnType("int");
 
@@ -3280,8 +3358,6 @@ namespace hiastHRApi.Repository.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
 
                     b.HasIndex(new[] { "ContractTypeId" }, "IX_EmpRewards_ContractTypeId");
 
@@ -3928,18 +4004,10 @@ namespace hiastHRApi.Repository.Migrations
 
             modelBuilder.Entity("hiastHRApi.Domain.Entities.Constants.Branch", b =>
                 {
-                    b.HasOne("hiastHRApi.Domain.Entities.Constants.Department", null)
-                        .WithMany("Branches")
-                        .HasForeignKey("DepartmentId");
-
                     b.HasOne("hiastHRApi.Domain.Entities.Constants.OrgDepartment", "OrgDepartment")
                         .WithMany("Branches")
                         .HasForeignKey("OrgDepartmentId")
                         .IsRequired();
-
-                    b.HasOne("hiastHRApi.Domain.Entities.Constants.SubDepartment", null)
-                        .WithMany("Branches")
-                        .HasForeignKey("SubDepartmentId");
 
                     b.Navigation("OrgDepartment");
                 });
@@ -4161,6 +4229,16 @@ namespace hiastHRApi.Repository.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("University");
+                });
+
+            modelBuilder.Entity("hiastHRApi.Domain.Entities.Employee.EmpDoc", b =>
+                {
+                    b.HasOne("hiastHRApi.Domain.Entities.Constants.DocType", "DocType")
+                        .WithMany("EmpDocs")
+                        .HasForeignKey("DocTypeId")
+                        .IsRequired();
+
+                    b.Navigation("DocType");
                 });
 
             modelBuilder.Entity("hiastHRApi.Domain.Entities.Employee.EmpEmploymentChange", b =>
@@ -4441,25 +4519,17 @@ namespace hiastHRApi.Repository.Migrations
                         .HasForeignKey("ContractTypeId")
                         .IsRequired();
 
-                    b.HasOne("hiastHRApi.Domain.Entities.Constants.Department", null)
-                        .WithMany("EmpPunishmentIssuingDepartments")
-                        .HasForeignKey("DepartmentId");
-
-                    b.HasOne("hiastHRApi.Domain.Entities.Constants.Department", null)
-                        .WithMany("EmpPunishmentOrderDepartments")
-                        .HasForeignKey("DepartmentId1");
-
                     b.HasOne("hiastHRApi.Domain.Entities.Employee.EmpPersonalInfo", "Employee")
                         .WithMany("EmpPunishments")
                         .HasForeignKey("EmployeeId")
                         .IsRequired();
 
-                    b.HasOne("hiastHRApi.Domain.Entities.Constants.OrgDepartment", "IssuingDepartment")
+                    b.HasOne("hiastHRApi.Domain.Entities.Constants.OrgDepartment", "IssuingOrgDepartment")
                         .WithMany("EmpPunishmentIssuingDepartments")
                         .HasForeignKey("IssuingOrgDepartmentId")
                         .IsRequired();
 
-                    b.HasOne("hiastHRApi.Domain.Entities.Constants.OrgDepartment", "OrderDepartment")
+                    b.HasOne("hiastHRApi.Domain.Entities.Constants.OrgDepartment", "OrderOrgDepartment")
                         .WithMany("EmpPunishmentOrderDepartments")
                         .HasForeignKey("OrderOrgDepartmentId")
                         .IsRequired();
@@ -4473,9 +4543,9 @@ namespace hiastHRApi.Repository.Migrations
 
                     b.Navigation("Employee");
 
-                    b.Navigation("IssuingDepartment");
+                    b.Navigation("IssuingOrgDepartment");
 
-                    b.Navigation("OrderDepartment");
+                    b.Navigation("OrderOrgDepartment");
 
                     b.Navigation("PunishmentType");
                 });
@@ -4549,10 +4619,6 @@ namespace hiastHRApi.Repository.Migrations
                         .HasForeignKey("ContractTypeId")
                         .IsRequired();
 
-                    b.HasOne("hiastHRApi.Domain.Entities.Constants.Department", null)
-                        .WithMany("EmpRewards")
-                        .HasForeignKey("DepartmentId");
-
                     b.HasOne("hiastHRApi.Domain.Entities.Employee.EmpPersonalInfo", "Employee")
                         .WithMany("EmpRewards")
                         .HasForeignKey("EmployeeId")
@@ -4563,7 +4629,7 @@ namespace hiastHRApi.Repository.Migrations
                         .HasForeignKey("FinancialIndicatorTypeId")
                         .IsRequired();
 
-                    b.HasOne("hiastHRApi.Domain.Entities.Constants.OrgDepartment", "Department")
+                    b.HasOne("hiastHRApi.Domain.Entities.Constants.OrgDepartment", "OrgDepartment")
                         .WithMany("EmpRewards")
                         .HasForeignKey("OrgDepartmentId")
                         .IsRequired();
@@ -4575,11 +4641,11 @@ namespace hiastHRApi.Repository.Migrations
 
                     b.Navigation("ContractType");
 
-                    b.Navigation("Department");
-
                     b.Navigation("Employee");
 
                     b.Navigation("FinancialIndicatorType");
+
+                    b.Navigation("OrgDepartment");
 
                     b.Navigation("RewardType");
                 });
@@ -4747,14 +4813,6 @@ namespace hiastHRApi.Repository.Migrations
 
             modelBuilder.Entity("hiastHRApi.Domain.Entities.Constants.Department", b =>
                 {
-                    b.Navigation("Branches");
-
-                    b.Navigation("EmpPunishmentIssuingDepartments");
-
-                    b.Navigation("EmpPunishmentOrderDepartments");
-
-                    b.Navigation("EmpRewards");
-
                     b.Navigation("SubDepartments");
                 });
 
@@ -4776,6 +4834,11 @@ namespace hiastHRApi.Repository.Migrations
             modelBuilder.Entity("hiastHRApi.Domain.Entities.Constants.DisabilityType", b =>
                 {
                     b.Navigation("EmpAppointmentStatuses");
+                });
+
+            modelBuilder.Entity("hiastHRApi.Domain.Entities.Constants.DocType", b =>
+                {
+                    b.Navigation("EmpDocs");
                 });
 
             modelBuilder.Entity("hiastHRApi.Domain.Entities.Constants.EmploymentStatusType", b =>
@@ -4974,11 +5037,6 @@ namespace hiastHRApi.Repository.Migrations
                     b.Navigation("EmpAppointmentStatuses");
 
                     b.Navigation("EmpEmploymentStatuses");
-                });
-
-            modelBuilder.Entity("hiastHRApi.Domain.Entities.Constants.SubDepartment", b =>
-                {
-                    b.Navigation("Branches");
                 });
 
             modelBuilder.Entity("hiastHRApi.Domain.Entities.Constants.University", b =>
