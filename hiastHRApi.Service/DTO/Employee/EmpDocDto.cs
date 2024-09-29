@@ -18,6 +18,8 @@ namespace hiastHRApi.Service.DTO.Employee
         public virtual DocType? DocType { get; set; } = null!;
         public Guid? RefId { get; set; }
         public Guid EmployeeId { get; set; }
+        public string FileType { get; set; } = string.Empty;
+        public string Extension { get; set; } = string.Empty;
 
         public void Mapping(Profile profile)
         {
@@ -32,6 +34,8 @@ namespace hiastHRApi.Service.DTO.Employee
                     .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
                     .ForMember(dest => dest.RefId, src => src.MapFrom(src => src.RefId))
                     .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
+                    .ForMember(dest => dest.FileType, src => src.MapFrom(src => src.FileType))
+                    .ForMember(dest => dest.Extension, src => src.MapFrom(src => src.Extension))
                     .ReverseMap();
         }
     }

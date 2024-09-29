@@ -2,6 +2,7 @@
 using hiastHRApi.Domain.Entities.Constants;
 using hiastHRApi.Domain.Entities.Base;
 using Sieve.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace hiastHRApi.Domain.Entities.Employee
 {
@@ -15,7 +16,7 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         [Sieve(CanFilter = true, Name = "DocTypeId")]
         public Guid DocTypeId { get; set; }
-        public string? Note { get; set; } = null!;
+        public string? Note { get; set; } = string.Empty;
         public virtual DocType DocType { get; set; } = null!;
 
         [Sieve(CanFilter = true, Name = "RefId")]
@@ -23,6 +24,9 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         [Sieve(CanFilter = true, Name = "EmployeeId")]
         public Guid EmployeeId { get; set; }
+
+        public string FileType { get; set; } = string.Empty;
+        public string Extension { get; set; } = string.Empty;
 
     }
 }
