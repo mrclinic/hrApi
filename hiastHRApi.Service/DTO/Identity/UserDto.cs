@@ -18,7 +18,6 @@ namespace hiastHRApi.Services.DTO.Identity
         public string EmailAddress { get; set; }
         public string? UserToken { get; set; }
         public bool IsActive { get; set; }
-        public bool IsComplete { get; set; }
         public Guid RoleID { get; set; }
         public RoleDto? Role { get; set; }
         public IList<String>? Permissions { get; set; }

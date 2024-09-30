@@ -12,7 +12,7 @@ using hiastHRApi.Repository;
 namespace hiastHRApi.Repository.Migrations
 {
     [DbContext(typeof(HrmappContext))]
-    [Migration("20240929113703_Initial")]
+    [Migration("20240930065619_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -2195,6 +2195,14 @@ namespace hiastHRApi.Repository.Migrations
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Extension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -3774,11 +3782,6 @@ namespace hiastHRApi.Repository.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("StatusCode")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
                     b.HasKey("Id");
 
                     b.HasIndex("Name", "IsDeleted")
@@ -3967,11 +3970,6 @@ namespace hiastHRApi.Repository.Migrations
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
-
-                    b.Property<bool>("IsComplete")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()

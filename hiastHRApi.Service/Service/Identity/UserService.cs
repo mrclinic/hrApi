@@ -73,7 +73,6 @@ namespace hiastHRApi.Service.Service.Identity
             entity.Role = role;
            
             UserDto userDto = _mapper.Map<UserDto>(entity);
-            userDto.IsComplete = false;
 
 
             #region permissions
@@ -101,20 +100,6 @@ namespace hiastHRApi.Service.Service.Identity
                 Role role = await _roleRepository.FindSingle(x => x.Id == entity.RoleId);
                 entity.Role = role;
                 UserDto userDto = _mapper.Map<UserDto>(entity);
-                if (role.StatusCode.Equals(0) && !role.Name.Equals("Admin"))
-                {
-                    bool userProfileComplete = false;
-                    UserProfile userProfile = await _userProfileRepository.FindSingle(x => x.UserId == entity.Id);
-                    if (!userProfile.Address.Equals("EMPTY") && !userProfile.BirthPlace.Equals("EMPTY") && !userProfile.PersonalCardNumber.Equals("EMPTY") && !userProfile.FatherName.Equals("EMPTY")
-                        && !userProfile.MotherName.Equals("EMPTY") && !userProfile.Gender.Equals("EMPTY") && !userProfile.BirthDate.ToString().Equals("1900-01-01 00:00:00"))
-                    {
-                        userProfileComplete = true;
-                    }
-
-                    userDto.IsComplete = false;
-
-                }
-
                 #region permissions
                 userDto.Permissions = new List<string>();
                 var rolePermissions = _rolePermissionsRepository.Find(p => p.RoleId == entity.RoleId, "Permission,Role");

@@ -187,7 +187,6 @@ public partial class HrmappContext : DbContext
         modelBuilder.Entity<Role>()
             .HasIndex(p => new { p.Name, p.IsDeleted }).IsUnique();
         modelBuilder.Entity<Role>().Property(p => p.IsDeleted).HasDefaultValue(false);
-        modelBuilder.Entity<Role>().Property(p => p.StatusCode).HasDefaultValue(0);
         #endregion
         #region Permission
         modelBuilder.Entity<Permission>().HasIndex(p => new { p.NAME, p.IsDeleted });
@@ -200,7 +199,6 @@ public partial class HrmappContext : DbContext
         #region Profile
         modelBuilder.Entity<UserProfile>().HasIndex(p => new { p.UserId, p.IsDeleted }).IsUnique();
         modelBuilder.Entity<UserProfile>().Property(p => p.IsDeleted).HasDefaultValue(false);
-        modelBuilder.Entity<UserProfile>().Property(p => p.IsComplete).HasDefaultValue(false);
         modelBuilder.Entity<UserProfile>().Property(p => p.BirthDate).HasDefaultValueSql("'1900-01-01'");
         modelBuilder.Entity<UserProfile>()
                 .Property(e => e.BirthDate)

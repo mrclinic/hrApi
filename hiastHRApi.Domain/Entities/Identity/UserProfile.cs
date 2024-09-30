@@ -48,6 +48,5 @@ namespace hiastHRApi.Domain.Entities.Identity
         [Sieve(CanFilter = true, CanSort = true, Name = "UserId")]
         public Guid UserId { get; set; }
         public virtual User User { get; set; }
-        public bool IsComplete { get; set; }
     }
 }

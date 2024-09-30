@@ -498,11 +498,11 @@ namespace HiastHRApi.Controllers
                                                };
             await _vacationTypeService.AddRange(vacationTypes);
             var roles = new List<RoleDto>();
-            roles.Add(new RoleDto { Name = "Admin", DisplayName = "مدير", StatusCode = 0 });
-            roles.Add(new RoleDto { Name = "User", DisplayName = "مستخدم", StatusCode = 0 });
-            roles.Add(new RoleDto { Name = "Immanence", DisplayName = "ذاتية", StatusCode = 1 });
-            roles.Add(new RoleDto { Name = "HeadBranch", DisplayName = "رئيس فرع", StatusCode = 3 });
-            roles.Add(new RoleDto { Name = "HeadCommittee", DisplayName = "رئيس لجنة", StatusCode = 2 });
+            roles.Add(new RoleDto { Name = "Admin", DisplayName = "مدير" });
+            roles.Add(new RoleDto { Name = "User", DisplayName = "مستخدم" });
+            roles.Add(new RoleDto { Name = "Immanence", DisplayName = "ذاتية" });
+            roles.Add(new RoleDto { Name = "HeadBranch", DisplayName = "رئيس فرع" });
+            roles.Add(new RoleDto { Name = "HeadCommittee", DisplayName = "رئيس لجنة" });
             await _roleService.AddRange(roles);
 
             await _unitOfWork.CompleteAsync();
@@ -611,7 +611,6 @@ namespace HiastHRApi.Controllers
                 EmailAddress = "immanence@engApi.com",
                 FName = "immanence",
                 IsActive = true,
-                IsComplete = true,
                 LName = "immanence",
                 NatNum = "00000050000",
                 PassWord = BCrypt.Net.BCrypt.HashPassword("immanence"),
@@ -625,7 +624,6 @@ namespace HiastHRApi.Controllers
                 EmailAddress = "headBranch@engApi.com",
                 FName = "headBranch",
                 IsActive = true,
-                IsComplete = true,
                 LName = "headBranch",
                 NatNum = "00030000000",
                 PassWord = BCrypt.Net.BCrypt.HashPassword("headBranch"),
@@ -639,7 +637,6 @@ namespace HiastHRApi.Controllers
                 EmailAddress = "headCommittee@engApi.com",
                 FName = "headCommittee",
                 IsActive = true,
-                IsComplete = true,
                 LName = "headCommittee",
                 NatNum = "00004440000",
                 PassWord = BCrypt.Net.BCrypt.HashPassword("headCommittee"),
@@ -653,7 +650,6 @@ namespace HiastHRApi.Controllers
                 EmailAddress = "admin@engApi.com",
                 FName = "admin",
                 IsActive = true,
-                IsComplete = true,
                 LName = "admin",
                 NatNum = "00000000000",
                 PassWord = BCrypt.Net.BCrypt.HashPassword("admin"),
@@ -667,7 +663,6 @@ namespace HiastHRApi.Controllers
                 EmailAddress = "test@engApi.com",
                 FName = "test",
                 IsActive = true,
-                IsComplete = true,
                 LName = "test",
                 NatNum = "11111111111",
                 PassWord = BCrypt.Net.BCrypt.HashPassword("test"),

@@ -18,9 +18,6 @@ namespace hiastHRApi.Domain.Entities.Identity
         [Required]
         [Sieve(CanFilter = true, CanSort = true, Name = "DisplayName")]
         public string DisplayName { get; set; }
-
-        public int StatusCode { get; set; }
-
         public ICollection<User> Users { get; set; }
     }
 }
