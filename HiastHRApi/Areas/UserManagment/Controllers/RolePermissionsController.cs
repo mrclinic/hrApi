@@ -42,7 +42,8 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
         }
 
         [HttpPost(nameof(SetRolePermission))]
-        public async Task<IActionResult> SetRolePermission(List<RolePermissionsDto> rolePermissions,Guid roleId)
+        [DisplayActionName(DisplayName = "منح الصلاحيات لدور معين")]
+        public async Task<IActionResult> SetRolePermission(List<RolePermissionsDto> rolePermissions, Guid roleId)
         {
             if (ModelState.IsValid)
             {
