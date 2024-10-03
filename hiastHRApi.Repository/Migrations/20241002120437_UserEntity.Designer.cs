@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using hiastHRApi.Repository;
 
@@ -11,9 +12,11 @@ using hiastHRApi.Repository;
 namespace hiastHRApi.Repository.Migrations
 {
     [DbContext(typeof(HrmappContext))]
-    partial class HrmappContextModelSnapshot : ModelSnapshot
+    [Migration("20241002120437_UserEntity")]
+    partial class UserEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

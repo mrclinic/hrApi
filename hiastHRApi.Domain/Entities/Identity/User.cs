@@ -50,7 +50,7 @@ namespace hiastHRApi.Domain.Entities.Identity
         [Sieve(CanFilter = true, CanSort = true, Name = "Email")]
         public string Email { get; set; }
 
-        public string Token { get; set; }
+        public string? Token { get; set; }
         [Required]
         [Sieve(CanFilter = true, CanSort = true, Name = "IsActive")]
         public bool IsActive { get; set; }

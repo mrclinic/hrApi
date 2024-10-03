@@ -51,6 +51,7 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.PassWord = BCrypt.Net.BCrypt.HashPassword(user.PassWord);
                 await _userService.Add(user);
                 await _unitOfWork.CompleteAsync();
                 return new JsonResult("Success") { StatusCode = 200, Value = user };
