@@ -12,14 +12,15 @@ namespace hiastHRApi.Service.DTO.Employee
         public string? DocNumber { get; set; } = string.Empty;
         public string? DocSrc { get; set; } = string.Empty;
         public string? DocDescription { get; set; } = string.Empty;
-        public byte[] Content { get; set; }
+        public byte[]? Content { get; set; }
         public Guid DocTypeId { get; set; }
         public string? Note { get; set; } = null!;
         public virtual DocType? DocType { get; set; } = null!;
         public Guid? RefId { get; set; }
         public Guid EmployeeId { get; set; }
-        public string FileType { get; set; } = string.Empty;
-        public string Extension { get; set; } = string.Empty;
+        public string? FileType { get; set; } = string.Empty;
+        public string? Extension { get; set; } = string.Empty;
+        public string? Name { get; set; } = string.Empty;
 
         public void Mapping(Profile profile)
         {
@@ -36,6 +37,7 @@ namespace hiastHRApi.Service.DTO.Employee
                     .ForMember(dest => dest.EmployeeId, src => src.MapFrom(src => src.EmployeeId))
                     .ForMember(dest => dest.FileType, src => src.MapFrom(src => src.FileType))
                     .ForMember(dest => dest.Extension, src => src.MapFrom(src => src.Extension))
+                    .ForMember(dest => dest.Name, src => src.MapFrom(src => src.Name))
                     .ReverseMap();
         }
     }

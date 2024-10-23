@@ -39,7 +39,7 @@ namespace hiastHRApi.Service.DTO.Employee
         public string? Phone { get; set; }
         public string? Email { get; set; }
         public string Note { get; set; }
-
+        public string PersonalNum { get; set; }
         public void Mapping(Profile profile)
         {
 
@@ -74,6 +74,7 @@ namespace hiastHRApi.Service.DTO.Employee
                     .ForMember(dest => dest.Phone, src => src.MapFrom(src => src.Phone))
                     .ForMember(dest => dest.Email, src => src.MapFrom(src => src.Email))
                     .ForMember(dest => dest.Note, src => src.MapFrom(src => src.Note))
+                    .ForMember(dest => dest.PersonalNum, src => src.MapFrom(src => src.PersonalNum))
                     .ReverseMap();
         }
     }

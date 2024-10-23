@@ -27,6 +27,7 @@ namespace hiastHRApi.Domain.Entities.Employee
 
         public string FileType { get; set; } = string.Empty;
         public string Extension { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
 
     }
 }

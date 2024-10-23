@@ -2209,6 +2209,10 @@ namespace hiastHRApi.Repository.Migrations
                     b.Property<Guid?>("LastModifierId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
@@ -2956,6 +2960,11 @@ namespace hiastHRApi.Repository.Migrations
                         .IsRequired()
                         .HasMaxLength(1023)
                         .HasColumnType("nvarchar(1023)");
+
+                    b.Property<string>("PersonalNum")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
 
                     b.Property<string>("Phone")
                         .HasMaxLength(50)

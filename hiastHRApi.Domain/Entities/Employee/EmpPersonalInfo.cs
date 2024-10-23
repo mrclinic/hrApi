@@ -56,6 +56,7 @@ namespace hiastHRApi.Domain.Entities.Employee
         public string? Email { get; set; }
 
         public string Note { get; set; } = null!;
+        public string PersonalNum { get; set; } = string.Empty!;
 
         public virtual ICollection<EmpAppointmentStatus> EmpAppointmentStatuses { get; set; } = new List<EmpAppointmentStatus>();
 

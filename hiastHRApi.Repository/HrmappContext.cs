@@ -930,7 +930,7 @@ public partial class HrmappContext : DbContext
 
             entity.HasIndex(e => e.NationalityId, "IX_EmpPersonalInfos_NationalityId");
 
-
+            entity.Property(e => e.PersonalNum).HasMaxLength(7);
             entity.Property(e => e.Address).HasMaxLength(500);
             entity.Property(e => e.BirthPlace).HasMaxLength(500);
             entity.Property(e => e.CivilRegistry).HasMaxLength(50);
