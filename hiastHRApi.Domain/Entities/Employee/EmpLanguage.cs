@@ -9,11 +9,13 @@ namespace hiastHRApi.Domain.Entities.Employee
 
     public partial class EmpLanguage : AuditEntity
     {
-
+        [Sieve(CanFilter = true, Name = "LanguageId")]
         public Guid LanguageId { get; set; }
 
+        [Sieve(CanFilter = true, Name = "LanguageLevelId")]
         public Guid LanguageLevelId { get; set; }
 
+        [Sieve(CanFilter = true, Name = "DisplayOnRecordCard")]
         public bool DisplayOnRecordCard { get; set; }
 
         public string Note { get; set; } = null!;
