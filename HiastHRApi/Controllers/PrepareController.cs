@@ -226,9 +226,9 @@ namespace HiastHRApi.Controllers
                                               {
                                                   new ChildStatusDto { Name = "رضيع", },
                                                   new ChildStatusDto { Name = "طفل صغير", },
-                                                  new ChildStatusDto { Name = "'طالب مدرسة ابتدائية", },
-                                                  new ChildStatusDto { Name = "'طالب مدرسة إعدادية", },
-                                                  new ChildStatusDto { Name = "'طالب مدرسة ثانوية", },
+                                                  new ChildStatusDto { Name = "طالب مدرسة ابتدائية", },
+                                                  new ChildStatusDto { Name = "طالب مدرسة إعدادية", },
+                                                  new ChildStatusDto { Name = "طالب مدرسة ثانوية", },
                                                   new ChildStatusDto { Name = "طالب جامعي", },
                                                   new ChildStatusDto { Name = "متخرج من الجامعة", },
                                                   new ChildStatusDto { Name = "معاق", },
