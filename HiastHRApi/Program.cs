@@ -5,6 +5,10 @@ using hiastHRApi.global;
 using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Models;
 using hiastHRApi.Shared.Common.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +25,7 @@ builder.Services.AddCors(options =>
                       {
                           policy.AllowAnyOrigin() // <-- Allow any origin
                           .AllowAnyHeader()
-                                                  .AllowAnyMethod();
+                          .AllowAnyMethod();
                       });
 }); // Enable CORS headers
 
@@ -72,27 +76,26 @@ builder.Services.AddService(builder.Configuration);
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-//builder.Services.AddAuthentication(a =>
-//{
-//    a.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    a.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//    a.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-//}).AddJwtBearer(o =>
-//{
-//    o.TokenValidationParameters = new TokenValidationParameters
-//    {
-//        ValidIssuer = builder.Configuration["JsonWebTokenKeys:ValidIssuer"],
-//        ValidAudience = builder.Configuration["JsonWebTokenKeys:ValidAudience"],
-//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JsonWebTokenKeys:IssuerSigningKey"]!)),
-//        ValidateIssuer = true,
-//        ValidateAudience = true,
-//        ValidateLifetime = true,
-//        ValidateIssuerSigningKey = true
-//    };
-//});
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JsonWebTokenKeys:IssuerSigningKey"]!))
+        };
+    });
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 app.UseExceptionHandler();
-//app.UseMiddleware<JwtMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -103,7 +106,6 @@ app.UseCors(MyAllowSpecificOrigins); // Enable CORS headers
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-//app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 

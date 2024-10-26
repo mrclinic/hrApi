@@ -2,6 +2,7 @@ using hiastHRApi.Authorization;
 using hiastHRApi.Domain.Interfaces;
 using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Service.IService.Constants;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 
@@ -11,6 +12,7 @@ namespace hiastHRApi.Areas.HR.Controllers
     [Area("HR")]
     [Route("[area]/[controller]")]
     [ApiController]
+    [Authorize]
     public class BloodGroupController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
