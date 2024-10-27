@@ -121,18 +121,18 @@ namespace hiastHRApi.Service.Service.Identity
             userEntity.Password = BCrypt.Net.BCrypt.HashPassword(user.PassWord);
             userEntity.Role = await _roleRepository.FindSingle(x => x.Name.Equals(Constant.User));
             await _userRepository.Add(userEntity);
-            UserProfileDto newProfile = new UserProfileDto
-            {
-                Address = "EMPTY",
-                BirthPlace = "EMPTY",
-                CardNumber = "EMPTY",
-                FatherName = "EMPTY",
-                Gender = "EMPTY",
-                MotherName = "EMPTY"
-            };
-            var profileEntity = _mapper.Map<UserProfile>(newProfile);
-            profileEntity.UserId = userEntity.Id;
-            await _userProfileRepository.Add(profileEntity);
+            //UserProfileDto newProfile = new UserProfileDto
+            //{
+            //    Address = "EMPTY",
+            //    BirthPlace = "EMPTY",
+            //    CardNumber = "EMPTY",
+            //    FatherName = "EMPTY",
+            //    Genderid = "EMPTY",
+            //    MotherName = "EMPTY"
+            //};
+            //var profileEntity = _mapper.Map<UserProfile>(newProfile);
+            //profileEntity.UserId = userEntity.Id;
+            //await _userProfileRepository.Add(profileEntity);
             return _mapper.Map<UserDto>(userEntity);
         }
 

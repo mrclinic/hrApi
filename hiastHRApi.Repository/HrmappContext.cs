@@ -1,4 +1,5 @@
-﻿using hiastHRApi.Domain.Entities.Constants;
+﻿using hiastHRApi.Domain.Entities.Base;
+using hiastHRApi.Domain.Entities.Constants;
 using hiastHRApi.Domain.Entities.Employee;
 using hiastHRApi.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -168,7 +169,7 @@ public partial class HrmappContext : DbContext
 
     #endregion
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("server=PC;Database=HRMApp;user id=sa;Password=123;TrustServerCertificate=true;Connection Timeout=3600");
+        => optionsBuilder.UseSqlServer("server=DESKTOP-A9EBI4L;Database=HRMApp;user id=sa;Password=123;TrustServerCertificate=true;Connection Timeout=3600");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -203,6 +204,7 @@ public partial class HrmappContext : DbContext
         modelBuilder.Entity<UserProfile>()
                 .Property(e => e.BirthDate)
                 .HasColumnType("date");
+        modelBuilder.Entity<UserProfile>().HasIndex(e => e.GenderId, "IX_UserProfiles_GenderId");
         #endregion
         #endregion
 

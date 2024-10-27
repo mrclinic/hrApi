@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using hiastHRApi.Domain.Entities.Identity;
+using hiastHRApi.Service.DTO.Constants;
 using hiastHRApi.Services.Common.Mapping;
 using hiastHRApi.Services.Common.Models;
 using System.ComponentModel.DataAnnotations;
@@ -15,7 +16,8 @@ namespace hiastHRApi.Services.DTO.Identity
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
-        public string Gender { get; set; }
+        public Guid GenderId { get; set; }
+        public GenderDto? Gender { get; set; }
         public string Address { get; set; }
         public string CardNumber { get; set; }
         public Guid UserId { get; set; }
@@ -31,7 +33,9 @@ namespace hiastHRApi.Services.DTO.Identity
                 .ForMember(dest => dest.Gender, src => src.MapFrom(src => src.Gender))
                 .ForMember(dest => dest.MotherName, src => src.MapFrom(src => src.MotherName))
                 .ForMember(dest => dest.User, src => src.MapFrom(src => src.User))
-                .ForMember(dest => dest.UserId, src => src.MapFrom(src => src.UserId)).ReverseMap();
+                .ForMember(dest => dest.UserId, src => src.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.GenderId, src => src.MapFrom(src => src.GenderId))
+                .ReverseMap();
         }
     }
 }

@@ -26,18 +26,18 @@ namespace hiastHRApi.Areas.UserManagment.Controllers
         // GET: api/<UserProfiles>
         [HttpGet(nameof(GetMyUserProfiles))]
         [DisplayActionName(DisplayName = "استعلام بروفايلي")]
-        public IActionResult GetMyUserProfiles([FromQuery] SieveModel sieveModel) => Ok(_userProfileService.GetAll(sieveModel));
+        public IActionResult GetMyUserProfiles([FromQuery] SieveModel sieveModel) => Ok(_userProfileService.Get(sieveModel, includeProperties: "User,Gender"));
         [HttpGet(nameof(GetUserProfiles))]
         [DisplayActionName(DisplayName = "استعلام البروفايلات")]
         public IActionResult GetUserProfiles([FromQuery] SieveModel sieveModel) => Ok(_userProfileService.GetAll(sieveModel));
 
         [HttpGet(nameof(GetUserProfilesInfo))]
         [DisplayActionName(DisplayName = "استعلام البروفايلات وتفاصيلها")]
-        public IActionResult GetUserProfilesInfo([FromQuery] SieveModel sieveModel) => Ok(_userProfileService.Get(sieveModel, includeProperties: "User"));
+        public IActionResult GetUserProfilesInfo([FromQuery] SieveModel sieveModel) => Ok(_userProfileService.Get(sieveModel, includeProperties: "User,Gender"));
 
         [HttpGet(nameof(GetAllUserProfilesInfo))]
         [DisplayActionName(DisplayName = "استعلام البروفايلات للطلبات")]
-        public IActionResult GetAllUserProfilesInfo([FromQuery] SieveModel sieveModel) => Ok(_userProfileService.Get(sieveModel, includeProperties: "User"));
+        public IActionResult GetAllUserProfilesInfo([FromQuery] SieveModel sieveModel) => Ok(_userProfileService.Get(sieveModel, includeProperties: "User,Gender"));
 
         [HttpPost(nameof(CreateUserProfile))]
         [DisplayActionName(DisplayName = "إنشاء بروفايل جديد")]

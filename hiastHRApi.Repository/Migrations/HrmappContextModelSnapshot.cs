@@ -3971,10 +3971,9 @@ namespace hiastHRApi.Repository.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Gender")
-                        .IsRequired()
+                    b.Property<Guid>("GenderId")
                         .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -4004,6 +4003,8 @@ namespace hiastHRApi.Repository.Migrations
 
                     b.HasIndex("UserId", "IsDeleted")
                         .IsUnique();
+
+                    b.HasIndex(new[] { "GenderId" }, "IX_UserProfiles_GenderId");
 
                     b.ToTable("UserProfiles");
                 });
@@ -4777,11 +4778,19 @@ namespace hiastHRApi.Repository.Migrations
 
             modelBuilder.Entity("hiastHRApi.Domain.Entities.Identity.UserProfile", b =>
                 {
+                    b.HasOne("hiastHRApi.Domain.Entities.Constants.Gender", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("hiastHRApi.Domain.Entities.Identity.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Gender");
 
                     b.Navigation("User");
                 });

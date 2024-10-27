@@ -1,5 +1,6 @@
 ﻿
 using hiastHRApi.Domain.Entities.Base;
+using hiastHRApi.Domain.Entities.Constants;
 using Sieve.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,7 +32,8 @@ namespace hiastHRApi.Domain.Entities.Identity
         [Required]
         [StringLength(10)]
         [Sieve(CanFilter = true, CanSort = true, Name = "Gender")]
-        public string Gender { get; set; }
+        public Guid GenderId { get; set; }
+        public virtual Gender Gender { get; set; }
 
         [Required]
         [StringLength(100)]

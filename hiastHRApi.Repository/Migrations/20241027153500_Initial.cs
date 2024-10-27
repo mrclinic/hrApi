@@ -1152,7 +1152,7 @@ namespace hiastHRApi.Repository.Migrations
                     MotherName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BirthPlace = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "date", nullable: false, defaultValueSql: "'1900-01-01'"),
-                    Gender = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    GenderId = table.Column<Guid>(type: "uniqueidentifier", maxLength: 10, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PersonalCardNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -1167,6 +1167,12 @@ namespace hiastHRApi.Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserProfiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserProfiles_Genders_GenderId",
+                        column: x => x.GenderId,
+                        principalTable: "Genders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserProfiles_Users_UserId",
                         column: x => x.UserId,
@@ -2700,6 +2706,11 @@ namespace hiastHRApi.Repository.Migrations
                 name: "IX_SubDepartments_DepartmentId",
                 table: "SubDepartments",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserProfiles_GenderId",
+                table: "UserProfiles",
+                column: "GenderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserProfiles_UserId_IsDeleted",
