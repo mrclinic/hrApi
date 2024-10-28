@@ -12,7 +12,7 @@ namespace hiastHRApi.Areas.HR.Controllers
     [Area("HR")]
     [Route("[area]/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class BloodGroupController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;

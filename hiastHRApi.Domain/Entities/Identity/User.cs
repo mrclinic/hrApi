@@ -18,17 +18,17 @@ namespace hiastHRApi.Domain.Entities.Identity
 
         [StringLength(100)]
         [Required]
-        [Sieve(CanFilter = true, CanSort = true, Name = "FirstName")]
+        [Sieve(CanFilter = true, CanSort = true, Name = "FName")]
         public string FirstName { get; set; }
 
         [StringLength(100)]
         [Required]
-        [Sieve(CanFilter = true, CanSort = true, Name = "LastName")]
+        [Sieve(CanFilter = true, CanSort = true, Name = "LName")]
         public string LastName { get; set; }
 
         [StringLength(100)]
         [Required]
-        [Sieve(CanFilter = true, CanSort = true, Name = "Username")]
+        [Sieve(CanFilter = true, CanSort = true, Name = "UserName")]
         public string Username { get; set; }
 
         [StringLength(100)]
@@ -37,17 +37,17 @@ namespace hiastHRApi.Domain.Entities.Identity
 
         [Required]
         [MinLength(10),MaxLength(10)]
-        [Sieve(CanFilter = true, CanSort = true, Name = "Mobile")]
+        [Sieve(CanFilter = true, CanSort = true, Name = "Phone")]
         public string Mobile { get; set; }
 
         [Required]
         [MinLength(11), MaxLength(11)]
-        [Sieve(CanFilter = true, CanSort = true, Name = "NationalNumber")]
+        [Sieve(CanFilter = true, CanSort = true, Name = "NatNum")]
         public string NationalNumber { get; set; }
 
         [EmailAddress]
         [Required]
-        [Sieve(CanFilter = true, CanSort = true, Name = "Email")]
+        [Sieve(CanFilter = true, CanSort = true, Name = "EmailAddress")]
         public string Email { get; set; }
 
         public string? Token { get; set; }
@@ -57,7 +57,7 @@ namespace hiastHRApi.Domain.Entities.Identity
 
         [Required]
         [ForeignKey("RoleId")]
-        [Sieve(CanFilter = true, CanSort = true, Name = "RoleId")]
+        [Sieve(CanFilter = true, CanSort = true, Name = "RoleID")]
         public Guid RoleId { get; set; }
         public virtual Role Role { get; set; }
     }
